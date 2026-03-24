@@ -442,19 +442,6 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    .gallery-placeholder {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: var(--border);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-
     /* ── OTHER CARD ── */
     .other-grid {
       display: grid;
@@ -779,15 +766,14 @@
   <div class="slide-inner">
     <div class="slide-header">
       <div class="slide-title">Introduction</div>
-      <div class="slide-subtitle">문제를 구조로 해결하는 Back-End 개발자</div>
+      <div class="slide-subtitle">정합성과 유지보수성을 우선하는 Back-End 개발자</div>
     </div>
     <!-- TOP ROW: Intro + Cert/Edu -->
     <div class="two-col" style="grid-template-columns: 2fr 1fr; margin-bottom: 0.8rem;">
       <div class="box">
         <div class="hero-big"><span>Back-End</span> Developer</div>
         <p class="hero-intro">
-          데이터를 안정적으로 수집하고 가공하는 데이터 파이프라인 설계에 강점을 가지고 있습니다.
-          단순한 기능 구현을 넘어, 데이터 파이프라인의 효율성과 DB 쿼리 최적화를 최우선으로 고려합니다.
+          서비스의 필요성과 구현 가능성을 함께 따지며, 데이터 정합성·유지보수성·안정성을 우선해 설계하는 백엔드 개발자입니다.
         </p>
         <div class="hero-kw">
           <span>서버 설계</span><span>인프라 구축</span><span>금융 데이터</span><span>실시간 시스템</span>
@@ -815,21 +801,21 @@
     <div class="skills-full">
       <div class="box">
         <div class="box-title-accent">백엔드</div>
-        <div class="sk"><span class="sk-icon"><i class="devicon-spring-plain"></i></span><span class="sk-name">Spring Boot</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span></span><span class="sk-desc">REST API 설계, 도메인 분리, 배포 경험</span></div>
-        <div class="sk"><span class="sk-icon"></span><span class="sk-name">JPA</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">연관관계 매핑, 트랜잭션 처리</span></div>
-        <div class="sk"><span class="sk-icon"></span><span class="sk-name">Security</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">JWT 인증·인가 구현</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-spring-plain"></i></span><span class="sk-name">Spring Boot</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span></span><span class="sk-desc">REST API 설계, 도메인 분리, Swagger 문서화와 배포 경험</span></div>
+        <div class="sk"><span class="sk-icon"></span><span class="sk-name">JPA</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">연관관계 매핑, 트랜잭션 경계 설정, 정합성 중심 모델링</span></div>
+        <div class="sk"><span class="sk-icon"></span><span class="sk-name">Security</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">JWT 인증·인가, 필터 체인 설정, 권한 예외 처리 경험</span></div>
       </div>
       <div class="box">
         <div class="box-title-accent">언어</div>
-        <div class="sk"><span class="sk-icon"><i class="devicon-java-plain"></i></span><span class="sk-name">Java</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">객체지향 설계, 서비스 로직 구현</span></div>
-        <div class="sk"><span class="sk-icon"><i class="devicon-javascript-plain"></i></span><span class="sk-name">JavaScript</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">프론트 연동, 스크립트 작업</span></div>
-        <div class="sk"><span class="sk-icon"><i class="devicon-python-plain"></i></span><span class="sk-name">Python</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">데이터 처리, AI 연동, 분석 파이프라인</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-java-plain"></i></span><span class="sk-name">Java</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">객체지향 설계 기반 유스케이스·서비스 로직 구현</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-javascript-plain"></i></span><span class="sk-name">JavaScript</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">포트폴리오·프론트 연동용 UI 스크립트 수정 및 배포 대응</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-python-plain"></i></span><span class="sk-name">Python</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">분석 API 연동, 데이터 전처리, AI 파이프라인 작업 경험</span></div>
       </div>
       <div class="box">
         <div class="box-title-accent">데이터베이스</div>
-        <div class="sk"><span class="sk-icon"><i class="devicon-mysql-plain"></i></span><span class="sk-name">MySQL</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">관계형 모델링, 성능 튜닝</span></div>
-        <div class="sk"><span class="sk-icon"><i class="devicon-postgresql-plain"></i></span><span class="sk-name">PostgreSQL</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">금융 데이터 관리</span></div>
-        <div class="sk"><span class="sk-icon"><i class="devicon-redis-plain"></i></span><span class="sk-name">Redis</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">캐시, 조회 성능 개선</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-mysql-plain"></i></span><span class="sk-name">MySQL</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">정규화, 인덱스, JPA 기반 CRUD·조회 설계 경험</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-postgresql-plain"></i></span><span class="sk-name">PostgreSQL</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">거래·예산·목표 데이터 모델링과 주간·월간 집계 처리</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-redis-plain"></i></span><span class="sk-name">Redis</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">캐시와 HOT 데이터 분리로 빠른 조회 응답 보조</span></div>
       </div>
       <div class="box">
         <div class="box-title-accent">AI / 데이터</div>
@@ -839,11 +825,11 @@
       </div>
       <div class="box">
         <div class="box-title-accent">인프라 / DevOps</div>
-        <div class="sk"><span class="sk-icon"><i class="devicon-docker-plain"></i></span><span class="sk-name">Docker</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">컨테이너 구성, 환경 통일</span></div>
-        <div class="sk"><span class="sk-icon"><i class="devicon-linux-plain"></i></span><span class="sk-name">Linux</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">Ubuntu 서버 배포·운영</span></div>
-        <div class="sk"><span class="sk-icon"><i class="devicon-nginx-original"></i></span><span class="sk-name">Nginx</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">리버스 프록시 설정</span></div>
-        <div class="sk"><span class="sk-icon"><i class="devicon-githubactions-plain"></i></span><span class="sk-name">CI/CD</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">GitHub Actions 배포 자동화</span></div>
-        <div class="sk"><span class="sk-icon"><i class="devicon-amazonwebservices-plain-wordmark"></i></span><span class="sk-name">AWS S3</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">파일 저장 관리</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-docker-plain"></i></span><span class="sk-name">Docker</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">compose 기반 실행 환경 통일과 서비스 묶음 운영</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-linux-plain"></i></span><span class="sk-name">Linux</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">Ubuntu 서버 배포, 로그 확인, 프로세스 운영 경험</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-nginx-original"></i></span><span class="sk-name">Nginx</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">리버스 프록시와 정적 자산·API 라우팅 설정</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-githubactions-plain"></i></span><span class="sk-name">CI/CD</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">GitHub Actions로 빌드·배포 자동화 구성</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-amazonwebservices-plain-wordmark"></i></span><span class="sk-name">AWS S3</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">이미지·음성 업로드 저장소 분리와 경로 정책 설계</span></div>
       </div>
     </div>
   </div>
@@ -870,8 +856,16 @@
         <div class="box">
           <div class="box-title-accent">프로젝트 소개</div>
           <ul class="lst">
-            <li>헤이영 캠퍼스의 비활성화된 커뮤니티를 활성화하기 위해 기획한 지도 기반 캠퍼스 커뮤니티</li>
-            <li>위치 중심의 즉각적인 소통과 게시판 기반 정보 축적을 결합해 현장성과 지속성을 동시에 구현</li>
+            <li>텍스트 게시판 중심 커뮤니티의 한계 때문에 캠퍼스 현장 이슈를 즉시 공유하기 어려운 문제를 해결하고자 기획한 서비스</li>
+            <li>지도에서 바로 공유하고 게시판에 구조화해 남기는 흐름으로 현장성과 지속성을 함께 확보</li>
+          </ul>
+        </div>
+        <div class="box">
+          <div class="box-title-accent">해결 방식</div>
+          <ul class="lst">
+            <li>게시글, 랜드마크, 캠퍼스 온도 API를 분리해 지도와 게시판이 같은 데이터를 재사용하도록 구성</li>
+            <li>AI 감정 분석 결과를 온도 지표와 연결해 게시글 흐름을 한눈에 보여주는 서비스 지표 설계</li>
+            <li>파일 업로드 경로를 Content-Type 기준으로 분기해 이미지와 녹음 파일 운영 경로를 분리</li>
           </ul>
         </div>
         <div class="box">
@@ -881,14 +875,6 @@
             <li>게시글 온도 집계 로직 구현</li>
             <li>S3 기반 이미지·녹음 파일 업로드 구조 구성</li>
             <li>VMware Ubuntu Live Server 기반 배포 환경 구축 및 CI/CD 구성</li>
-          </ul>
-        </div>
-        <div class="box">
-          <div class="box-title-accent">구현 기능</div>
-          <ul class="lst">
-            <li>게시글 CRUD와 이미지·녹음 첨부 업로드 API 구현</li>
-            <li>랜드마크 생성·조회와 주변 데이터 처리 API 구현</li>
-            <li>AI 감정 분석 결과를 게시글 온도 집계 흐름과 연결</li>
           </ul>
         </div>
         <div class="box">
@@ -913,9 +899,18 @@
         <div class="box">
           <div class="box-title-accent">기술 선택 이유</div>
           <ul class="lst">
-            <li>Spring Boot로 게시글, 위치, 랜드마크 도메인을 분리해 API 확장에 적합</li>
-            <li>MariaDB, Redis, S3를 분리해 영속·캐싱·파일 저장 역할 분담</li>
-            <li>개인 PC 기반 Ubuntu Live Server로 해커톤 기간 비용 효율적으로 확보</li>
+            <li>Spring Boot를 중심으로 게시글·랜드마크·알림 도메인을 나누고, 익숙한 MVC 구조 위에서 빠르게 기능을 확장</li>
+            <li>WebFlux는 서버 전체 전환보다 GPT API 호출용 WebClient에 집중해 외부 AI 연동 지연을 분리</li>
+            <li>MariaDB, Redis, S3를 영속 데이터·빠른 조회·파일 저장으로 역할 분리해 운영 구조를 단순화</li>
+            <li>개인 PC 기반 Ubuntu Live Server와 GitHub Actions로 짧은 해커톤 기간에도 반복 가능한 배포 환경 확보</li>
+          </ul>
+        </div>
+        <div class="box">
+          <div class="box-title-accent">성과 / 결과</div>
+          <ul class="lst">
+            <li>게시판 텍스트를 읽기 전에도 캠퍼스 분위기를 지표로 먼저 파악할 수 있는 구조로 전환</li>
+            <li>이미지·녹음 파일 저장 경로를 유형별로 분리해 운영 중 파일 탐색과 장애 대응 범위를 좁힘</li>
+            <li>신한 해커톤 대상 수상으로 문제 정의와 구현 완성도를 외부 평가로 검증</li>
           </ul>
         </div>
       </div>
@@ -975,8 +970,8 @@
       </div>
       <div class="ts-result">
         <ul>
-          <li>게시글 활동을 하나의 서비스 지표(캠퍼스 온도)로 시각화</li>
-          <li>시간대별 보정으로 극단적 온도 변동 방지</li>
+          <li>게시글 목록을 읽기 전에도 홈 화면에서 캠퍼스 분위기를 한 번에 파악할 수 있는 지표를 제공</li>
+          <li>보호 계수와 시간대 보정으로 게시글이 적은 시간에도 지표가 급변하지 않도록 제어</li>
         </ul>
       </div>
     </div>
@@ -1028,8 +1023,23 @@
       </div>
       <div class="ts-result">
         <ul>
-          <li>저장소 역할을 명확히 분리하여 운영 복잡도 감소</li>
-          <li>날짜 + Content-Type 기반 정리로 파일 검색·관리 효율화</li>
+          <li>업로드 직후 생성되는 S3 key만으로 이미지와 녹음 파일 위치를 구분할 수 있어 운영 탐색 경로를 단순화</li>
+          <li>DB·캐시·파일 저장소 책임을 나눠 장애 원인 파악 범위를 저장 계층별로 좁힘</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ts-section">
+      <div class="ts-num">3. 프로젝트 회고</div>
+      <div class="ts-desc">
+        해커톤처럼 일정이 짧을수록 기능 구현보다 운영 가능한 구조를 먼저 잡아야 한다는 점을 배웠습니다.<br>
+        반면 이번 프로젝트에서는 온도 지표와 파일 구조 개선 효과를 응답 시간이나 운영 시간 절감처럼 정량화하지 못한 아쉬움이 남았습니다.
+      </div>
+      <div class="ts-result">
+        <ul>
+          <li>배운 점: 사용자 경험을 높이는 기능도 결국 정합성, 저장소 분리, 극단값 제어 같은 운영 관점이 뒷받침돼야 한다는 점</li>
+          <li>아쉬운 점: 구조 개선 효과를 설명할 로그·모니터링 지표까지는 연결하지 못함</li>
+          <li>다음 개선: Redis 조회 지표, 업로드 실패율, 응답 시간 기록을 붙여 개선 효과를 정량 검증하고 싶음</li>
         </ul>
       </div>
     </div>
@@ -1058,8 +1068,16 @@
         <div class="box">
           <div class="box-title-accent">프로젝트 소개</div>
           <ul class="lst">
-            <li>거래 데이터와 금융 Open API를 활용해 소비 분석, 목표 설정, 예산 관리를 연결한 금융 서비스</li>
-            <li>분석 결과를 보여주는 데서 끝나지 않고 목표 계획 수립과 주간 예산 제안까지 이어지는 흐름 설계</li>
+            <li>거래 데이터와 금융 Open API를 활용해 소비 분석, 목표 설정, 예산 관리를 하나의 흐름으로 연결한 금융 서비스</li>
+            <li>분석 결과를 보여주는 데서 끝나지 않고 목표 계획 수립과 주간 예산 제안까지 이어지는 실행형 사용자 흐름 설계</li>
+          </ul>
+        </div>
+        <div class="box">
+          <div class="box-title-accent">해결 방식</div>
+          <ul class="lst">
+            <li>계좌 연동 이후 3개월 거래를 수집·분석하고, 목표 설정 결과를 주간 예산으로 다시 연결하는 흐름 설계</li>
+            <li>외부 금융 API 데이터와 로컬 DB를 reconcile해 분석·예산·목표가 같은 계좌 기준을 보도록 통합</li>
+            <li>월간 수입을 주차별 예산, 저축, 여유 자금으로 나누고 부족분은 우선순위가 낮은 목표부터 조정</li>
           </ul>
         </div>
         <div class="box">
@@ -1077,13 +1095,6 @@
             <span class="tag">Spring Boot</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">Ubuntu</span><span class="tag">SSAFY 금융 Open API</span>
           </div>
         </div>
-        <div class="box">
-          <div class="box-title-accent">서비스 흐름</div>
-          <ul class="lst">
-            <li>계좌 연동 → 첫 목표 설정 → 소비 분석 결과 확인 → 목표 계획 수립 → 홈 진입</li>
-            <li>홈, 분석, 목표, 내 정보 탭을 중심으로 예산과 목표를 지속 관리</li>
-          </ul>
-        </div>
       </div>
       <div class="proj-gallery-side">
         <div class="gallery-wrap gallery-portrait" id="moaGallery">
@@ -1100,19 +1111,19 @@
       </div>
       <div class="proj-gallery-meta-grid">
         <div class="box">
-          <div class="box-title-accent">구현 기능</div>
+          <div class="box-title-accent">성과 / 결과</div>
           <ul class="lst">
-            <li>계좌 연동/관리 API와 거래 데이터 동기화 흐름 구현</li>
-            <li>주간·월간 소비 분석과 예산 계산 로직 연결</li>
-            <li>목표 우선순위를 반영한 예산 배분 및 계획 수립 구조 구현</li>
+            <li>분석 결과 화면에서 끝나지 않고 목표 계획 수립, 주간 예산 설정, 홈 자유소비 관리까지 이어지는 실행 흐름을 구성</li>
+            <li>계좌 동기화 이후 분석·예산·목표 화면이 동일한 계좌 기준을 보도록 데이터 기준점을 통일</li>
+            <li>목표 충돌 시 부족분을 우선순위가 낮은 목표부터 조정해 금액 변화 이유를 설명 가능한 구조로 설계</li>
           </ul>
         </div>
         <div class="box">
           <div class="box-title-accent">기술 선택 이유</div>
           <ul class="lst">
-            <li>Spring Boot로 계좌, 거래, 목표, 예산 등 복잡한 금융 도메인 구조화</li>
-            <li>PostgreSQL로 거래·예산 데이터 관계형 관리, Docker로 실행 환경 일관성 확보</li>
-            <li>FastAPI로 분석 파이프라인과 백엔드 서비스를 역할별 분리 연결</li>
+            <li>Spring Boot를 메인 API 서버로 두어 계좌, 거래, 목표, 예산처럼 트랜잭션이 중요한 금융 도메인을 일관된 계층으로 관리</li>
+            <li>PostgreSQL을 선택해 거래·예산·목표 관계와 주간·월간 집계를 안정적으로 다루고, Docker로 팀 전체 실행 환경을 통일</li>
+            <li>FastAPI는 분석 응답처럼 계산 로직 변경이 잦은 영역을 분리할 때 유리해 금융 도메인 API와 분석 파이프라인의 책임을 나누는 구조에 적합</li>
           </ul>
         </div>
       </div>
@@ -1183,8 +1194,8 @@
       </div>
       <div class="ts-result">
         <ul>
-          <li>홈, 분석, 목표 화면이 동일한 데이터 기준을 바라보도록 정합성 확보</li>
-          <li>외부 API 장애 시에도 기존 데이터 보존 (비활성 처리)</li>
+          <li>동기화 이후 홈·분석·목표가 동일한 계좌 목록을 기준으로 계산되도록 데이터 기준점을 통일</li>
+          <li>삭제된 계좌를 즉시 제거하지 않고 비활성 처리해 외부 API 일시 오류에도 기존 이력을 보존</li>
         </ul>
       </div>
     </div>
@@ -1245,8 +1256,23 @@
       </div>
       <div class="ts-result">
         <ul>
-          <li>분석 결과가 주간 예산과 목표 계획으로 직접 연결</li>
-          <li>서비스 흐름을 조회 → 실행 중심으로 확장</li>
+          <li>온보딩 분석 결과가 주간 예산, 목표 계획, 홈 자유소비 금액으로 이어지는 실행 흐름을 구성</li>
+          <li>우선순위가 낮은 목표부터 부족분을 조정해 예산이 모자랄 때도 어떤 목표를 먼저 지킬지 설명 가능한 구조 확보</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ts-section">
+      <div class="ts-num">3. 프로젝트 회고</div>
+      <div class="ts-desc">
+        금융 서비스는 계산 로직 자체보다도 같은 데이터를 기준으로 읽고 쓰게 만드는 구조가 더 중요하다는 점을 배웠습니다.<br>
+        다만 예산 추천과 목표 계획이 실제 사용자 행동을 얼마나 바꿨는지까지 계측하지 못해 성과 설명은 아직 보강 여지가 있습니다.
+      </div>
+      <div class="ts-result">
+        <ul>
+          <li>배운 점: 금융 도메인에서는 화면별 기능보다 데이터 기준점과 동기화 순서를 먼저 맞추는 것이 안정성의 출발점이라는 점</li>
+          <li>아쉬운 점: 예산 추천 효과를 목표 달성률이나 예산 초과 감소 같은 지표로 검증하지 못함</li>
+          <li>다음 개선: 동기화 횟수, 목표 달성 진행률, 예산 초과 빈도를 수집해 추천 로직 성과를 정량화하고 싶음</li>
         </ul>
       </div>
     </div>
@@ -1282,13 +1308,11 @@
           <div class="gallery-count" id="hearbeGalleryCount">1 / 2</div>
         </div>
         <div class="box" style="margin-top:0.5rem;">
-          <div class="box-title-accent" style="font-size:0.78rem;">담당 파트</div>
+          <div class="box-title-accent" style="font-size:0.78rem;">핵심 경험</div>
           <ul class="lst">
-            <li>풀스택 보조 — 백엔드 API 설계 지원 및 프론트 연동</li>
-            <li>AI 판단 로직 담당 — ASR(Whisper) → NLU → LLM → TTS 파이프라인의 판단 흐름 설계·구현</li>
-            <li>WebSocket 기반 실시간 음성 세션 처리, MCP(Model Context Protocol) 연동</li>
-            <li>Git 충돌 처리·브랜치 전략 관리, Jira 기반 스프린트·이슈 관리 담당</li>
-            <li>Jira API 기반 CLI 자동화 모듈 직접 개발 — 이슈 조회·생성·수정, Git 커밋과 Jira 이슈 통합 회고 리포트 자동 생성 (모아 프로젝트에서도 재사용)</li>
+            <li>ASR(Whisper) → NLU → LLM → TTS 파이프라인을 연결해 음성 중심 사용자 흐름 설계</li>
+            <li>WebSocket 기반 실시간 음성 세션 처리와 MCP 연동 경험 확보</li>
+            <li>Jira API 기반 CLI 자동화 모듈을 만들어 협업 운영 효율 개선, 이후 모아 프로젝트에도 재사용</li>
           </ul>
         </div>
         <div class="tags" style="margin-top:0.5rem;">
@@ -1302,23 +1326,11 @@
         </div>
         <p class="other-desc"><strong>SSAFY 관통 프로젝트</strong> · 2025.11 ~ 2025.12.26 · 유튜브 여행 영상 자막을 AI로 구조화하고 시맨틱 검색을 제공하는 여행 계획 플랫폼</p>
         <div class="box" style="margin-top:0.5rem;">
-          <div class="gallery-wrap" id="triptubeGallery">
-            <button class="gallery-btn prev" onclick="galleryMove('triptubeGallery',-1)">&#8249;</button>
-            <div class="gallery-track">
-              <div class="gallery-placeholder">img/triptube/1.png</div>
-              <div class="gallery-placeholder">img/triptube/2.png</div>
-            </div>
-            <button class="gallery-btn next" onclick="galleryMove('triptubeGallery',1)">&#8250;</button>
-          </div>
-          <div class="gallery-count" id="triptubeGalleryCount">1 / 2</div>
-        </div>
-        <div class="box" style="margin-top:0.5rem;">
-          <div class="box-title-accent" style="font-size:0.78rem;">담당 파트</div>
+          <div class="box-title-accent" style="font-size:0.78rem;">핵심 경험</div>
           <ul class="lst">
-            <li>유저·마이페이지 파트 제외 전체 풀스택 담당</li>
-            <li>YouTube 자막 추출 → GPT 구조화 → 4096차원 벡터 임베딩 파이프라인 전체 구현</li>
-            <li>한국어 특화 임베딩(Upstage) 기반 시맨틱 검색 API 설계·구현</li>
-            <li>Spring Boot 백엔드 + FastAPI AI 서버 간 연동 구조 설계</li>
+            <li>YouTube 자막 추출 → GPT 구조화 → 벡터 임베딩까지 이어지는 검색 파이프라인 구축</li>
+            <li>한국어 특화 임베딩 기반 시맨틱 검색 API를 설계·구현해 검색 품질 개선 경험 확보</li>
+            <li>Spring Boot 백엔드와 AI 서버를 분리해 검색/추천형 기능을 서비스 API와 연결한 경험</li>
           </ul>
         </div>
         <div class="tags" style="margin-top:0.5rem;">
@@ -1343,11 +1355,11 @@
           <div class="gallery-count" id="sequenceGalleryCount">1 / 2</div>
         </div>
         <div class="box" style="margin-top:0.5rem;">
-          <div class="box-title-accent" style="font-size:0.78rem;">담당 파트</div>
+          <div class="box-title-accent" style="font-size:0.78rem;">핵심 경험</div>
           <ul class="lst">
-            <li>아카이브 파트 백엔드 기능 개발 — 프로젝트 아카이빙, 상호 팀원 평가 기능 구현</li>
-            <li>QueryDSL 기반 동적 필터링·검색 쿼리 구현</li>
-            <li>JPA 연관관계 설계 및 soft-delete 기반 데이터 관리</li>
+            <li>프로젝트 아카이빙과 상호 팀원 평가 기능을 중심으로 아카이브 파트 백엔드 개발</li>
+            <li>QueryDSL 기반 동적 필터링·검색 쿼리로 복합 조회 조건 처리 경험 확보</li>
+            <li>JPA 연관관계 설계와 soft-delete 기반 데이터 관리 패턴 적용</li>
           </ul>
         </div>
         <div class="tags" style="margin-top:0.5rem;">
@@ -1361,21 +1373,10 @@
         </div>
         <p class="other-desc"><strong>기업 인턴십</strong> · 2025.06 ~ 2025.08 · 고정밀 균형 유지 하드웨어의 실시간 상태를 시각적으로 표현하는 2D 시각화 모듈 개발</p>
         <div class="box" style="margin-top:0.5rem;">
-          <div class="gallery-wrap" id="bluerobotGallery">
-            <button class="gallery-btn prev" onclick="galleryMove('bluerobotGallery',-1)">&#8249;</button>
-            <div class="gallery-track">
-              <div class="gallery-placeholder">img/bluerobot/1.png</div>
-              <div class="gallery-placeholder">img/bluerobot/2.png</div>
-            </div>
-            <button class="gallery-btn next" onclick="galleryMove('bluerobotGallery',1)">&#8250;</button>
-          </div>
-          <div class="gallery-count" id="bluerobotGalleryCount">1 / 2</div>
-        </div>
-        <div class="box" style="margin-top:0.5rem;">
-          <div class="box-title-accent" style="font-size:0.78rem;">담당 파트</div>
+          <div class="box-title-accent" style="font-size:0.78rem;">핵심 경험</div>
           <ul class="lst">
-            <li>Kotlin 기반 2D 시각화 모듈 단독 개발</li>
-            <li>하드웨어 센서 데이터를 실시간으로 수신하여 균형 상태를 그래픽으로 렌더링</li>
+            <li>Kotlin 기반 2D 시각화 모듈을 단독 개발하며 실시간 상태 표현 로직 구현</li>
+            <li>하드웨어 센서 데이터를 수신해 균형 상태를 그래픽으로 렌더링하는 인터페이스 개발 경험 확보</li>
           </ul>
         </div>
         <div class="tags" style="margin-top:0.5rem;">
@@ -1395,20 +1396,33 @@
     const dot = document.createElement('button');
     dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
     dot.title = s.dataset.label || '';
-    dot.addEventListener('click', () => s.scrollIntoView({ behavior: 'smooth' }));
+    dot.addEventListener('click', () => {
+      window.scrollTo({
+        top: s.offsetTop,
+        behavior: 'smooth'
+      });
+    });
     dotsContainer.appendChild(dot);
   });
 
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        const idx = [...slides].indexOf(e.target);
-        dotsContainer.querySelectorAll('.nav-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
-      }
-    });
-  }, { threshold: 0.5 });
+  function updateActiveDot() {
+    const marker = window.scrollY + (window.innerHeight * 0.35);
+    let activeIdx = 0;
 
-  slides.forEach(s => obs.observe(s));
+    slides.forEach((slide, idx) => {
+      const start = slide.offsetTop;
+      const end = start + slide.offsetHeight;
+      if (marker >= start && marker < end) activeIdx = idx;
+    });
+
+    dotsContainer.querySelectorAll('.nav-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === activeIdx);
+    });
+  }
+
+  updateActiveDot();
+  window.addEventListener('scroll', updateActiveDot, { passive: true });
+  window.addEventListener('resize', updateActiveDot);
 
   // Gallery slider
   function galleryMove(id, dir) {
