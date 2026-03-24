@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>백엔드 개발자 포트폴리오</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #111;
+      --gray-900: #1a1a1a;
+      --gray-700: #444;
+      --gray-500: #777;
+      --gray-400: #999;
+      --gray-300: #bbb;
+      --gray-200: #ddd;
+      --gray-100: #eee;
+      --gray-50: #f5f5f5;
+      --white: #fff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--white);
+      color: var(--black);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* ── SLIDE CONTAINER ── */
+    .slides {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+      scrollbar-width: none;
+    }
+    .slides::-webkit-scrollbar { display: none; }
+
+    .slide {
+      width: 100vw;
+      min-height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 6rem;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    /* ── SLIDE INDICATOR ── */
+    .indicator {
+      position: fixed;
+      top: 50%;
+      right: 2rem;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      z-index: 100;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gray-200);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .dot.active {
+      background: var(--black);
+      height: 24px;
+      border-radius: 4px;
+    }
+
+    /* ── PAGE NUMBER ── */
+    .page-num {
+      position: fixed;
+      top: 50%;
+      right: 4rem;
+      transform: translateY(-50%);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--gray-400);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      letter-spacing: 0.08em;
+      z-index: 100;
+    }
+
+    /* ── TYPOGRAPHY ── */
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 0.75rem;
+    }
+
+    /* ══════════════════════════════════════
+       SLIDE 1 — COVER
+       ══════════════════════════════════════ */
+    .cover {
+      align-items: center;
+      text-align: center;
+      justify-content: flex-start;
+      padding-top: 2.5rem;
+      padding-bottom: 3rem;
+    }
+
+    .cover-slogan {
+      max-width: 680px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      line-height: 1.6;
+      color: var(--gray-500);
+      margin-bottom: 0.85rem;
+      text-transform: uppercase;
+    }
+
+    .cover h1 {
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: var(--black);
+    }
+
+    .cover-keywords {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1.15rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cover-keywords span {
+      font-size: 0.9rem;
+      color: var(--gray-500);
+      font-weight: 400;
+    }
+
+    .cover-keywords span::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      background: var(--gray-300);
+      border-radius: 50%;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .cover-tech {
+      width: min(900px, 100%);
+      margin-top: 2.1rem;
+      text-align: left;
+    }
+
+    .scroll-guide {
+      position: absolute;
+      left: 50%;
+      bottom: 2rem;
+      transform: translateX(-50%);
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--gray-400);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      animation: scroll-guide-float 2.4s ease-in-out infinite;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+
+    .scroll-guide::after {
+      content: '';
+      width: 1px;
+      height: 28px;
+      background: linear-gradient(to bottom, var(--gray-300), transparent);
+    }
+
+    .scroll-guide.hidden {
+      opacity: 0;
+      transform: translateX(-50%) translateY(10px);
+    }
+
+    @keyframes scroll-guide-float {
+      0%, 100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      35% {
+        transform: translateX(-50%) translateY(14px);
+      }
+      70% {
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    /* ══════════════════════════════════════
+       SLIDE 2 — TECH STACK
+       ══════════════════════════════════════ */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1px;
+      background: var(--gray-100);
+      border: 1px solid var(--gray-100);
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 900px;
+    }
+
+    .tech-cat {
+      background: var(--white);
+      padding: 1.2rem 1.5rem;
+    }
+
+    .tech-cat-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-list {
+      display: grid;
+      gap: 0.6rem;
+    }
+
+    .skill-item {
+      display: grid;
+      grid-template-columns: 150px 62px minmax(0, 1fr);
+      gap: 0.7rem;
+      align-items: start;
+    }
+
+    .skill-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      white-space: nowrap;
+    }
+
+    .skill-name i {
+      font-size: 0.95rem;
+    }
+
+    .skill-level {
+      display: inline-flex;
+      gap: 0.16rem;
+      padding-top: 0.05rem;
+    }
+
+    .skill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      background: var(--gray-200);
+    }
+
+    .skill-dot.filled {
+      background: var(--black);
+    }
+
+    .skill-desc {
+      font-size: 0.74rem;
+      line-height: 1.45;
+      color: var(--gray-500);
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.65rem;
+      border: 1px solid var(--gray-100);
+      border-radius: 5px;
+      font-size: 0.78rem;
+      color: var(--gray-700);
+      background: var(--gray-50);
+    }
+
+    .pill i { font-size: 0.95rem; }
+
+    /* ══════════════════════════════════════
+       SLIDE 3, 4 — PROJECT DETAIL
+       ══════════════════════════════════════ */
+    .project-slide {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+      padding-top: 3rem;
+    }
+
+    .project-left {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .project-title {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 5px;
+      font-size: 0.72rem;
+      font-weight: 600;
+    }
+
+    .badge-award {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      color: var(--gray-700);
+    }
+
+    .badge-role {
+      background: var(--black);
+      color: var(--white);
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-context {
+      background: transparent;
+      border: 1px solid var(--gray-200);
+      color: var(--gray-500);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 400;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      color: var(--gray-500);
+      line-height: 1.6;
+    }
+
+    .role-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .role-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--gray-700);
+    }
+
+    .role-list li::before {
+      content: '';
+      width: 3px;
+      height: 3px;
+      background: var(--black);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .project-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .slide[data-slide="2"],
+    .slide[data-slide="4"] {
+      justify-content: flex-start;
+    }
+
+    .slide[data-slide="2"] .project-slide,
+    .slide[data-slide="4"] .project-slide {
+      align-items: stretch;
+      gap: 1.75rem;
+      padding-top: 1rem;
+    }
+
+    .slide[data-slide="2"] .project-left,
+    .slide[data-slide="2"] .project-right,
+    .slide[data-slide="4"] .project-left,
+    .slide[data-slide="4"] .project-right {
+      gap: 0.85rem;
+      min-height: calc(100vh - 10.5rem);
+    }
+
+    .slide[data-slide="2"] .project-left .detail-panel,
+    .slide[data-slide="2"] .project-right .detail-panel,
+    .slide[data-slide="4"] .project-left .detail-panel,
+    .slide[data-slide="4"] .project-right .detail-panel {
+      padding: 1rem 1.15rem;
+      flex: 1;
+    }
+
+    .slide[data-slide="2"] .gallery-shell,
+    .slide[data-slide="4"] .gallery-shell {
+      flex: 1.05;
+    }
+
+    .slide[data-slide="2"] .project-title,
+    .slide[data-slide="4"] .project-title {
+      font-size: 1.85rem;
+    }
+
+    .slide[data-slide="2"] .badge-context,
+    .slide[data-slide="4"] .badge-context {
+      font-size: 0.64rem;
+      padding: 0.28rem 0.55rem;
+    }
+
+    .slide[data-slide="2"] .detail-panel-list,
+    .slide[data-slide="4"] .detail-panel-list {
+      gap: 0.35rem;
+    }
+
+    .slide[data-slide="2"] .detail-panel-list li,
+    .slide[data-slide="4"] .detail-panel-list li,
+    .slide[data-slide="2"] .detail-panel-text,
+    .slide[data-slide="4"] .detail-panel-text {
+      font-size: 0.8rem;
+      line-height: 1.48;
+    }
+
+    .slide[data-slide="2"] .gallery-card,
+    .slide[data-slide="4"] .gallery-card {
+      aspect-ratio: 16 / 8.8;
+    }
+
+    .gallery-shell {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .gallery-viewport {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .gallery-track {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding-bottom: 0.25rem;
+      touch-action: pan-x;
+    }
+    .gallery-track::-webkit-scrollbar { display: none; }
+
+    .gallery-shell.is-hinting .gallery-track {
+      animation: gallery-peek 1.35s ease 0.35s 1;
+    }
+
+    .gallery-card {
+      min-width: 100%;
+      flex: 0 0 100%;
+      aspect-ratio: 16 / 10;
+      border: 1px solid var(--gray-200);
+      border-radius: 12px;
+      background: linear-gradient(180deg, var(--gray-50), #fafafa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      scroll-snap-align: start;
+      padding: 1rem;
+      color: var(--gray-300);
+      font-size: 0.8rem;
+      overflow: hidden;
+      scroll-snap-stop: always;
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(17, 17, 17, 0.08);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 2;
+      box-shadow: 0 10px 24px rgba(17, 17, 17, 0.08);
+      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+    }
+
+    .gallery-btn:hover {
+      background: var(--white);
+      transform: translateY(-50%) scale(1.04);
+    }
+
+    .gallery-btn:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    .gallery-btn.prev {
+      left: 0.9rem;
+    }
+
+    .gallery-btn.next {
+      right: 0.9rem;
+    }
+
+    .gallery-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .gallery-hint {
+      font-size: 0.68rem;
+      color: var(--gray-400);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .gallery-count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
+      color: var(--gray-500);
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    @keyframes gallery-peek {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      38%, 58% {
+        transform: translateX(-40px);
+      }
+    }
+
+    .detail-slide {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 3rem;
+      align-items: start;
+      padding-top: 2.5rem;
+    }
+
+    .detail-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .detail-summary-kicker {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--gray-400);
+    }
+
+    .detail-summary-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.18;
+    }
+
+    .detail-summary-text {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--gray-500);
+    }
+
+    .detail-summary-panel {
+      border: 1px solid var(--gray-100);
+      border-radius: 12px;
+      background: var(--gray-50);
+      padding: 1.25rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+    }
+
+    .summary-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .summary-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.32rem 0.7rem;
+      border-radius: 999px;
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+
+    .detail-summary-list {
+      margin: 0;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.65rem;
+      color: var(--gray-500);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .detail-panels {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .detail-panel {
+      border: 1px solid var(--gray-100);
+      border-radius: 12px;
+      padding: 1.35rem 1.5rem;
+      background: var(--white);
+    }
+
+    .detail-panel-label {
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-bottom: 0.6rem;
+    }
+
+    .detail-panel-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+    }
+
+    .case-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.55rem;
+    }
+
+    .case-step-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .case-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 3.4rem;
+      padding: 0.26rem 0.55rem;
+      border-radius: 999px;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--gray-600);
+      letter-spacing: 0.04em;
+    }
+
+    .detail-panel-text {
+      font-size: 0.86rem;
+      line-height: 1.7;
+      color: var(--gray-500);
+    }
+
+    .detail-panel-list {
+      list-style: none;
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .detail-panel-list li {
+      font-size: 0.84rem;
+      line-height: 1.6;
+      color: var(--gray-600, #666);
+      padding-left: 0.9rem;
+      position: relative;
+    }
+
+    .detail-panel-list li::before {
+      content: '';
+      position: absolute;
+      top: 0.65rem;
+      left: 0;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gray-300);
+    }
+
+    .img-placeholder {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: var(--gray-50);
+      border: 1px dashed var(--gray-200);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gray-300);
+      font-size: 0.8rem;
+    }
+
+    /* arch flow */
+    .arch-flow {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+    }
+
+    .arch-node {
+      padding: 0.3rem 0.6rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--gray-700);
+    }
+
+    .arch-arrow {
+      color: var(--gray-300);
+      font-size: 0.8rem;
+    }
+
+    /* metrics row */
+    .metrics {
+      display: flex;
+      gap: 1px;
+      background: var(--gray-100);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .metric {
+      flex: 1;
+      background: var(--white);
+      padding: 0.75rem 1rem;
+      text-align: center;
+    }
+
+    .metric .val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .metric .key {
+      font-size: 0.6rem;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.15rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      padding: 0.2rem 0.5rem;
+      background: var(--gray-50);
+      border: 1px solid var(--gray-100);
+      border-radius: 3px;
+      color: var(--gray-500);
+    }
+
+    /* challenge highlight */
+    .challenge {
+      padding: 1rem 1.25rem;
+      background: var(--gray-50);
+      border-left: 3px solid var(--black);
+      border-radius: 0 6px 6px 0;
+    }
+
+    .challenge-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--gray-400);
+      margin-bottom: 0.35rem;
+    }
+
+    .challenge-text {
+      font-size: 0.85rem;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+
+    /* ══════════════════════════════════════
+       SLIDE 5 — OTHER PROJECTS
+       ══════════════════════════════════════ */
+    .other-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      max-width: 1000px;
+    }
+
+    .other-card {
+      border: 1px solid var(--gray-100);
+      border-radius: 10px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: border-color 0.2s;
+    }
+
+    .other-card:hover {
+      border-color: var(--gray-300);
+    }
+
+    .other-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .other-card-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .other-card-role {
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      background: var(--gray-50);
+      border-radius: 3px;
+      color: var(--gray-500);
+      letter-spacing: 0.04em;
+    }
+
+    .other-card-desc {
+      font-size: 0.82rem;
+      color: var(--gray-500);
+      line-height: 1.5;
+    }
+
+    .other-card .tags {
+      margin-top: 0.25rem;
+    }
+
+    /* ══════════════════════════════════════
+       SLIDE 6 — CREDENTIALS
+       ══════════════════════════════════════ */
+    .cred-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      max-width: 900px;
+    }
+
+    .cred-card {
+      border: 1px solid var(--gray-100);
+      border-radius: 10px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .cred-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .cred-name {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .cred-detail {
+      font-size: 0.78rem;
+      color: var(--gray-400);
+    }
+
+    .cred-year {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--gray-300);
+      margin-top: 0.5rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      body { overflow: auto; }
+      .slides {
+        overflow-x: hidden;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+      }
+      .slide {
+        width: 100vw;
+        padding: 3rem 1.5rem;
+        scroll-snap-align: start;
+      }
+      .project-slide {
+        grid-template-columns: 1fr;
+      }
+      .detail-slide {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .tech-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .skill-item {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+      }
+      .skill-level {
+        padding-top: 0;
+      }
+      .gallery-card {
+        min-width: 100%;
+        flex-basis: 100%;
+      }
+      .gallery-btn {
+        width: 38px;
+        height: 38px;
+      }
+      .gallery-meta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .other-grid {
+        grid-template-columns: 1fr;
+      }
+      .cred-grid {
+        grid-template-columns: 1fr;
+      }
+      .indicator,
+      .page-num {
+        display: none;
+      }
+      .scroll-guide {
+        bottom: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- INDICATOR -->
+<div class="indicator" id="indicator"></div>
+
+<!-- PAGE NUMBER -->
+<div class="page-num" id="pageNum">1 / 9</div>
+
+<!-- SLIDES -->
+<div class="slides" id="slides">
+
+  <!-- ═══ SLIDE 1: COVER ═══ -->
+  <section class="slide cover" data-slide="1">
+    <div class="cover-slogan">유지보수성과 정합성, 일관성을 바탕으로 금융 서비스를 구현합니다</div>
+    <h1>Backend<br>Developer</h1>
+    <div class="cover-keywords">
+      <span>서버 설계</span>
+      <span>인프라 구축</span>
+      <span>금융 데이터</span>
+      <span>실시간 시스템</span>
+    </div>
+    <div class="cover-tech">
+      <div class="label">기술 스택</div>
+      <div class="tech-grid">
+        <div class="tech-cat">
+          <div class="tech-cat-label">백엔드</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-name"><i class="devicon-spring-plain"></i>Spring Boot</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">REST API 설계, 도메인 분리, 배포 경험 중심으로 활용</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">JPA</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">연관관계 매핑과 CRUD, 트랜잭션 중심 데이터 처리 경험</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Security</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">JWT 기반 인증·인가 구조를 구현하고 운영한 경험</div>
+            </div>
+          </div>
+        </div>
+        <div class="tech-cat">
+          <div class="tech-cat-label">언어</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-name"><i class="devicon-java-plain"></i>Java</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">객체지향 설계와 서비스 로직 구현에 가장 익숙한 언어</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><i class="devicon-javascript-plain"></i>JavaScript</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">간단한 프론트 연동과 스크립트 작업, API 테스트에 활용</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><i class="devicon-python-plain"></i>Python</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">데이터 처리와 AI 연동 스크립트, 분석 파이프라인 작업 경험</div>
+            </div>
+          </div>
+        </div>
+        <div class="tech-cat">
+          <div class="tech-cat-label">데이터베이스</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-name"><i class="devicon-mysql-plain"></i>MySQL</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">관계형 데이터 모델링과 기본 성능 튜닝 경험</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><i class="devicon-mariadb-original"></i>MariaDB</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">게시글·위치 기반 서비스에서 영속 데이터 저장소로 활용</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><i class="devicon-postgresql-plain"></i>PostgreSQL</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">거래·예산·목표처럼 관계가 복잡한 금융 데이터 관리 경험</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><i class="devicon-redis-plain"></i>Redis</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">캐시 구조와 조회 성능 개선 용도로 적용한 경험</div>
+            </div>
+          </div>
+        </div>
+        <div class="tech-cat">
+          <div class="tech-cat-label">인프라 / 데브옵스</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-name"><i class="devicon-docker-plain"></i>Docker</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">로컬·배포 환경 통일과 서비스 컨테이너 구성 경험</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><i class="devicon-linux-plain"></i>Linux</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">Ubuntu 서버 환경에서 배포와 운영 흐름을 직접 구성</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><i class="devicon-nginx-original"></i>Nginx</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">리버스 프록시와 정적 리소스 전달 설정 경험</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><i class="devicon-githubactions-plain"></i>GitHub Actions</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">빌드와 배포 자동화 파이프라인을 구성한 경험</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name"><i class="devicon-amazonwebservices-plain-wordmark"></i>AWS S3</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">이미지·오디오 파일 저장과 관리 구조로 활용</div>
+            </div>
+          </div>
+        </div>
+        <div class="tech-cat">
+          <div class="tech-cat-label">AI / 데이터</div>
+          <div class="skill-list">
+            <div class="skill-item">
+              <div class="skill-name">Vector Search</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">임베딩 기반 시맨틱 검색 구조를 구현한 경험</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Embedding</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">콘텐츠 벡터화와 검색 데이터 전처리에 활용</div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-name">Whisper / TTS</div>
+              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
+              <div class="skill-desc">음성 기반 서비스 기능 연동 경험 보유</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-guide" id="scrollGuide">스크롤</div>
+  </section>
+
+  <!-- ═══ SLIDE 2: CAMPUNG INTRO ═══ -->
+  <section class="slide" data-slide="2">
+    <div class="label">프로젝트 01</div>
+    <div class="project-slide">
+      <div class="project-left">
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span class="badge badge-award">&#9733; 해커톤 대상</span>
+          <span class="badge badge-role">백엔드 / 인프라</span>
+        </div>
+        <h2 class="project-title">CAMPUNG!</h2>
+        <span class="badge badge-context">신한 해커톤 with SSAFY · 2025.08.13 ~ 2025.08.31 · 지도 기반 캠퍼스 커뮤니티</span>
+        <div class="detail-panel">
+          <div class="detail-panel-label">프로젝트 소개</div>
+          <div class="detail-panel-title">프로젝트 소개</div>
+          <ul class="detail-panel-list">
+            <li>헤이영 캠퍼스의 비활성화된 커뮤니티를 활성화하기 위해 기획한 지도 기반 캠퍼스 커뮤니티입니다.</li>
+            <li>위치 중심의 즉각적인 소통과 게시판 기반 정보 축적을 결합해 현장성과 지속성을 동시에 담고자 했습니다.</li>
+          </ul>
+        </div>
+        <div class="detail-panel">
+          <div class="detail-panel-label">담당 역할</div>
+          <div class="detail-panel-title">담당 역할</div>
+          <ul class="detail-panel-list">
+            <li>게시글, 랜드마크, AI 감정 분석 관련 백엔드 API 설계 및 구현</li>
+            <li>게시글 온도 집계 로직 구현</li>
+            <li>S3 기반 이미지·녹음 파일 업로드 구조 구성</li>
+            <li>VMware Ubuntu Live Server 기반 배포 환경 구축 및 CI/CD 구성</li>
+          </ul>
+        </div>
+        <div class="detail-panel">
+          <div class="detail-panel-label">기술 스택</div>
+          <div class="detail-panel-title">사용 기술</div>
+          <div class="tags">
+            <span class="tag">Spring Boot</span>
+            <span class="tag">WebFlux</span>
+            <span class="tag">MariaDB</span>
+            <span class="tag">Redis</span>
+            <span class="tag">AWS S3</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Nginx</span>
+            <span class="tag">GitHub Actions</span>
+            <span class="tag">OpenAI</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-right">
+        <div class="gallery-shell">
+          <div class="gallery-viewport">
+            <button class="gallery-btn prev" type="button" aria-label="이전 이미지">&#8249;</button>
+            <div class="gallery-track">
+              <div class="gallery-card"><img src="img/campung/1.png" alt="CAMPUNG 화면 1"></div>
+              <div class="gallery-card"><img src="img/campung/2.png" alt="CAMPUNG 화면 2"></div>
+              <div class="gallery-card"><img src="img/campung/3.png" alt="CAMPUNG 화면 3"></div>
+              <div class="gallery-card"><img src="img/campung/4.png" alt="CAMPUNG 화면 4"></div>
+            </div>
+            <button class="gallery-btn next" type="button" aria-label="다음 이미지">&#8250;</button>
+          </div>
+          <div class="gallery-meta">
+            <div class="gallery-hint">화살표 버튼 또는 스와이프로 넘길 수 있습니다</div>
+            <div class="gallery-count" aria-live="polite">1 / 4</div>
+          </div>
+        </div>
+        <div class="detail-panel">
+          <div class="detail-panel-label">구현 기능</div>
+          <div class="detail-panel-title">구현 기능</div>
+          <ul class="detail-panel-list">
+            <li>게시글 CRUD와 이미지·녹음 첨부 업로드 API 구현</li>
+            <li>랜드마크 생성·조회와 주변 데이터 처리 API 구현</li>
+            <li>AI 감정 분석 결과를 게시글 온도 집계 흐름과 연결</li>
+          </ul>
+        </div>
+        <div class="detail-panel">
+          <div class="detail-panel-label">기술 선택 이유</div>
+          <div class="detail-panel-title">기술 선택 이유</div>
+          <ul class="detail-panel-list">
+            <li>Spring Boot는 게시글, 위치, 랜드마크 도메인을 분리해 API를 확장하기에 적합했습니다.</li>
+            <li>MariaDB, Redis, S3를 분리해 영속 데이터, 캐싱, 파일 저장의 역할을 나눴습니다.</li>
+            <li>AWS 대신 개인 PC 기반 Ubuntu Live Server를 선택해 해커톤 기간에 필요한 사양을 비용 효율적으로 확보했습니다.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SLIDE 3: CAMPUNG PROBLEM SOLVING ═══ -->
+  <section class="slide" data-slide="3">
+    <div class="label">프로젝트 01 — 문제 해결 및 결과</div>
+    <div class="detail-slide">
+      <div class="detail-summary">
+        <div class="detail-summary-kicker">핵심 문제 해결 결과</div>
+        <h2 class="detail-summary-title">CAMPUNG!에서 해결한 핵심 문제와 결과</h2>
+        <div class="detail-summary-panel">
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+            <span class="badge badge-role">문제</span>
+            <span class="badge badge-role">해결</span>
+            <span class="badge badge-role">결과</span>
+          </div>
+          <ul class="detail-summary-list">
+            <li>배포 비용, 저장 구조, 서비스 지표 표현을 백엔드·인프라 관점에서 분리해 정리했습니다.</li>
+            <li>각 사례마다 어떤 문제를 발견했고, 어떻게 구현했으며, 무엇이 달라졌는지 바로 읽히도록 구성했습니다.</li>
+          </ul>
+          <div class="summary-chip-row">
+            <span class="summary-chip">배포 비용 최적화</span>
+            <span class="summary-chip">저장소 역할 분리</span>
+            <span class="summary-chip">온도 지표 구현</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-panels">
+        <div class="detail-panel">
+          <div class="case-card-header">
+            <div class="detail-panel-label">사례 1</div>
+            <div class="case-step-row">
+              <span class="case-step">문제</span>
+              <span class="case-step">해결</span>
+              <span class="case-step">결과</span>
+            </div>
+          </div>
+          <div class="detail-panel-title">비용 대비 배포 환경 설계</div>
+          <div class="challenge-label">문제</div>
+          <div class="detail-panel-text">해커톤 기간 동안 필요한 자원을 확보하면서도 AWS 서버 비용을 지속적으로 감당하기에는 부담이 있었습니다.</div>
+          <div class="challenge-label" style="margin-top:0.9rem;">해결</div>
+          <div class="detail-panel-text">개인 PC에 VMware로 Ubuntu Live Server를 구축하고, Docker, Nginx, GitHub Actions를 연결해 배포 흐름을 정리했습니다.</div>
+          <div class="challenge-label" style="margin-top:0.9rem;">결과</div>
+          <div class="detail-panel-text">클라우드 비용 부담 없이 필요한 사양을 확보했고, 빌드부터 배포까지 일관된 운영 흐름을 만들 수 있었습니다.</div>
+        </div>
+        <div class="detail-panel">
+          <div class="case-card-header">
+            <div class="detail-panel-label">사례 2</div>
+            <div class="case-step-row">
+              <span class="case-step">문제</span>
+              <span class="case-step">해결</span>
+              <span class="case-step">결과</span>
+            </div>
+          </div>
+          <div class="detail-panel-title">서비스 데이터와 미디어 저장 구조 분리</div>
+          <div class="challenge-label">문제</div>
+          <div class="detail-panel-text">게시글 데이터와 이미지·녹음 파일은 성격이 다른데, 동일한 저장 방식으로 관리하면 운영과 확장이 복잡해질 수 있었습니다.</div>
+          <div class="challenge-label" style="margin-top:0.9rem;">해결</div>
+          <div class="detail-panel-text">영속 데이터는 MariaDB, 빠른 조회와 캐시는 Redis, 이미지·녹음 파일은 S3로 분리해 저장 구조를 설계했습니다.</div>
+          <div class="challenge-label" style="margin-top:0.9rem;">결과</div>
+          <div class="detail-panel-text">저장소 역할이 명확해졌고, 서비스 데이터와 파일 자산을 분리해 운영하기 쉬운 구조를 만들었습니다.</div>
+        </div>
+        <div class="detail-panel">
+          <div class="case-card-header">
+            <div class="detail-panel-label">사례 3</div>
+            <div class="case-step-row">
+              <span class="case-step">문제</span>
+              <span class="case-step">해결</span>
+              <span class="case-step">결과</span>
+            </div>
+          </div>
+          <div class="detail-panel-title">게시글 활동을 서비스 지표로 연결</div>
+          <div class="challenge-label">문제</div>
+          <div class="detail-panel-text">단순 게시글 목록만으로는 캠퍼스 분위기와 활발함을 직관적으로 전달하기 어려웠습니다.</div>
+          <div class="challenge-label" style="margin-top:0.9rem;">해결</div>
+          <div class="detail-panel-text">AI 감정 분석 결과와 게시글 활동량을 연결해 캠퍼스 온도 집계 로직을 구현했습니다.</div>
+          <div class="challenge-label" style="margin-top:0.9rem;">결과</div>
+          <div class="detail-panel-text">사용자가 게시판의 분위기와 활성도를 하나의 서비스 지표로 확인할 수 있도록 표현 범위를 확장했습니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SLIDE 4: MORE INTRO ═══ -->
+  <section class="slide" data-slide="4">
+    <div class="project-slide">
+      <div class="project-left">
+        <div class="label">프로젝트 02</div>
+        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+          <span class="badge badge-role">팀장</span>
+          <span class="badge badge-role">백엔드 / 인프라</span>
+        </div>
+        <h2 class="project-title">모아 (MOA)</h2>
+        <span class="badge badge-context">SSAFY 특화 프로젝트 · 금융 Open API 기반 목표/예산 관리 서비스</span>
+        <div class="detail-panel">
+          <div class="detail-panel-label">프로젝트 소개</div>
+          <div class="detail-panel-title">프로젝트 소개</div>
+          <ul class="detail-panel-list">
+            <li>거래 데이터와 금융 Open API를 활용해 소비 분석, 목표 설정, 예산 관리를 연결한 금융 서비스입니다.</li>
+            <li>분석 결과를 보여주는 데서 끝나지 않고 목표 계획 수립과 주간 예산 제안까지 이어지는 흐름을 설계했습니다.</li>
+          </ul>
+        </div>
+        <div class="detail-panel">
+          <div class="detail-panel-label">담당 역할</div>
+          <div class="detail-panel-title">담당 역할</div>
+          <ul class="detail-panel-list">
+            <li>Account 파트 계좌 연동 및 관리 API 구현</li>
+            <li>Budget 파트 예산 배분·할당 로직 구현</li>
+            <li>거래내역 동기화와 데이터 정합성 처리</li>
+            <li>Docker 기반 인프라 환경 구성</li>
+          </ul>
+        </div>
+        <div class="detail-panel">
+          <div class="detail-panel-label">기술 스택</div>
+          <div class="detail-panel-title">사용 기술</div>
+          <div class="tags">
+            <span class="tag">Spring Boot</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">Docker</span>
+            <span class="tag">Ubuntu</span>
+            <span class="tag">SSAFY 금융 Open API</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-right">
+        <div class="detail-panel">
+          <div class="detail-panel-label">서비스 흐름</div>
+          <div class="detail-panel-title">서비스 흐름</div>
+          <ul class="detail-panel-list">
+            <li>계좌 연동 → 첫 목표 설정 → 소비 분석 결과 확인 → 목표 계획 수립 → 홈 진입 흐름으로 구성했습니다.</li>
+            <li>메인 앱에서는 홈, 분석, 목표, 내 정보 탭을 중심으로 예산과 목표를 계속 관리할 수 있게 설계했습니다.</li>
+          </ul>
+        </div>
+        <div class="detail-panel">
+          <div class="detail-panel-label">구현 기능</div>
+          <div class="detail-panel-title">구현 기능</div>
+          <ul class="detail-panel-list">
+            <li>계좌 연동/관리 API와 거래 데이터 동기화 흐름 구현</li>
+            <li>주간·월간 소비 분석과 예산 계산 로직 연결</li>
+            <li>목표 우선순위를 반영한 예산 배분 및 계획 수립 구조 구현</li>
+          </ul>
+        </div>
+        <div class="detail-panel">
+          <div class="detail-panel-label">기술 선택 이유</div>
+          <div class="detail-panel-title">기술 선택 이유</div>
+          <ul class="detail-panel-list">
+            <li>Spring Boot는 계좌, 거래, 목표, 예산처럼 관계가 복잡한 금융 도메인을 구조화하기에 적합했습니다.</li>
+            <li>PostgreSQL은 거래와 예산 데이터를 관계형으로 관리하기에 적합했고, Docker는 실행 환경을 일관되게 맞추는 데 유용했습니다.</li>
+            <li>FastAPI는 분석 파이프라인과 백엔드 서비스를 역할별로 나눠 연결하는 데 활용했습니다.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SLIDE 5: MORE PROBLEM SOLVING ═══ -->
+  <section class="slide" data-slide="5">
+    <div class="detail-slide">
+      <div class="detail-summary">
+        <div class="label">프로젝트 02 — 문제 해결 및 결과</div>
+        <div class="detail-summary-kicker">핵심 문제 해결 결과</div>
+        <h2 class="detail-summary-title">모아에서 해결한 핵심 문제와 결과</h2>
+        <div class="detail-summary-panel">
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+            <span class="badge badge-role">문제</span>
+            <span class="badge badge-role">해결</span>
+            <span class="badge badge-role">결과</span>
+          </div>
+          <ul class="detail-summary-list">
+            <li>금융 서비스 특성상 계산 오차와 데이터 불일치가 여러 화면에 연쇄적으로 영향을 주기 때문에 정합성과 흐름 연결이 핵심이었습니다.</li>
+            <li>거래 동기화, 목표 기반 예산 배분, 실행 환경 통일을 중심으로 문제 해결 과정을 정리했습니다.</li>
+          </ul>
+          <div class="summary-chip-row">
+            <span class="summary-chip">데이터 정합성</span>
+            <span class="summary-chip">예산 배분 로직</span>
+            <span class="summary-chip">실행 환경 통일</span>
+          </div>
+        </div>
+      </div>
+      <div class="detail-panels">
+        <div class="detail-panel">
+          <div class="case-card-header">
+            <div class="detail-panel-label">사례 1</div>
+            <div class="case-step-row">
+              <span class="case-step">문제</span>
+              <span class="case-step">해결</span>
+              <span class="case-step">결과</span>
+            </div>
+          </div>
+          <div class="detail-panel-title">거래내역 동기화와 데이터 정합성 유지</div>
+          <div class="challenge-label">문제</div>
+          <div class="detail-panel-text">계좌와 거래내역 데이터가 분석, 예산, 목표 화면의 공통 기준이어서 동기화가 어긋나면 전체 흐름의 일관성이 깨질 수 있었습니다.</div>
+          <div class="challenge-label" style="margin-top:0.9rem;">해결</div>
+          <div class="detail-panel-text">계좌, 거래, 예산 도메인을 기준으로 처리 흐름을 나누고, 거래 동기화 이후 분석과 예산 계산이 같은 기준 데이터를 사용하도록 구조를 정리했습니다.</div>
+          <div class="challenge-label" style="margin-top:0.9rem;">결과</div>
+          <div class="detail-panel-text">홈, 분석, 목표 화면이 동일한 데이터 기준을 바라보도록 맞추면서 금융 데이터 흐름의 안정성을 높였습니다.</div>
+        </div>
+        <div class="detail-panel">
+          <div class="case-card-header">
+            <div class="detail-panel-label">사례 2</div>
+            <div class="case-step-row">
+              <span class="case-step">문제</span>
+              <span class="case-step">해결</span>
+              <span class="case-step">결과</span>
+            </div>
+          </div>
+          <div class="detail-panel-title">목표 기반 예산 배분 로직 연결</div>
+          <div class="challenge-label">문제</div>
+          <div class="detail-panel-text">단순 지출 분석만으로는 사용자가 바로 행동으로 옮기기 어려워 목표와 예산을 연결한 계획 수립 구조가 필요했습니다.</div>
+          <div class="challenge-label" style="margin-top:0.9rem;">해결</div>
+          <div class="detail-panel-text">목표 우선순위, 고정비, 여유 자금을 함께 반영하는 예산 배분·할당 로직을 구현해 분석 결과가 계획 수립으로 이어지도록 구성했습니다.</div>
+          <div class="challenge-label" style="margin-top:0.9rem;">결과</div>
+          <div class="detail-panel-text">분석 결과가 실제 주간 예산과 목표 계획으로 연결되면서 서비스 흐름이 조회 중심이 아니라 실행 중심으로 확장됐습니다.</div>
+        </div>
+        <div class="detail-panel">
+          <div class="case-card-header">
+            <div class="detail-panel-label">사례 3</div>
+            <div class="case-step-row">
+              <span class="case-step">문제</span>
+              <span class="case-step">해결</span>
+              <span class="case-step">결과</span>
+            </div>
+          </div>
+          <div class="detail-panel-title">Docker 기반 실행 환경 통일</div>
+          <div class="challenge-label">문제</div>
+          <div class="detail-panel-text">백엔드와 분석 서비스가 함께 동작해야 했기 때문에 팀원마다 다른 로컬 환경에서 실행 편차가 생길 수 있었습니다.</div>
+          <div class="challenge-label" style="margin-top:0.9rem;">해결</div>
+          <div class="detail-panel-text">Docker 기반으로 서비스 실행 환경을 맞추고 인프라 구성을 단순화해 개발과 테스트 환경의 차이를 줄였습니다.</div>
+          <div class="challenge-label" style="margin-top:0.9rem;">결과</div>
+          <div class="detail-panel-text">개발과 배포 과정에서 환경 차이로 인한 불확실성을 줄이고 협업에 필요한 실행 기준을 통일할 수 있었습니다.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SLIDE 8: OTHER PROJECTS ═══ -->
+  <section class="slide" data-slide="8">
+    <div class="label">기타 프로젝트 및 경험</div>
+    <div class="other-grid">
+      <div class="other-card">
+        <div class="other-card-top">
+          <span class="other-card-name">HearBe</span>
+          <span class="other-card-role">백엔드 + AI</span>
+        </div>
+        <p class="other-card-desc">시각장애인 음성 기반 웹 쇼핑 지원 — ASR · NLU · LLM · TTS · OCR 통합 AI 파이프라인. 백엔드 설계 보조 및 AI 파트 담당.</p>
+        <div class="tags">
+          <span class="tag">FastAPI</span>
+          <span class="tag">WebSocket</span>
+          <span class="tag">Whisper</span>
+          <span class="tag">GPT</span>
+          <span class="tag">TTS</span>
+          <span class="tag">MCP</span>
+        </div>
+      </div>
+      <div class="other-card">
+        <div class="other-card-top">
+          <span class="other-card-name">TripTube</span>
+          <span class="other-card-role">풀스택</span>
+        </div>
+        <p class="other-card-desc">유튜브 여행 영상 자막을 AI로 구조화하고, 4096차원 벡터 임베딩 기반 시맨틱 검색 제공. 유저 파트 제외 전체 담당.</p>
+        <div class="tags">
+          <span class="tag">Spring Boot</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Vector DB</span>
+          <span class="tag">GPT</span>
+          <span class="tag">Upstage</span>
+        </div>
+      </div>
+      <div class="other-card">
+        <div class="other-card-top">
+          <span class="other-card-name">Sequence</span>
+          <span class="other-card-role">백엔드</span>
+        </div>
+        <p class="other-card-desc">대학 간 PM · 디자이너 · 개발자 교류 및 프로젝트 매칭 플랫폼. 아카이브 파트 백엔드 담당.</p>
+        <div class="tags">
+          <span class="tag">Spring Boot</span>
+          <span class="tag">JPA</span>
+          <span class="tag">QueryDSL</span>
+          <span class="tag">Security</span>
+          <span class="tag">Docker</span>
+        </div>
+      </div>
+      <div class="other-card">
+        <div class="other-card-top">
+          <span class="other-card-name">블루로봇 인턴</span>
+          <span class="other-card-role">프로젝트형 인턴</span>
+        </div>
+        <p class="other-card-desc">고정밀 균형 유지 하드웨어 2D 시각화 모듈 개발</p>
+        <div class="tags">
+          <span class="tag">2D Visualization</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SLIDE 9: CREDENTIALS ═══ -->
+  <section class="slide" data-slide="9" style="align-items:center;">
+    <div class="label">Education & Credentials</div>
+    <div class="cred-grid">
+      <div class="cred-card">
+        <div class="cred-icon">&#9733;</div>
+        <div class="cred-name">신한 해커톤 대상</div>
+        <div class="cred-detail">Shinhan Bank Hackathon<br>with SSAFY</div>
+        <div class="cred-year">2025</div>
+      </div>
+      <div class="cred-card">
+        <div class="cred-icon">&#9635;</div>
+        <div class="cred-name">SQLD</div>
+        <div class="cred-detail">SQL Developer</div>
+        <div class="cred-year">2024</div>
+      </div>
+    </div>
+    <div style="margin-top:2.5rem;padding:1.5rem 2rem;border:1px solid var(--gray-100);border-radius:10px;max-width:900px;width:100%;">
+      <div class="tech-cat-label">Education</div>
+      <div style="display:flex;align-items:center;gap:1.5rem;margin-top:0.5rem;">
+        <span style="font-size:1rem;font-weight:600;">SSAFY</span>
+        <span style="font-size:0.82rem;color:var(--gray-500);">삼성 청년 SW 아카데미 — Java · Algorithm · REST API · DB · AI 교육 이수</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  const slides = document.getElementById('slides');
+  const total = slides.children.length;
+  const indicator = document.getElementById('indicator');
+  const pageNum = document.getElementById('pageNum');
+  const scrollGuide = document.getElementById('scrollGuide');
+  const galleryShells = document.querySelectorAll('.gallery-shell');
+  let isAnimating = false;
+  let guideDismissed = false;
+
+  function dismissGuide() {
+    if (!scrollGuide || guideDismissed) return;
+    guideDismissed = true;
+    scrollGuide.classList.add('hidden');
+  }
+
+  // Create dots
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    indicator.appendChild(dot);
+  }
+
+  function goTo(i) {
+    const target = slides.children[i];
+    if (!target || isAnimating) return;
+    dismissGuide();
+    isAnimating = true;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.setTimeout(() => {
+      isAnimating = false;
+    }, 700);
+  }
+
+  function getCurrent() {
+    const scrollTop = slides.scrollTop;
+    const slideHeight = window.innerHeight;
+    return Math.round(scrollTop / slideHeight);
+  }
+
+  function updateIndicator() {
+    const current = getCurrent();
+    const dots = indicator.querySelectorAll('.dot');
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    pageNum.textContent = `${current + 1} / ${total}`;
+    if (current > 0) dismissGuide();
+  }
+
+  slides.addEventListener('scroll', updateIndicator);
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    const current = getCurrent();
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+      e.preventDefault();
+      if (current < total - 1) goTo(current + 1);
+    }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+      e.preventDefault();
+      if (current > 0) goTo(current - 1);
+    }
+  });
+
+  // Mouse wheel → vertical paging
+  slides.addEventListener('wheel', (e) => {
+    if (isAnimating || Math.abs(e.deltaY) < Math.abs(e.deltaX)) {
+      return;
+    }
+
+    const current = getCurrent();
+    const currentSlide = slides.children[current];
+    if (!currentSlide) return;
+
+    const canScrollDown =
+      e.deltaY > 0 &&
+      currentSlide.scrollTop + currentSlide.clientHeight < currentSlide.scrollHeight - 1;
+    const canScrollUp = e.deltaY < 0 && currentSlide.scrollTop > 0;
+
+    if (canScrollDown || canScrollUp) return;
+
+    e.preventDefault();
+    if (e.deltaY > 0 && current < total - 1) goTo(current + 1);
+    if (e.deltaY < 0 && current > 0) goTo(current - 1);
+  }, { passive: false });
+
+  slides.addEventListener('touchstart', dismissGuide, { passive: true });
+  slides.addEventListener('mousedown', dismissGuide, { passive: true });
+
+  galleryShells.forEach((shell) => {
+    const track = shell.querySelector('.gallery-track');
+    const cards = shell.querySelectorAll('.gallery-card');
+    const prevBtn = shell.querySelector('.gallery-btn.prev');
+    const nextBtn = shell.querySelector('.gallery-btn.next');
+    const count = shell.querySelector('.gallery-count');
+
+    if (!track || !cards.length) return;
+
+    const clearHint = () => {
+      shell.classList.remove('is-hinting');
+    };
+
+    const getIndex = () => {
+      if (!track.clientWidth) return 0;
+      return Math.round(track.scrollLeft / track.clientWidth);
+    };
+
+    const updateGalleryState = () => {
+      const index = getIndex();
+      if (count) count.textContent = `${index + 1} / ${cards.length}`;
+      if (prevBtn) prevBtn.disabled = index <= 0;
+      if (nextBtn) nextBtn.disabled = index >= cards.length - 1;
+    };
+
+    const goToCard = (index) => {
+      const targetIndex = Math.max(0, Math.min(index, cards.length - 1));
+      track.scrollTo({
+        left: targetIndex * track.clientWidth,
+        behavior: 'smooth'
+      });
+      clearHint();
+      window.setTimeout(updateGalleryState, 220);
+    };
+
+    shell.classList.add('is-hinting');
+    shell.addEventListener('pointerdown', clearHint, { passive: true });
+    shell.addEventListener('mouseenter', clearHint, { passive: true });
+
+    track.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX) || e.shiftKey) {
+        e.preventDefault();
+        track.scrollLeft += e.shiftKey ? e.deltaX + e.deltaY : e.deltaY;
+      }
+      clearHint();
+      window.requestAnimationFrame(updateGalleryState);
+      e.stopPropagation();
+    }, { passive: false });
+
+    track.addEventListener('scroll', () => {
+      clearHint();
+      window.requestAnimationFrame(updateGalleryState);
+    }, { passive: true });
+
+    prevBtn?.addEventListener('click', () => {
+      goToCard(getIndex() - 1);
+    });
+
+    nextBtn?.addEventListener('click', () => {
+      goToCard(getIndex() + 1);
+    });
+
+    window.addEventListener('resize', updateGalleryState);
+    updateGalleryState();
+  });
+
+  updateIndicator();
+</script>
+
+</body>
+</html>
