@@ -3,1716 +3,1440 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>백엔드 개발자 포트폴리오</title>
+  <title>Backend Developer Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --black: #111;
-      --gray-900: #1a1a1a;
-      --gray-700: #444;
-      --gray-500: #777;
-      --gray-400: #999;
-      --gray-300: #bbb;
-      --gray-200: #ddd;
-      --gray-100: #eee;
-      --gray-50: #f5f5f5;
+      --bg: #e8e2d8;
+      --card: #f5f2ec;
       --white: #fff;
+      --accent: #5a6e3c;
+      --accent-light: #7a9a50;
+      --text: #222;
+      --text-sub: #444;
+      --text-muted: #777;
+      --border: #d5d0c8;
+      --shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; font-size: 20px; }
 
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      background: var(--white);
-      color: var(--black);
-      overflow: hidden;
-      height: 100vh;
-      width: 100vw;
-    }
-
-    /* ── SLIDE CONTAINER ── */
-    .slides {
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
+      font-family: 'Noto Sans KR', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       overflow-x: hidden;
       overflow-y: auto;
       scroll-snap-type: y mandatory;
-      scrollbar-width: none;
     }
-    .slides::-webkit-scrollbar { display: none; }
 
+    body::-webkit-scrollbar { width: 6px; }
+    body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    /* ── SLIDE ── */
     .slide {
       width: 100vw;
       min-height: 100vh;
       scroll-snap-align: start;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      padding: 4rem 6rem;
-      position: relative;
-      overflow-y: auto;
+      padding: 2rem;
     }
 
-    /* ── SLIDE INDICATOR ── */
-    .indicator {
-      position: fixed;
-      top: 50%;
-      right: 2rem;
-      transform: translateY(-50%);
+    .slide-inner {
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: 1200px;
+      min-height: calc(100vh - 4rem);
+      padding: 2.5rem 3rem;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
-      z-index: 100;
     }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--gray-200);
-      cursor: pointer;
-      transition: all 0.3s;
+    /* ── SLIDE HEADER ── */
+    .slide-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.6rem;
     }
 
-    .dot.active {
-      background: var(--black);
-      height: 24px;
-      border-radius: 4px;
-    }
-
-    /* ── PAGE NUMBER ── */
-    .page-num {
-      position: fixed;
-      top: 50%;
-      right: 4rem;
-      transform: translateY(-50%);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--gray-400);
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      letter-spacing: 0.08em;
-      z-index: 100;
-    }
-
-    /* ── TYPOGRAPHY ── */
-    .mono {
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gray-400);
-      margin-bottom: 0.75rem;
-    }
-
-    /* ══════════════════════════════════════
-       SLIDE 1 — COVER
-       ══════════════════════════════════════ */
-    .cover {
-      align-items: center;
-      text-align: center;
-      justify-content: flex-start;
-      padding-top: 2.5rem;
-      padding-bottom: 3rem;
-    }
-
-    .cover-slogan {
-      max-width: 680px;
-      font-size: 0.86rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      line-height: 1.6;
-      color: var(--gray-500);
-      margin-bottom: 0.85rem;
-      text-transform: uppercase;
-    }
-
-    .cover h1 {
-      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    .slide-title {
+      font-size: 1.8rem;
       font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 1.05;
-      color: var(--black);
-    }
-
-    .cover-keywords {
-      display: flex;
-      gap: 1.2rem;
-      margin-top: 1.15rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .cover-keywords span {
-      font-size: 0.9rem;
-      color: var(--gray-500);
-      font-weight: 400;
-    }
-
-    .cover-keywords span::before {
-      content: '';
-      display: inline-block;
-      width: 4px;
-      height: 4px;
-      background: var(--gray-300);
-      border-radius: 50%;
-      margin-right: 0.5rem;
-      vertical-align: middle;
-    }
-
-    .cover-tech {
-      width: min(900px, 100%);
-      margin-top: 2.1rem;
-      text-align: left;
-    }
-
-    .scroll-guide {
-      position: absolute;
-      left: 50%;
-      bottom: 2rem;
-      transform: translateX(-50%);
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
-      color: var(--gray-400);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      animation: scroll-guide-float 2.4s ease-in-out infinite;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      pointer-events: none;
-    }
-
-    .scroll-guide::after {
-      content: '';
-      width: 1px;
-      height: 28px;
-      background: linear-gradient(to bottom, var(--gray-300), transparent);
-    }
-
-    .scroll-guide.hidden {
-      opacity: 0;
-      transform: translateX(-50%) translateY(10px);
-    }
-
-    @keyframes scroll-guide-float {
-      0%, 100% {
-        transform: translateX(-50%) translateY(0);
-      }
-      35% {
-        transform: translateX(-50%) translateY(14px);
-      }
-      70% {
-        transform: translateX(-50%) translateY(0);
-      }
-    }
-
-    /* ══════════════════════════════════════
-       SLIDE 2 — TECH STACK
-       ══════════════════════════════════════ */
-    .tech-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 1px;
-      background: var(--gray-100);
-      border: 1px solid var(--gray-100);
-      border-radius: 12px;
-      overflow: hidden;
-      max-width: 900px;
-    }
-
-    .tech-cat {
-      background: var(--white);
-      padding: 1.2rem 1.5rem;
-    }
-
-    .tech-cat-label {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gray-400);
-      margin-bottom: 0.75rem;
-    }
-
-    .skill-list {
-      display: grid;
-      gap: 0.6rem;
-    }
-
-    .skill-item {
-      display: grid;
-      grid-template-columns: 150px 62px minmax(0, 1fr);
-      gap: 0.7rem;
-      align-items: start;
-    }
-
-    .skill-name {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--gray-700);
-      white-space: nowrap;
-    }
-
-    .skill-name i {
-      font-size: 0.95rem;
-    }
-
-    .skill-level {
-      display: inline-flex;
-      gap: 0.16rem;
-      padding-top: 0.05rem;
-    }
-
-    .skill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 2px;
-      background: var(--gray-200);
-    }
-
-    .skill-dot.filled {
-      background: var(--black);
-    }
-
-    .skill-desc {
-      font-size: 0.74rem;
-      line-height: 1.45;
-      color: var(--gray-500);
-    }
-
-    .pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.3rem 0.65rem;
-      border: 1px solid var(--gray-100);
-      border-radius: 5px;
-      font-size: 0.78rem;
-      color: var(--gray-700);
-      background: var(--gray-50);
-    }
-
-    .pill i { font-size: 0.95rem; }
-
-    /* ══════════════════════════════════════
-       SLIDE 3, 4 — PROJECT DETAIL
-       ══════════════════════════════════════ */
-    .project-slide {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: start;
-      padding-top: 3rem;
-    }
-
-    .project-left {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .project-title {
-      font-size: 2rem;
-      font-weight: 800;
+      color: var(--accent);
       letter-spacing: -0.02em;
+      text-transform: uppercase;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      padding: 0.3rem 0.7rem;
-      border-radius: 5px;
-      font-size: 0.72rem;
-      font-weight: 600;
+    .slide-subtitle {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
     }
 
-    .badge-award {
-      background: var(--gray-50);
-      border: 1px solid var(--gray-200);
-      color: var(--gray-700);
-    }
-
-    .badge-role {
-      background: var(--black);
-      color: var(--white);
-      font-size: 0.68rem;
-      letter-spacing: 0.04em;
-    }
-
-    .badge-context {
-      background: transparent;
-      border: 1px solid var(--gray-200);
-      color: var(--gray-500);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 400;
-    }
-
-    .project-desc {
-      font-size: 0.95rem;
-      color: var(--gray-500);
-      line-height: 1.6;
-    }
-
-    .role-list {
-      list-style: none;
+    /* ── NAV DOTS ── */
+    .nav-dots {
+      position: fixed;
+      right: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
+      z-index: 100;
     }
 
-    .role-list li {
+    .nav-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      padding: 0;
+    }
+
+    .nav-dot.active {
+      background: var(--accent);
+      height: 24px;
+      border-radius: 5px;
+    }
+
+    /* ── TWO COLUMN ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .two-col > * {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .two-col-wide {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 2rem;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .two-col-wide > * {
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    /* ── SECTION BOX ── */
+    .box {
+      margin-bottom: 1.2rem;
+    }
+
+    .box:last-child { margin-bottom: 0; }
+
+    .box-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.3rem;
+      border-bottom: 1.5px solid var(--border);
+    }
+
+    .box-title-accent {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── SKILL ROW ── */
+    .sk {
+      display: grid;
+      grid-template-columns: 22px 115px 75px 1fr;
+      align-items: center;
+      column-gap: 0.4rem;
+      margin-bottom: 0.35rem;
+      font-size: 0.88rem;
+    }
+
+    .sk-name {
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .sk-icon {
+      font-size: 1rem;
+      color: var(--accent);
       display: flex;
       align-items: center;
-      gap: 0.6rem;
-      font-size: 0.85rem;
-      color: var(--gray-700);
+      justify-content: center;
     }
 
-    .role-list li::before {
-      content: '';
-      width: 3px;
-      height: 3px;
-      background: var(--black);
-      border-radius: 50%;
+    .sk-dots {
+      display: flex;
+      gap: 3px;
       flex-shrink: 0;
     }
 
-    .project-right {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
+    .sk-dot {
+      width: 12px;
+      height: 12px;
+      background: var(--border);
+      border-radius: 2px;
     }
 
-    .slide[data-slide="2"],
-    .slide[data-slide="4"] {
-      justify-content: flex-start;
+    .sk-dot.f { background: var(--accent); }
+
+    .sk-desc {
+      color: var(--text-muted);
+      font-size: 0.82rem;
     }
 
-    .slide[data-slide="2"] .project-slide,
-    .slide[data-slide="4"] .project-slide {
-      align-items: stretch;
-      gap: 1.75rem;
-      padding-top: 1rem;
+    /* ── LIST ── */
+    .lst {
+      list-style: none;
+      padding: 0;
     }
 
-    .slide[data-slide="2"] .project-left,
-    .slide[data-slide="2"] .project-right,
-    .slide[data-slide="4"] .project-left,
-    .slide[data-slide="4"] .project-right {
-      gap: 0.85rem;
-      min-height: calc(100vh - 10.5rem);
-    }
-
-    .slide[data-slide="2"] .project-left .detail-panel,
-    .slide[data-slide="2"] .project-right .detail-panel,
-    .slide[data-slide="4"] .project-left .detail-panel,
-    .slide[data-slide="4"] .project-right .detail-panel {
-      padding: 1rem 1.15rem;
-      flex: 1;
-    }
-
-    .slide[data-slide="2"] .gallery-shell,
-    .slide[data-slide="4"] .gallery-shell {
-      flex: 1.05;
-    }
-
-    .slide[data-slide="2"] .project-title,
-    .slide[data-slide="4"] .project-title {
-      font-size: 1.85rem;
-    }
-
-    .slide[data-slide="2"] .badge-context,
-    .slide[data-slide="4"] .badge-context {
-      font-size: 0.64rem;
-      padding: 0.28rem 0.55rem;
-    }
-
-    .slide[data-slide="2"] .detail-panel-list,
-    .slide[data-slide="4"] .detail-panel-list {
-      gap: 0.35rem;
-    }
-
-    .slide[data-slide="2"] .detail-panel-list li,
-    .slide[data-slide="4"] .detail-panel-list li,
-    .slide[data-slide="2"] .detail-panel-text,
-    .slide[data-slide="4"] .detail-panel-text {
-      font-size: 0.8rem;
-      line-height: 1.48;
-    }
-
-    .slide[data-slide="2"] .gallery-card,
-    .slide[data-slide="4"] .gallery-card {
-      aspect-ratio: 16 / 8.8;
-    }
-
-    .gallery-shell {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .gallery-viewport {
+    .lst li {
+      font-size: 0.88rem;
+      color: var(--text-sub);
+      padding-left: 0.9rem;
       position: relative;
-      overflow: hidden;
+      margin-bottom: 0.25rem;
+      line-height: 1.55;
+    }
+
+    .lst li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 5px;
+      height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    /* ── TAGS ── */
+    .tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.2rem 0.55rem;
+      background: var(--white);
+      color: var(--text-sub);
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
       border-radius: 12px;
+    }
+
+    .badge-award { background: #fff3cd; color: #856404; }
+    .badge-role { background: rgba(90,110,60,0.12); color: var(--accent); }
+
+    /* ── PROBLEM CARD ── */
+    .prob {
+      background: var(--white);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      border-left: 3px solid var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .prob:last-child { margin-bottom: 0; }
+
+    .prob-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .prob-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-top: 0.3rem;
+    }
+
+    .prob-text {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+
+    /* ── GALLERY ── */
+    .gallery {
+      display: flex;
+      gap: 0.6rem;
+      overflow-x: auto;
+      padding-bottom: 0.4rem;
+    }
+
+    .gallery::-webkit-scrollbar { height: 3px; }
+    .gallery::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .proj-with-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      flex: 1;
+      min-height: 0;
+    }
+    .proj-info-side {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .proj-gallery-side {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .gallery-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--white);
     }
 
     .gallery-track {
       display: flex;
-      gap: 0;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      scrollbar-width: none;
-      padding-bottom: 0.25rem;
-      touch-action: pan-x;
-    }
-    .gallery-track::-webkit-scrollbar { display: none; }
-
-    .gallery-shell.is-hinting .gallery-track {
-      animation: gallery-peek 1.35s ease 0.35s 1;
+      transition: transform 0.3s ease;
     }
 
-    .gallery-card {
-      min-width: 100%;
+    .gallery-track img {
+      width: 100%;
+      flex-shrink: 0;
+      display: block;
+      object-fit: contain;
+    }
+
+    .gallery-wrap.gallery-portrait {
+      width: 70%;
+      align-self: flex-end;
+      margin: -1.6rem 0 0 auto;
+      padding: 1rem;
+      max-height: min(68vh, 780px);
+      background: transparent;
+    }
+
+    .gallery-wrap.gallery-portrait .gallery-track {
+      width: 100%;
+      height: 100%;
+      align-items: stretch;
+    }
+
+    .gallery-wrap.gallery-portrait .gallery-track .gallery-item {
       flex: 0 0 100%;
-      aspect-ratio: 16 / 10;
-      border: 1px solid var(--gray-200);
-      border-radius: 12px;
-      background: linear-gradient(180deg, var(--gray-50), #fafafa);
+      min-width: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      scroll-snap-align: start;
-      padding: 1rem;
-      color: var(--gray-300);
-      font-size: 0.8rem;
-      overflow: hidden;
-      scroll-snap-stop: always;
     }
 
-    .gallery-card img {
+    .gallery-wrap.gallery-portrait .gallery-track img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+      height: calc(min(68vh, 780px) - 2rem);
+      max-height: calc(min(68vh, 780px) - 2rem);
+      object-fit: contain;
+    }
+
+    .proj-gallery-side > .gallery-count {
+      width: 70%;
+      align-self: flex-end;
+    }
+
+    .proj-gallery-meta-grid {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2.6rem;
+      width: min(100%, 980px);
+      margin: 0.35rem auto 0;
+      align-items: start;
+    }
+
+    .proj-gallery-side > .gallery-count {
+      margin-top: -0.05rem;
+      text-align: center;
+    }
+
+    .proj-gallery-meta-grid > .box {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      margin-bottom: 0;
+    }
+
+    .proj-gallery-meta-grid > .box .box-title-accent {
+      font-size: 0.95rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .proj-gallery-meta-grid > .box .lst li {
+      font-size: 0.84rem;
+      line-height: 1.48;
+      margin-bottom: 0.18rem;
     }
 
     .gallery-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 42px;
-      height: 42px;
-      border: 1px solid rgba(17, 17, 17, 0.08);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.92);
-      color: var(--black);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
       font-size: 1.2rem;
-      line-height: 1;
       cursor: pointer;
       z-index: 2;
-      box-shadow: 0 10px 24px rgba(17, 17, 17, 0.08);
-      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
-    }
-
-    .gallery-btn:hover {
-      background: var(--white);
-      transform: translateY(-50%) scale(1.04);
-    }
-
-    .gallery-btn:disabled {
-      opacity: 0.4;
-      cursor: default;
-    }
-
-    .gallery-btn.prev {
-      left: 0.9rem;
-    }
-
-    .gallery-btn.next {
-      right: 0.9rem;
-    }
-
-    .gallery-meta {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
+      justify-content: center;
+      line-height: 1;
     }
 
-    .gallery-hint {
-      font-size: 0.68rem;
-      color: var(--gray-400);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+    .gallery-btn.prev { left: 8px; }
+    .gallery-btn.next { right: 8px; }
+    .gallery-btn:hover { background: rgba(0,0,0,0.7); }
 
     .gallery-count {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.74rem;
-      color: var(--gray-500);
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-    }
-
-    @keyframes gallery-peek {
-      0%, 100% {
-        transform: translateX(0);
-      }
-      38%, 58% {
-        transform: translateX(-40px);
-      }
-    }
-
-    .detail-slide {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 3rem;
-      align-items: start;
-      padding-top: 2.5rem;
-    }
-
-    .detail-summary {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .detail-summary-kicker {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      color: var(--gray-400);
-    }
-
-    .detail-summary-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      line-height: 1.18;
-    }
-
-    .detail-summary-text {
-      font-size: 0.92rem;
-      line-height: 1.7;
-      color: var(--gray-500);
-    }
-
-    .detail-summary-panel {
-      border: 1px solid var(--gray-100);
-      border-radius: 12px;
-      background: var(--gray-50);
-      padding: 1.25rem 1.35rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.95rem;
-    }
-
-    .summary-chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-    }
-
-    .summary-chip {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.32rem 0.7rem;
-      border-radius: 999px;
-      background: var(--white);
-      border: 1px solid var(--gray-200);
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--gray-700);
-    }
-
-    .detail-summary-list {
-      margin: 0;
-      padding-left: 1.1rem;
-      display: grid;
-      gap: 0.65rem;
-      color: var(--gray-500);
-      font-size: 0.92rem;
-      line-height: 1.7;
-    }
-
-    .detail-panels {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .detail-panel {
-      border: 1px solid var(--gray-100);
-      border-radius: 12px;
-      padding: 1.35rem 1.5rem;
-      background: var(--white);
-    }
-
-    .detail-panel-label {
-      font-size: 0.66rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--gray-400);
-      margin-bottom: 0.6rem;
-    }
-
-    .detail-panel-title {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 0.45rem;
-    }
-
-    .case-card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.55rem;
-    }
-
-    .case-step-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-    }
-
-    .case-step {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 3.4rem;
-      padding: 0.26rem 0.55rem;
-      border-radius: 999px;
-      background: var(--gray-50);
-      border: 1px solid var(--gray-200);
-      font-size: 0.65rem;
-      font-weight: 700;
-      color: var(--gray-600);
-      letter-spacing: 0.04em;
-    }
-
-    .detail-panel-text {
-      font-size: 0.86rem;
-      line-height: 1.7;
-      color: var(--gray-500);
-    }
-
-    .detail-panel-list {
-      list-style: none;
-      display: grid;
-      gap: 0.45rem;
-    }
-
-    .detail-panel-list li {
-      font-size: 0.84rem;
-      line-height: 1.6;
-      color: var(--gray-600, #666);
-      padding-left: 0.9rem;
-      position: relative;
-    }
-
-    .detail-panel-list li::before {
-      content: '';
-      position: absolute;
-      top: 0.65rem;
-      left: 0;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--gray-300);
-    }
-
-    .img-placeholder {
-      width: 100%;
-      aspect-ratio: 16/10;
-      background: var(--gray-50);
-      border: 1px dashed var(--gray-200);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gray-300);
-      font-size: 0.8rem;
-    }
-
-    /* arch flow */
-    .arch-flow {
-      display: flex;
-      align-items: center;
-      gap: 0.3rem;
-      flex-wrap: wrap;
-    }
-
-    .arch-node {
-      padding: 0.3rem 0.6rem;
-      border: 1px solid var(--gray-200);
-      border-radius: 5px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--gray-700);
-    }
-
-    .arch-arrow {
-      color: var(--gray-300);
-      font-size: 0.8rem;
-    }
-
-    /* metrics row */
-    .metrics {
-      display: flex;
-      gap: 1px;
-      background: var(--gray-100);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .metric {
-      flex: 1;
-      background: var(--white);
-      padding: 0.75rem 1rem;
       text-align: center;
-    }
-
-    .metric .val {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 1.2rem;
-      font-weight: 700;
     }
 
-    .metric .key {
-      font-size: 0.6rem;
-      color: var(--gray-400);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-top: 0.15rem;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-    }
-
-    .tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      padding: 0.2rem 0.5rem;
-      background: var(--gray-50);
-      border: 1px solid var(--gray-100);
-      border-radius: 3px;
-      color: var(--gray-500);
-    }
-
-    /* challenge highlight */
-    .challenge {
-      padding: 1rem 1.25rem;
-      background: var(--gray-50);
-      border-left: 3px solid var(--black);
-      border-radius: 0 6px 6px 0;
-    }
-
-    .challenge-label {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--gray-400);
-      margin-bottom: 0.35rem;
-    }
-
-    .challenge-text {
-      font-size: 0.85rem;
-      color: var(--gray-700);
-      line-height: 1.5;
-    }
-
-    /* ══════════════════════════════════════
-       SLIDE 5 — OTHER PROJECTS
-       ══════════════════════════════════════ */
+    /* ── OTHER CARD ── */
     .other-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-      max-width: 1000px;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      flex: 1;
     }
 
     .other-card {
-      border: 1px solid var(--gray-100);
+      background: var(--white);
       border-radius: 10px;
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      transition: border-color 0.2s;
+      padding: 1.2rem 1.4rem;
+    }
+    .other-card .gallery-wrap {
+      max-height: 260px;
+    }
+    .other-card .gallery-track img {
+      max-height: 260px;
+      object-fit: contain;
     }
 
-    .other-card:hover {
-      border-color: var(--gray-300);
-    }
-
-    .other-card-top {
+    .other-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 0.5rem;
     }
 
-    .other-card-name {
-      font-size: 1.1rem;
-      font-weight: 700;
-    }
+    .other-name { font-size: 1.05rem; font-weight: 700; }
 
-    .other-card-role {
-      font-size: 0.65rem;
+    .other-role {
+      font-size: 0.72rem;
       font-weight: 600;
-      padding: 0.2rem 0.5rem;
-      background: var(--gray-50);
-      border-radius: 3px;
-      color: var(--gray-500);
-      letter-spacing: 0.04em;
+      color: var(--accent);
+      background: rgba(90,110,60,0.1);
+      padding: 0.15rem 0.5rem;
+      border-radius: 10px;
     }
 
-    .other-card-desc {
-      font-size: 0.82rem;
-      color: var(--gray-500);
+    .other-desc {
+      font-size: 0.84rem;
+      color: var(--text-sub);
       line-height: 1.5;
+      margin-bottom: 0.5rem;
     }
 
-    .other-card .tags {
-      margin-top: 0.25rem;
-    }
-
-    /* ══════════════════════════════════════
-       SLIDE 6 — CREDENTIALS
-       ══════════════════════════════════════ */
-    .cred-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.25rem;
-      max-width: 900px;
+    /* ── CRED ── */
+    .cred-row {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
     }
 
     .cred-card {
-      border: 1px solid var(--gray-100);
+      background: var(--white);
       border-radius: 10px;
-      padding: 2rem 1.5rem;
+      padding: 1.5rem 2rem;
       text-align: center;
+      flex: 1;
+      min-width: 200px;
     }
 
-    .cred-icon {
-      font-size: 2rem;
+    .cred-icon { font-size: 1.8rem; margin-bottom: 0.3rem; }
+    .cred-name { font-size: 1rem; font-weight: 700; }
+    .cred-detail { font-size: 0.82rem; color: var(--text-muted); line-height: 1.4; }
+    .cred-year { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent); font-weight: 600; margin-top: 0.3rem; }
+
+    .edu-row {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .edu-name { font-size: 1rem; font-weight: 700; white-space: nowrap; }
+    .edu-detail { font-size: 0.88rem; color: var(--text-sub); }
+
+    /* ── HERO SPECIFIC ── */
+    .hero-intro {
+      font-size: 1rem;
+      color: var(--text-sub);
+      line-height: 1.7;
       margin-bottom: 1rem;
     }
 
-    .cred-name {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
+    .hero-big {
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
     }
 
-    .cred-detail {
+    .hero-big span { color: var(--accent); }
+
+    .hero-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 1rem;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .hero-link:hover { background: var(--accent-light); }
+    .hero-link svg { width: 16px; height: 16px; }
+
+    .hero-kw {
+      display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.8rem;
+    }
+
+    .hero-kw span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      background: var(--white);
+      padding: 0.2rem 0.7rem;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+    }
+
+    /* ── SKILLS FULL WIDTH ── */
+    .skills-full {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
+      flex: 1;
+    }
+    .skills-full .box {
+      margin-bottom: 0;
+    }
+
+    /* ── PROJECT HEADER ── */
+    .proj-head {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 0.3rem;
+      flex-wrap: wrap;
+    }
+
+    .proj-name {
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+
+    .proj-context {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    /* ── THREE COL ── */
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.8rem;
+    }
+
+    /* ── TROUBLESHOOTING ── */
+    .ts-section {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ts-section:last-child { border-bottom: none; margin-bottom: 0; }
+
+    .ts-num {
+      font-size: 1.15rem;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+    }
+
+    .ts-desc {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+
+    .ts-steps {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 0.8rem;
+    }
+
+    .ts-steps li {
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+      line-height: 1.5;
+    }
+
+    .ts-code-area {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 0.8rem 0;
+    }
+
+    .ts-code-area > * { min-width: 0; }
+
+    .ts-code-block {
+      background: #f8f8f4;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+      overflow-x: auto;
+    }
+
+    .ts-code-label {
       font-size: 0.78rem;
-      color: var(--gray-400);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.4rem;
     }
 
-    .cred-year {
+    .ts-code-lang {
+      font-size: 0.68rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .ts-code-block pre {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.72rem;
-      color: var(--gray-300);
-      margin-top: 0.5rem;
+      line-height: 1.5;
+      color: var(--text);
+      white-space: pre;
+      overflow-x: auto;
+      margin: 0;
+    }
+
+    .ts-code-block .kw { color: #7c4dff; }
+    .ts-code-block .str { color: #e65100; }
+    .ts-code-block .cm { color: #9e9e9e; }
+    .ts-code-block .fn { color: #1565c0; }
+
+    .ts-explain {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      line-height: 1.6;
+    }
+
+    .ts-explain-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .ts-explain ul {
+      list-style: disc;
+      padding-left: 1.2rem;
+    }
+
+    .ts-explain li {
+      margin-bottom: 0.2rem;
+    }
+
+    .ts-result {
+      background: #f0ede6;
+      border-radius: 8px;
+      padding: 0.8rem 1.2rem;
+      margin-top: 0.8rem;
+    }
+
+    .ts-result li {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    .ts-result ul {
+      list-style: disc;
+      padding-left: 1.5rem;
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      body { overflow: auto; }
-      .slides {
-        overflow-x: hidden;
-        overflow-y: auto;
-        scroll-snap-type: y mandatory;
-      }
-      .slide {
-        width: 100vw;
-        padding: 3rem 1.5rem;
-        scroll-snap-align: start;
-      }
-      .project-slide {
+    @media (max-width: 900px) {
+      .two-col, .two-col-wide, .three-col, .other-grid { grid-template-columns: 1fr; }
+      .proj-with-gallery { grid-template-columns: 1fr; }
+      .proj-gallery-meta-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
+        width: 100%;
+        margin-top: 0.8rem;
       }
-      .detail-slide {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
+      .slide-inner { padding: 1.5rem; }
+      .slide { padding: 1rem; }
+      .gallery img { height: 160px; }
+      .gallery-wrap.gallery-portrait {
+        max-height: min(60vh, 620px);
+        padding: 0.75rem;
       }
-      .tech-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .skill-item {
-        grid-template-columns: 1fr;
-        gap: 0.25rem;
-      }
-      .skill-level {
-        padding-top: 0;
-      }
-      .gallery-card {
-        min-width: 100%;
-        flex-basis: 100%;
-      }
-      .gallery-btn {
-        width: 38px;
-        height: 38px;
-      }
-      .gallery-meta {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .other-grid {
-        grid-template-columns: 1fr;
-      }
-      .cred-grid {
-        grid-template-columns: 1fr;
-      }
-      .indicator,
-      .page-num {
-        display: none;
-      }
-      .scroll-guide {
-        bottom: 1.5rem;
+      .gallery-wrap.gallery-portrait .gallery-track img {
+        height: calc(min(60vh, 620px) - 1.5rem);
+        max-height: calc(min(60vh, 620px) - 1.5rem);
       }
     }
   </style>
 </head>
 <body>
 
-<!-- INDICATOR -->
-<div class="indicator" id="indicator"></div>
+<!-- NAV DOTS -->
+<div class="nav-dots" id="navDots"></div>
 
-<!-- PAGE NUMBER -->
-<div class="page-num" id="pageNum">1 / 9</div>
-
-<!-- SLIDES -->
-<div class="slides" id="slides">
-
-  <!-- ═══ SLIDE 1: COVER ═══ -->
-  <section class="slide cover" data-slide="1">
-    <div class="cover-slogan">유지보수성과 정합성, 일관성을 바탕으로 금융 서비스를 구현합니다</div>
-    <h1>Backend<br>Developer</h1>
-    <div class="cover-keywords">
-      <span>서버 설계</span>
-      <span>인프라 구축</span>
-      <span>금융 데이터</span>
-      <span>실시간 시스템</span>
+<!-- ══════════════════════════════════════
+     SLIDE 1: INTRODUCTION + SKILLS
+     ══════════════════════════════════════ -->
+<div class="slide" data-label="Intro">
+  <div class="slide-inner">
+    <div class="slide-header">
+      <div class="slide-title">Introduction</div>
+      <div class="slide-subtitle">정합성과 유지보수성을 우선하는 Back-End 개발자</div>
     </div>
-    <div class="cover-tech">
-      <div class="label">기술 스택</div>
-      <div class="tech-grid">
-        <div class="tech-cat">
-          <div class="tech-cat-label">백엔드</div>
-          <div class="skill-list">
-            <div class="skill-item">
-              <div class="skill-name"><i class="devicon-spring-plain"></i>Spring Boot</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">REST API 설계, 도메인 분리, 배포 경험 중심으로 활용</div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name">JPA</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">연관관계 매핑과 CRUD, 트랜잭션 중심 데이터 처리 경험</div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name">Security</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">JWT 기반 인증·인가 구조를 구현하고 운영한 경험</div>
-            </div>
-          </div>
+    <!-- TOP ROW: Intro + Cert/Edu -->
+    <div class="two-col" style="grid-template-columns: 2fr 1fr; margin-bottom: 0.8rem;">
+      <div class="box">
+        <div class="hero-big"><span>Back-End</span> Developer</div>
+        <p class="hero-intro">
+          서비스의 필요성과 구현 가능성을 함께 따지며, 데이터 정합성·유지보수성·안정성을 우선해 설계하는 백엔드 개발자입니다.
+        </p>
+        <div class="hero-kw">
+          <span>서버 설계</span><span>인프라 구축</span><span>금융 데이터</span><span>실시간 시스템</span>
         </div>
-        <div class="tech-cat">
-          <div class="tech-cat-label">언어</div>
-          <div class="skill-list">
-            <div class="skill-item">
-              <div class="skill-name"><i class="devicon-java-plain"></i>Java</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">객체지향 설계와 서비스 로직 구현에 가장 익숙한 언어</div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name"><i class="devicon-javascript-plain"></i>JavaScript</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">간단한 프론트 연동과 스크립트 작업, API 테스트에 활용</div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name"><i class="devicon-python-plain"></i>Python</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">데이터 처리와 AI 연동 스크립트, 분석 파이프라인 작업 경험</div>
-            </div>
-          </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:0.6rem;">
+        <div class="box">
+          <div class="box-title">Certification / Awards</div>
+          <ul class="lst">
+            <li><strong>신한 해커톤 대상</strong> — Shinhan Bank Hackathon with SSAFY (2025)</li>
+            <li><strong>SQLD</strong> — SQL Developer (2024)</li>
+          </ul>
         </div>
-        <div class="tech-cat">
-          <div class="tech-cat-label">데이터베이스</div>
-          <div class="skill-list">
-            <div class="skill-item">
-              <div class="skill-name"><i class="devicon-mysql-plain"></i>MySQL</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">관계형 데이터 모델링과 기본 성능 튜닝 경험</div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name"><i class="devicon-mariadb-original"></i>MariaDB</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">게시글·위치 기반 서비스에서 영속 데이터 저장소로 활용</div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name"><i class="devicon-postgresql-plain"></i>PostgreSQL</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">거래·예산·목표처럼 관계가 복잡한 금융 데이터 관리 경험</div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name"><i class="devicon-redis-plain"></i>Redis</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">캐시 구조와 조회 성능 개선 용도로 적용한 경험</div>
-            </div>
-          </div>
-        </div>
-        <div class="tech-cat">
-          <div class="tech-cat-label">인프라 / 데브옵스</div>
-          <div class="skill-list">
-            <div class="skill-item">
-              <div class="skill-name"><i class="devicon-docker-plain"></i>Docker</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">로컬·배포 환경 통일과 서비스 컨테이너 구성 경험</div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name"><i class="devicon-linux-plain"></i>Linux</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">Ubuntu 서버 환경에서 배포와 운영 흐름을 직접 구성</div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name"><i class="devicon-nginx-original"></i>Nginx</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">리버스 프록시와 정적 리소스 전달 설정 경험</div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name"><i class="devicon-githubactions-plain"></i>GitHub Actions</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">빌드와 배포 자동화 파이프라인을 구성한 경험</div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name"><i class="devicon-amazonwebservices-plain-wordmark"></i>AWS S3</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">이미지·오디오 파일 저장과 관리 구조로 활용</div>
-            </div>
-          </div>
-        </div>
-        <div class="tech-cat">
-          <div class="tech-cat-label">AI / 데이터</div>
-          <div class="skill-list">
-            <div class="skill-item">
-              <div class="skill-name">Vector Search</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">임베딩 기반 시맨틱 검색 구조를 구현한 경험</div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name">Embedding</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">콘텐츠 벡터화와 검색 데이터 전처리에 활용</div>
-            </div>
-            <div class="skill-item">
-              <div class="skill-name">Whisper / TTS</div>
-              <div class="skill-level"><span class="skill-dot filled"></span><span class="skill-dot filled"></span><span class="skill-dot"></span><span class="skill-dot"></span><span class="skill-dot"></span></div>
-              <div class="skill-desc">음성 기반 서비스 기능 연동 경험 보유</div>
-            </div>
-          </div>
+        <div class="box">
+          <div class="box-title">Education</div>
+          <ul class="lst">
+            <li><strong>SSAFY</strong> — 삼성 청년 SW 아카데미 · Java · Algorithm · REST API · DB · AI 교육 이수</li>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="scroll-guide" id="scrollGuide">스크롤</div>
-  </section>
 
-  <!-- ═══ SLIDE 2: CAMPUNG INTRO ═══ -->
-  <section class="slide" data-slide="2">
-    <div class="label">프로젝트 01</div>
-    <div class="project-slide">
-      <div class="project-left">
-        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-          <span class="badge badge-award">&#9733; 해커톤 대상</span>
-          <span class="badge badge-role">백엔드 / 인프라</span>
-        </div>
-        <h2 class="project-title">CAMPUNG!</h2>
-        <span class="badge badge-context">신한 해커톤 with SSAFY · 2025.08.13 ~ 2025.08.31 · 지도 기반 캠퍼스 커뮤니티</span>
-        <div class="detail-panel">
-          <div class="detail-panel-label">프로젝트 소개</div>
-          <div class="detail-panel-title">프로젝트 소개</div>
-          <ul class="detail-panel-list">
-            <li>헤이영 캠퍼스의 비활성화된 커뮤니티를 활성화하기 위해 기획한 지도 기반 캠퍼스 커뮤니티입니다.</li>
-            <li>위치 중심의 즉각적인 소통과 게시판 기반 정보 축적을 결합해 현장성과 지속성을 동시에 담고자 했습니다.</li>
+    <!-- BOTTOM: Skills 전체 폭 -->
+    <div class="box-title">Skills</div>
+    <div class="skills-full">
+      <div class="box">
+        <div class="box-title-accent">백엔드</div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-spring-plain"></i></span><span class="sk-name">Spring Boot</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span></span><span class="sk-desc">REST API 설계, 도메인 분리, Swagger 문서화와 배포 경험</span></div>
+        <div class="sk"><span class="sk-icon"></span><span class="sk-name">JPA</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">연관관계 매핑, 트랜잭션 경계 설정, 정합성 중심 모델링</span></div>
+        <div class="sk"><span class="sk-icon"></span><span class="sk-name">Security</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">JWT 인증·인가, 필터 체인 설정, 권한 예외 처리 경험</span></div>
+      </div>
+      <div class="box">
+        <div class="box-title-accent">언어</div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-java-plain"></i></span><span class="sk-name">Java</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">객체지향 설계 기반 유스케이스·서비스 로직 구현</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-javascript-plain"></i></span><span class="sk-name">JavaScript</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">포트폴리오·프론트 연동용 UI 스크립트 수정 및 배포 대응</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-python-plain"></i></span><span class="sk-name">Python</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">분석 API 연동, 데이터 전처리, AI 파이프라인 작업 경험</span></div>
+      </div>
+      <div class="box">
+        <div class="box-title-accent">데이터베이스</div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-mysql-plain"></i></span><span class="sk-name">MySQL</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">정규화, 인덱스, JPA 기반 CRUD·조회 설계 경험</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-postgresql-plain"></i></span><span class="sk-name">PostgreSQL</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">거래·예산·목표 데이터 모델링과 주간·월간 집계 처리</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-redis-plain"></i></span><span class="sk-name">Redis</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">캐시와 HOT 데이터 분리로 빠른 조회 응답 보조</span></div>
+      </div>
+      <div class="box">
+        <div class="box-title-accent">AI / 데이터</div>
+        <div class="sk"><span class="sk-icon"></span><span class="sk-name">Vector Search</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">시맨틱 검색 구현</span></div>
+        <div class="sk"><span class="sk-icon"></span><span class="sk-name">Embedding</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">벡터화, 검색 전처리</span></div>
+        <div class="sk"><span class="sk-icon"></span><span class="sk-name">Whisper/TTS</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">음성 기반 서비스 연동</span></div>
+      </div>
+      <div class="box">
+        <div class="box-title-accent">인프라 / DevOps</div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-docker-plain"></i></span><span class="sk-name">Docker</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">compose 기반 실행 환경 통일과 서비스 묶음 운영</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-linux-plain"></i></span><span class="sk-name">Linux</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">Ubuntu 서버 배포, 로그 확인, 프로세스 운영 경험</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-nginx-original"></i></span><span class="sk-name">Nginx</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span></span><span class="sk-desc">리버스 프록시와 정적 자산·API 라우팅 설정</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-githubactions-plain"></i></span><span class="sk-name">CI/CD</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">GitHub Actions로 빌드·배포 자동화 구성</span></div>
+        <div class="sk"><span class="sk-icon"><i class="devicon-amazonwebservices-plain-wordmark"></i></span><span class="sk-name">AWS S3</span><span class="sk-dots"><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot f"></span><span class="sk-dot"></span><span class="sk-dot"></span></span><span class="sk-desc">이미지·음성 업로드 저장소 분리와 경로 정책 설계</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 2: CAMPUNG
+     ══════════════════════════════════════ -->
+<div class="slide" data-label="CAMPUNG">
+  <div class="slide-inner">
+    <div class="slide-header">
+      <div class="slide-title">Project 01</div>
+      <div class="slide-subtitle">CAMPUNG!</div>
+    </div>
+    <div class="proj-head">
+      <span class="proj-name">CAMPUNG!</span>
+      <span class="badge badge-award">&#9733; 해커톤 대상</span>
+      <span class="badge badge-role">백엔드 / 인프라</span>
+    </div>
+    <div class="proj-context">신한 해커톤 with SSAFY · 2025.08.13 ~ 2025.08.31 · 지도 기반 캠퍼스 커뮤니티</div>
+
+    <div class="proj-with-gallery">
+      <div class="proj-info-side">
+        <div class="box">
+          <div class="box-title-accent">프로젝트 소개</div>
+          <ul class="lst">
+            <li>텍스트 게시판 중심 커뮤니티의 한계 때문에 캠퍼스 현장 이슈를 즉시 공유하기 어려운 문제를 해결하고자 기획한 서비스</li>
+            <li>지도에서 바로 공유하고 게시판에 구조화해 남기는 흐름으로 현장성과 지속성을 함께 확보</li>
           </ul>
         </div>
-        <div class="detail-panel">
-          <div class="detail-panel-label">담당 역할</div>
-          <div class="detail-panel-title">담당 역할</div>
-          <ul class="detail-panel-list">
+        <div class="box">
+          <div class="box-title-accent">해결 방식</div>
+          <ul class="lst">
+            <li>게시글, 랜드마크, 캠퍼스 온도 API를 분리해 지도와 게시판이 같은 데이터를 재사용하도록 구성</li>
+            <li>AI 감정 분석 결과를 온도 지표와 연결해 게시글 흐름을 한눈에 보여주는 서비스 지표 설계</li>
+            <li>파일 업로드 경로를 Content-Type 기준으로 분기해 이미지와 녹음 파일 운영 경로를 분리</li>
+          </ul>
+        </div>
+        <div class="box">
+          <div class="box-title-accent">담당 역할</div>
+          <ul class="lst">
             <li>게시글, 랜드마크, AI 감정 분석 관련 백엔드 API 설계 및 구현</li>
             <li>게시글 온도 집계 로직 구현</li>
             <li>S3 기반 이미지·녹음 파일 업로드 구조 구성</li>
             <li>VMware Ubuntu Live Server 기반 배포 환경 구축 및 CI/CD 구성</li>
           </ul>
         </div>
-        <div class="detail-panel">
-          <div class="detail-panel-label">기술 스택</div>
-          <div class="detail-panel-title">사용 기술</div>
+        <div class="box">
+          <div class="box-title-accent">사용 기술</div>
           <div class="tags">
-            <span class="tag">Spring Boot</span>
-            <span class="tag">WebFlux</span>
-            <span class="tag">MariaDB</span>
-            <span class="tag">Redis</span>
-            <span class="tag">AWS S3</span>
-            <span class="tag">Docker</span>
-            <span class="tag">Nginx</span>
-            <span class="tag">GitHub Actions</span>
-            <span class="tag">OpenAI</span>
+            <span class="tag">Spring Boot</span><span class="tag">WebFlux</span><span class="tag">MariaDB</span><span class="tag">Redis</span><span class="tag">AWS S3</span><span class="tag">Docker</span><span class="tag">Nginx</span><span class="tag">GitHub Actions</span><span class="tag">OpenAI</span>
           </div>
         </div>
       </div>
-      <div class="project-right">
-        <div class="gallery-shell">
-          <div class="gallery-viewport">
-            <button class="gallery-btn prev" type="button" aria-label="이전 이미지">&#8249;</button>
-            <div class="gallery-track">
-              <div class="gallery-card"><img src="img/campung/1.png" alt="CAMPUNG 화면 1"></div>
-              <div class="gallery-card"><img src="img/campung/2.png" alt="CAMPUNG 화면 2"></div>
-              <div class="gallery-card"><img src="img/campung/3.png" alt="CAMPUNG 화면 3"></div>
-              <div class="gallery-card"><img src="img/campung/4.png" alt="CAMPUNG 화면 4"></div>
-            </div>
-            <button class="gallery-btn next" type="button" aria-label="다음 이미지">&#8250;</button>
+      <div class="proj-gallery-side">
+        <div class="gallery-wrap" id="campungGallery">
+          <button class="gallery-btn prev" onclick="galleryMove('campungGallery',-1)">&#8249;</button>
+          <div class="gallery-track">
+            <img src="img/campung/1.png" alt="CAMPUNG 1">
+            <img src="img/campung/2.png" alt="CAMPUNG 2">
+            <img src="img/campung/3.png" alt="CAMPUNG 3">
+            <img src="img/campung/4.png" alt="CAMPUNG 4">
           </div>
-          <div class="gallery-meta">
-            <div class="gallery-hint">화살표 버튼 또는 스와이프로 넘길 수 있습니다</div>
-            <div class="gallery-count" aria-live="polite">1 / 4</div>
-          </div>
+          <button class="gallery-btn next" onclick="galleryMove('campungGallery',1)">&#8250;</button>
         </div>
-        <div class="detail-panel">
-          <div class="detail-panel-label">구현 기능</div>
-          <div class="detail-panel-title">구현 기능</div>
-          <ul class="detail-panel-list">
-            <li>게시글 CRUD와 이미지·녹음 첨부 업로드 API 구현</li>
-            <li>랜드마크 생성·조회와 주변 데이터 처리 API 구현</li>
-            <li>AI 감정 분석 결과를 게시글 온도 집계 흐름과 연결</li>
+        <div class="gallery-count" id="campungGalleryCount">1 / 4</div>
+        <div class="box">
+          <div class="box-title-accent">기술 선택 이유</div>
+          <ul class="lst">
+            <li>Spring Boot를 중심으로 게시글·랜드마크·알림 도메인을 나누고, 익숙한 MVC 구조 위에서 빠르게 기능을 확장</li>
+            <li>WebFlux는 서버 전체 전환보다 GPT API 호출용 WebClient에 집중해 외부 AI 연동 지연을 분리</li>
+            <li>MariaDB, Redis, S3를 영속 데이터·빠른 조회·파일 저장으로 역할 분리해 운영 구조를 단순화</li>
+            <li>개인 PC 기반 Ubuntu Live Server와 GitHub Actions로 짧은 해커톤 기간에도 반복 가능한 배포 환경 확보</li>
           </ul>
         </div>
-        <div class="detail-panel">
-          <div class="detail-panel-label">기술 선택 이유</div>
-          <div class="detail-panel-title">기술 선택 이유</div>
-          <ul class="detail-panel-list">
-            <li>Spring Boot는 게시글, 위치, 랜드마크 도메인을 분리해 API를 확장하기에 적합했습니다.</li>
-            <li>MariaDB, Redis, S3를 분리해 영속 데이터, 캐싱, 파일 저장의 역할을 나눴습니다.</li>
-            <li>AWS 대신 개인 PC 기반 Ubuntu Live Server를 선택해 해커톤 기간에 필요한 사양을 비용 효율적으로 확보했습니다.</li>
+        <div class="box">
+          <div class="box-title-accent">성과 / 결과</div>
+          <ul class="lst">
+            <li>게시판 텍스트를 읽기 전에도 캠퍼스 분위기를 지표로 먼저 파악할 수 있는 구조로 전환</li>
+            <li>이미지·녹음 파일 저장 경로를 유형별로 분리해 운영 중 파일 탐색과 장애 대응 범위를 좁힘</li>
+            <li>신한 해커톤 대상 수상으로 문제 정의와 구현 완성도를 외부 평가로 검증</li>
           </ul>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- ═══ SLIDE 3: CAMPUNG PROBLEM SOLVING ═══ -->
-  <section class="slide" data-slide="3">
-    <div class="label">프로젝트 01 — 문제 해결 및 결과</div>
-    <div class="detail-slide">
-      <div class="detail-summary">
-        <div class="detail-summary-kicker">핵심 문제 해결 결과</div>
-        <h2 class="detail-summary-title">CAMPUNG!에서 해결한 핵심 문제와 결과</h2>
-        <div class="detail-summary-panel">
-          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-            <span class="badge badge-role">문제</span>
-            <span class="badge badge-role">해결</span>
-            <span class="badge badge-role">결과</span>
+<!-- ══════════════════════════════════════
+     SLIDE 3: CAMPUNG 트러블슈팅
+     ══════════════════════════════════════ -->
+<div class="slide" data-label="CAMPUNG 해결">
+  <div class="slide-inner">
+    <div class="slide-header">
+      <div class="slide-title">트러블슈팅</div>
+      <div class="slide-subtitle">CAMPUNG!</div>
+    </div>
+
+    <div class="ts-section">
+      <div class="ts-num">1. 캠퍼스 온도 집계 — AI 감정 분석 + 양방향 온도 보정</div>
+      <div class="ts-desc">
+        게시글 목록만으로는 캠퍼스 분위기를 직관적으로 전달하기 어려웠습니다.<br>
+        AI 감정 분석 결과를 활동량과 연결해 0~100°C 범위의 캠퍼스 온도 지표를 구현하되,<br>
+        시간대별 극단값 방지와 보호 계수를 적용해야 했습니다.
+      </div>
+      <div class="ts-code-area">
+        <div>
+          <div class="ts-code-label">[양방향 온도 보정 로직]</div>
+          <div class="ts-code-block">
+            <div class="ts-code-lang">Java</div>
+<pre><span class="kw">private double</span> <span class="fn">calculateBidirectionalAdjustment</span>(
+    <span class="kw">double</span> currentTemp, <span class="kw">int</span> postCount, <span class="kw">int</span> hour) {
+
+  PostActivityLevel activityLevel =
+      postActivityAnalyzer.<span class="fn">analyzeCurrentActivity</span>(postCount);
+  <span class="kw">double</span> baseRate = activityLevel.<span class="fn">getAdjustmentRate</span>();
+  <span class="kw">double</span> protection = <span class="fn">getTemperatureProtectionFactor</span>(
+      currentTemp, activityLevel.<span class="fn">isIncreasing</span>());
+
+  TemperatureGuideline guideline =
+      guidelineConfig.<span class="fn">getGuideline</span>(hour);
+  <span class="kw">double</span> timeMult = activityLevel.<span class="fn">isIncreasing</span>()
+      ? guideline.<span class="fn">getIncreaseMultiplier</span>()
+      : guideline.<span class="fn">getDecreaseMultiplier</span>();
+
+  <span class="kw">return</span> currentTemp * (1 + baseRate * protection * timeMult);
+}</pre>
           </div>
-          <ul class="detail-summary-list">
-            <li>배포 비용, 저장 구조, 서비스 지표 표현을 백엔드·인프라 관점에서 분리해 정리했습니다.</li>
-            <li>각 사례마다 어떤 문제를 발견했고, 어떻게 구현했으며, 무엇이 달라졌는지 바로 읽히도록 구성했습니다.</li>
+        </div>
+        <div class="ts-explain">
+          <div class="ts-explain-title">[설계 포인트]</div>
+          <ul>
+            <li>활동량 분석 → 상승/하강 판단</li>
+            <li>보호 계수로 극단값(0°/100°) 접근 시 변화폭 자동 감소</li>
+            <li>시간대별 가이드라인으로 낮/밤 보정 배율 분리</li>
           </ul>
-          <div class="summary-chip-row">
-            <span class="summary-chip">배포 비용 최적화</span>
-            <span class="summary-chip">저장소 역할 분리</span>
-            <span class="summary-chip">온도 지표 구현</span>
-          </div>
         </div>
       </div>
-      <div class="detail-panels">
-        <div class="detail-panel">
-          <div class="case-card-header">
-            <div class="detail-panel-label">사례 1</div>
-            <div class="case-step-row">
-              <span class="case-step">문제</span>
-              <span class="case-step">해결</span>
-              <span class="case-step">결과</span>
-            </div>
-          </div>
-          <div class="detail-panel-title">비용 대비 배포 환경 설계</div>
-          <div class="challenge-label">문제</div>
-          <div class="detail-panel-text">해커톤 기간 동안 필요한 자원을 확보하면서도 AWS 서버 비용을 지속적으로 감당하기에는 부담이 있었습니다.</div>
-          <div class="challenge-label" style="margin-top:0.9rem;">해결</div>
-          <div class="detail-panel-text">개인 PC에 VMware로 Ubuntu Live Server를 구축하고, Docker, Nginx, GitHub Actions를 연결해 배포 흐름을 정리했습니다.</div>
-          <div class="challenge-label" style="margin-top:0.9rem;">결과</div>
-          <div class="detail-panel-text">클라우드 비용 부담 없이 필요한 사양을 확보했고, 빌드부터 배포까지 일관된 운영 흐름을 만들 수 있었습니다.</div>
-        </div>
-        <div class="detail-panel">
-          <div class="case-card-header">
-            <div class="detail-panel-label">사례 2</div>
-            <div class="case-step-row">
-              <span class="case-step">문제</span>
-              <span class="case-step">해결</span>
-              <span class="case-step">결과</span>
-            </div>
-          </div>
-          <div class="detail-panel-title">서비스 데이터와 미디어 저장 구조 분리</div>
-          <div class="challenge-label">문제</div>
-          <div class="detail-panel-text">게시글 데이터와 이미지·녹음 파일은 성격이 다른데, 동일한 저장 방식으로 관리하면 운영과 확장이 복잡해질 수 있었습니다.</div>
-          <div class="challenge-label" style="margin-top:0.9rem;">해결</div>
-          <div class="detail-panel-text">영속 데이터는 MariaDB, 빠른 조회와 캐시는 Redis, 이미지·녹음 파일은 S3로 분리해 저장 구조를 설계했습니다.</div>
-          <div class="challenge-label" style="margin-top:0.9rem;">결과</div>
-          <div class="detail-panel-text">저장소 역할이 명확해졌고, 서비스 데이터와 파일 자산을 분리해 운영하기 쉬운 구조를 만들었습니다.</div>
-        </div>
-        <div class="detail-panel">
-          <div class="case-card-header">
-            <div class="detail-panel-label">사례 3</div>
-            <div class="case-step-row">
-              <span class="case-step">문제</span>
-              <span class="case-step">해결</span>
-              <span class="case-step">결과</span>
-            </div>
-          </div>
-          <div class="detail-panel-title">게시글 활동을 서비스 지표로 연결</div>
-          <div class="challenge-label">문제</div>
-          <div class="detail-panel-text">단순 게시글 목록만으로는 캠퍼스 분위기와 활발함을 직관적으로 전달하기 어려웠습니다.</div>
-          <div class="challenge-label" style="margin-top:0.9rem;">해결</div>
-          <div class="detail-panel-text">AI 감정 분석 결과와 게시글 활동량을 연결해 캠퍼스 온도 집계 로직을 구현했습니다.</div>
-          <div class="challenge-label" style="margin-top:0.9rem;">결과</div>
-          <div class="detail-panel-text">사용자가 게시판의 분위기와 활성도를 하나의 서비스 지표로 확인할 수 있도록 표현 범위를 확장했습니다.</div>
-        </div>
+      <div class="ts-result">
+        <ul>
+          <li>게시글 목록을 읽기 전에도 홈 화면에서 캠퍼스 분위기를 한 번에 파악할 수 있는 지표를 제공</li>
+          <li>보호 계수와 시간대 보정으로 게시글이 적은 시간에도 지표가 급변하지 않도록 제어</li>
+        </ul>
       </div>
     </div>
-  </section>
 
-  <!-- ═══ SLIDE 4: MORE INTRO ═══ -->
-  <section class="slide" data-slide="4">
-    <div class="project-slide">
-      <div class="project-left">
-        <div class="label">프로젝트 02</div>
-        <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-          <span class="badge badge-role">팀장</span>
-          <span class="badge badge-role">백엔드 / 인프라</span>
+    <div class="ts-section">
+      <div class="ts-num">2. S3 파일 업로드 — Content-Type 기반 폴더 자동 분류</div>
+      <div class="ts-desc">
+        이미지·녹음 파일을 동일 경로에 저장하면 운영·검색이 복잡해지는 문제가 있었습니다.<br>
+        Content-Type을 분석해 자동으로 폴더를 분류하고, 날짜 기반 경로로 관리 효율을 높였습니다.
+      </div>
+      <div class="ts-code-area">
+        <div>
+          <div class="ts-code-label">[S3 업로드 + 폴더 자동 분류]</div>
+          <div class="ts-code-block">
+            <div class="ts-code-lang">Java</div>
+<pre><span class="kw">public</span> String <span class="fn">uploadFile</span>(MultipartFile file) {
+  String contentType = file.<span class="fn">getContentType</span>();
+  String folder = <span class="fn">determineFolder</span>(contentType);
+  String key = folder + <span class="str">"/contents/"</span>
+    + LocalDate.<span class="fn">now</span>().<span class="fn">format</span>(
+        DateTimeFormatter.<span class="fn">ofPattern</span>(<span class="str">"yyyy/MM/dd"</span>))
+    + <span class="str">"/"</span> + <span class="fn">generateFileName</span>(
+        file.<span class="fn">getOriginalFilename</span>());
+
+  PutObjectRequest req = PutObjectRequest.<span class="fn">builder</span>()
+      .<span class="fn">bucket</span>(bucketName).<span class="fn">key</span>(key)
+      .<span class="fn">contentType</span>(contentType).<span class="fn">build</span>();
+  s3Client.<span class="fn">putObject</span>(req,
+    RequestBody.<span class="fn">fromInputStream</span>(
+      file.<span class="fn">getInputStream</span>(), file.<span class="fn">getSize</span>()));
+  <span class="kw">return</span> baseUrl + key;
+}</pre>
+          </div>
         </div>
-        <h2 class="project-title">모아 (MOA)</h2>
-        <span class="badge badge-context">SSAFY 특화 프로젝트 · 금융 Open API 기반 목표/예산 관리 서비스</span>
-        <div class="detail-panel">
-          <div class="detail-panel-label">프로젝트 소개</div>
-          <div class="detail-panel-title">프로젝트 소개</div>
-          <ul class="detail-panel-list">
-            <li>거래 데이터와 금융 Open API를 활용해 소비 분석, 목표 설정, 예산 관리를 연결한 금융 서비스입니다.</li>
-            <li>분석 결과를 보여주는 데서 끝나지 않고 목표 계획 수립과 주간 예산 제안까지 이어지는 흐름을 설계했습니다.</li>
+        <div class="ts-explain">
+          <div class="ts-explain-title">[저장 구조 분리 결과]</div>
+          <ul>
+            <li>영속 데이터 → MariaDB</li>
+            <li>캐시 / 실시간 조회 → Redis</li>
+            <li>이미지·녹음 파일 → S3 (Content-Type별 폴더)</li>
+          </ul>
+          <br>
+          <div class="ts-explain-title">[폴더 라우팅]</div>
+          <ul>
+            <li>image/* → images/contents/yyyy/MM/dd/</li>
+            <li>audio/* → audio/contents/yyyy/MM/dd/</li>
           </ul>
         </div>
-        <div class="detail-panel">
-          <div class="detail-panel-label">담당 역할</div>
-          <div class="detail-panel-title">담당 역할</div>
-          <ul class="detail-panel-list">
+      </div>
+      <div class="ts-result">
+        <ul>
+          <li>업로드 직후 생성되는 S3 key만으로 이미지와 녹음 파일 위치를 구분할 수 있어 운영 탐색 경로를 단순화</li>
+          <li>DB·캐시·파일 저장소 책임을 나눠 장애 원인 파악 범위를 저장 계층별로 좁힘</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ts-section">
+      <div class="ts-num">3. 프로젝트 회고</div>
+      <div class="ts-desc">
+        해커톤처럼 일정이 짧을수록 기능 구현보다 운영 가능한 구조를 먼저 잡아야 한다는 점을 배웠습니다.<br>
+        반면 이번 프로젝트에서는 온도 지표와 파일 구조 개선 효과를 응답 시간이나 운영 시간 절감처럼 정량화하지 못한 아쉬움이 남았습니다.
+      </div>
+      <div class="ts-result">
+        <ul>
+          <li>배운 점: 사용자 경험을 높이는 기능도 결국 정합성, 저장소 분리, 극단값 제어 같은 운영 관점이 뒷받침돼야 한다는 점</li>
+          <li>아쉬운 점: 구조 개선 효과를 설명할 로그·모니터링 지표까지는 연결하지 못함</li>
+          <li>다음 개선: Redis 조회 지표, 업로드 실패율, 응답 시간 기록을 붙여 개선 효과를 정량 검증하고 싶음</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 4: 모아
+     ══════════════════════════════════════ -->
+<div class="slide" data-label="모아">
+  <div class="slide-inner">
+    <div class="slide-header">
+      <div class="slide-title">Project 02</div>
+      <div class="slide-subtitle">모아 (MOA)</div>
+    </div>
+    <div class="proj-head">
+      <span class="proj-name">모아 (MOA)</span>
+      <span class="badge badge-role">팀장</span>
+      <span class="badge badge-role">백엔드 / 인프라</span>
+    </div>
+    <div class="proj-context">SSAFY 특화 프로젝트 · 2026.02.18 ~ 2026.03.30 · 금융 Open API 기반 목표/예산 관리 서비스</div>
+
+    <div class="proj-with-gallery">
+      <div class="proj-info-side">
+        <div class="box">
+          <div class="box-title-accent">프로젝트 소개</div>
+          <ul class="lst">
+            <li>거래 데이터와 금융 Open API를 활용해 소비 분석, 목표 설정, 예산 관리를 하나의 흐름으로 연결한 금융 서비스</li>
+            <li>분석 결과를 보여주는 데서 끝나지 않고 목표 계획 수립과 주간 예산 제안까지 이어지는 실행형 사용자 흐름 설계</li>
+          </ul>
+        </div>
+        <div class="box">
+          <div class="box-title-accent">해결 방식</div>
+          <ul class="lst">
+            <li>계좌 연동 이후 3개월 거래를 수집·분석하고, 목표 설정 결과를 주간 예산으로 다시 연결하는 흐름 설계</li>
+            <li>외부 금융 API 데이터와 로컬 DB를 reconcile해 분석·예산·목표가 같은 계좌 기준을 보도록 통합</li>
+            <li>월간 수입을 주차별 예산, 저축, 여유 자금으로 나누고 부족분은 우선순위가 낮은 목표부터 조정</li>
+          </ul>
+        </div>
+        <div class="box">
+          <div class="box-title-accent">담당 역할</div>
+          <ul class="lst">
             <li>Account 파트 계좌 연동 및 관리 API 구현</li>
             <li>Budget 파트 예산 배분·할당 로직 구현</li>
             <li>거래내역 동기화와 데이터 정합성 처리</li>
             <li>Docker 기반 인프라 환경 구성</li>
           </ul>
         </div>
-        <div class="detail-panel">
-          <div class="detail-panel-label">기술 스택</div>
-          <div class="detail-panel-title">사용 기술</div>
+        <div class="box">
+          <div class="box-title-accent">사용 기술</div>
           <div class="tags">
-            <span class="tag">Spring Boot</span>
-            <span class="tag">FastAPI</span>
-            <span class="tag">PostgreSQL</span>
-            <span class="tag">Docker</span>
-            <span class="tag">Ubuntu</span>
-            <span class="tag">SSAFY 금융 Open API</span>
+            <span class="tag">Spring Boot</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span><span class="tag">Ubuntu</span><span class="tag">SSAFY 금융 Open API</span>
           </div>
         </div>
       </div>
-      <div class="project-right">
-        <div class="detail-panel">
-          <div class="detail-panel-label">서비스 흐름</div>
-          <div class="detail-panel-title">서비스 흐름</div>
-          <ul class="detail-panel-list">
-            <li>계좌 연동 → 첫 목표 설정 → 소비 분석 결과 확인 → 목표 계획 수립 → 홈 진입 흐름으로 구성했습니다.</li>
-            <li>메인 앱에서는 홈, 분석, 목표, 내 정보 탭을 중심으로 예산과 목표를 계속 관리할 수 있게 설계했습니다.</li>
+      <div class="proj-gallery-side">
+        <div class="gallery-wrap gallery-portrait" id="moaGallery">
+          <button class="gallery-btn prev" onclick="galleryMove('moaGallery',-1)">&#8249;</button>
+          <div class="gallery-track">
+            <div class="gallery-item"><img src="img/moa/1.png" alt="모아 스크린샷 1"></div>
+            <div class="gallery-item"><img src="img/moa/2.png" alt="모아 스크린샷 2"></div>
+            <div class="gallery-item"><img src="img/moa/3.png" alt="모아 스크린샷 3"></div>
+            <div class="gallery-item"><img src="img/moa/4.png" alt="모아 스크린샷 4"></div>
+          </div>
+          <button class="gallery-btn next" onclick="galleryMove('moaGallery',1)">&#8250;</button>
+        </div>
+        <div class="gallery-count" id="moaGalleryCount">1 / 4</div>
+      </div>
+      <div class="proj-gallery-meta-grid">
+        <div class="box">
+          <div class="box-title-accent">성과 / 결과</div>
+          <ul class="lst">
+            <li>분석 결과 화면에서 끝나지 않고 목표 계획 수립, 주간 예산 설정, 홈 자유소비 관리까지 이어지는 실행 흐름을 구성</li>
+            <li>계좌 동기화 이후 분석·예산·목표 화면이 동일한 계좌 기준을 보도록 데이터 기준점을 통일</li>
+            <li>목표 충돌 시 부족분을 우선순위가 낮은 목표부터 조정해 금액 변화 이유를 설명 가능한 구조로 설계</li>
           </ul>
         </div>
-        <div class="detail-panel">
-          <div class="detail-panel-label">구현 기능</div>
-          <div class="detail-panel-title">구현 기능</div>
-          <ul class="detail-panel-list">
-            <li>계좌 연동/관리 API와 거래 데이터 동기화 흐름 구현</li>
-            <li>주간·월간 소비 분석과 예산 계산 로직 연결</li>
-            <li>목표 우선순위를 반영한 예산 배분 및 계획 수립 구조 구현</li>
-          </ul>
-        </div>
-        <div class="detail-panel">
-          <div class="detail-panel-label">기술 선택 이유</div>
-          <div class="detail-panel-title">기술 선택 이유</div>
-          <ul class="detail-panel-list">
-            <li>Spring Boot는 계좌, 거래, 목표, 예산처럼 관계가 복잡한 금융 도메인을 구조화하기에 적합했습니다.</li>
-            <li>PostgreSQL은 거래와 예산 데이터를 관계형으로 관리하기에 적합했고, Docker는 실행 환경을 일관되게 맞추는 데 유용했습니다.</li>
-            <li>FastAPI는 분석 파이프라인과 백엔드 서비스를 역할별로 나눠 연결하는 데 활용했습니다.</li>
+        <div class="box">
+          <div class="box-title-accent">기술 선택 이유</div>
+          <ul class="lst">
+            <li>Spring Boot를 메인 API 서버로 두어 계좌, 거래, 목표, 예산처럼 트랜잭션이 중요한 금융 도메인을 일관된 계층으로 관리</li>
+            <li>PostgreSQL을 선택해 거래·예산·목표 관계와 주간·월간 집계를 안정적으로 다루고, Docker로 팀 전체 실행 환경을 통일</li>
+            <li>FastAPI는 분석 응답처럼 계산 로직 변경이 잦은 영역을 분리할 때 유리해 금융 도메인 API와 분석 파이프라인의 책임을 나누는 구조에 적합</li>
           </ul>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- ═══ SLIDE 5: MORE PROBLEM SOLVING ═══ -->
-  <section class="slide" data-slide="5">
-    <div class="detail-slide">
-      <div class="detail-summary">
-        <div class="label">프로젝트 02 — 문제 해결 및 결과</div>
-        <div class="detail-summary-kicker">핵심 문제 해결 결과</div>
-        <h2 class="detail-summary-title">모아에서 해결한 핵심 문제와 결과</h2>
-        <div class="detail-summary-panel">
-          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-            <span class="badge badge-role">문제</span>
-            <span class="badge badge-role">해결</span>
-            <span class="badge badge-role">결과</span>
-          </div>
-          <ul class="detail-summary-list">
-            <li>금융 서비스 특성상 계산 오차와 데이터 불일치가 여러 화면에 연쇄적으로 영향을 주기 때문에 정합성과 흐름 연결이 핵심이었습니다.</li>
-            <li>거래 동기화, 목표 기반 예산 배분, 실행 환경 통일을 중심으로 문제 해결 과정을 정리했습니다.</li>
-          </ul>
-          <div class="summary-chip-row">
-            <span class="summary-chip">데이터 정합성</span>
-            <span class="summary-chip">예산 배분 로직</span>
-            <span class="summary-chip">실행 환경 통일</span>
-          </div>
-        </div>
-      </div>
-      <div class="detail-panels">
-        <div class="detail-panel">
-          <div class="case-card-header">
-            <div class="detail-panel-label">사례 1</div>
-            <div class="case-step-row">
-              <span class="case-step">문제</span>
-              <span class="case-step">해결</span>
-              <span class="case-step">결과</span>
-            </div>
-          </div>
-          <div class="detail-panel-title">거래내역 동기화와 데이터 정합성 유지</div>
-          <div class="challenge-label">문제</div>
-          <div class="detail-panel-text">계좌와 거래내역 데이터가 분석, 예산, 목표 화면의 공통 기준이어서 동기화가 어긋나면 전체 흐름의 일관성이 깨질 수 있었습니다.</div>
-          <div class="challenge-label" style="margin-top:0.9rem;">해결</div>
-          <div class="detail-panel-text">계좌, 거래, 예산 도메인을 기준으로 처리 흐름을 나누고, 거래 동기화 이후 분석과 예산 계산이 같은 기준 데이터를 사용하도록 구조를 정리했습니다.</div>
-          <div class="challenge-label" style="margin-top:0.9rem;">결과</div>
-          <div class="detail-panel-text">홈, 분석, 목표 화면이 동일한 데이터 기준을 바라보도록 맞추면서 금융 데이터 흐름의 안정성을 높였습니다.</div>
-        </div>
-        <div class="detail-panel">
-          <div class="case-card-header">
-            <div class="detail-panel-label">사례 2</div>
-            <div class="case-step-row">
-              <span class="case-step">문제</span>
-              <span class="case-step">해결</span>
-              <span class="case-step">결과</span>
-            </div>
-          </div>
-          <div class="detail-panel-title">목표 기반 예산 배분 로직 연결</div>
-          <div class="challenge-label">문제</div>
-          <div class="detail-panel-text">단순 지출 분석만으로는 사용자가 바로 행동으로 옮기기 어려워 목표와 예산을 연결한 계획 수립 구조가 필요했습니다.</div>
-          <div class="challenge-label" style="margin-top:0.9rem;">해결</div>
-          <div class="detail-panel-text">목표 우선순위, 고정비, 여유 자금을 함께 반영하는 예산 배분·할당 로직을 구현해 분석 결과가 계획 수립으로 이어지도록 구성했습니다.</div>
-          <div class="challenge-label" style="margin-top:0.9rem;">결과</div>
-          <div class="detail-panel-text">분석 결과가 실제 주간 예산과 목표 계획으로 연결되면서 서비스 흐름이 조회 중심이 아니라 실행 중심으로 확장됐습니다.</div>
-        </div>
-        <div class="detail-panel">
-          <div class="case-card-header">
-            <div class="detail-panel-label">사례 3</div>
-            <div class="case-step-row">
-              <span class="case-step">문제</span>
-              <span class="case-step">해결</span>
-              <span class="case-step">결과</span>
-            </div>
-          </div>
-          <div class="detail-panel-title">Docker 기반 실행 환경 통일</div>
-          <div class="challenge-label">문제</div>
-          <div class="detail-panel-text">백엔드와 분석 서비스가 함께 동작해야 했기 때문에 팀원마다 다른 로컬 환경에서 실행 편차가 생길 수 있었습니다.</div>
-          <div class="challenge-label" style="margin-top:0.9rem;">해결</div>
-          <div class="detail-panel-text">Docker 기반으로 서비스 실행 환경을 맞추고 인프라 구성을 단순화해 개발과 테스트 환경의 차이를 줄였습니다.</div>
-          <div class="challenge-label" style="margin-top:0.9rem;">결과</div>
-          <div class="detail-panel-text">개발과 배포 과정에서 환경 차이로 인한 불확실성을 줄이고 협업에 필요한 실행 기준을 통일할 수 있었습니다.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ SLIDE 8: OTHER PROJECTS ═══ -->
-  <section class="slide" data-slide="8">
-    <div class="label">기타 프로젝트 및 경험</div>
-    <div class="other-grid">
-      <div class="other-card">
-        <div class="other-card-top">
-          <span class="other-card-name">HearBe</span>
-          <span class="other-card-role">백엔드 + AI</span>
-        </div>
-        <p class="other-card-desc">시각장애인 음성 기반 웹 쇼핑 지원 — ASR · NLU · LLM · TTS · OCR 통합 AI 파이프라인. 백엔드 설계 보조 및 AI 파트 담당.</p>
-        <div class="tags">
-          <span class="tag">FastAPI</span>
-          <span class="tag">WebSocket</span>
-          <span class="tag">Whisper</span>
-          <span class="tag">GPT</span>
-          <span class="tag">TTS</span>
-          <span class="tag">MCP</span>
-        </div>
-      </div>
-      <div class="other-card">
-        <div class="other-card-top">
-          <span class="other-card-name">TripTube</span>
-          <span class="other-card-role">풀스택</span>
-        </div>
-        <p class="other-card-desc">유튜브 여행 영상 자막을 AI로 구조화하고, 4096차원 벡터 임베딩 기반 시맨틱 검색 제공. 유저 파트 제외 전체 담당.</p>
-        <div class="tags">
-          <span class="tag">Spring Boot</span>
-          <span class="tag">FastAPI</span>
-          <span class="tag">Vector DB</span>
-          <span class="tag">GPT</span>
-          <span class="tag">Upstage</span>
-        </div>
-      </div>
-      <div class="other-card">
-        <div class="other-card-top">
-          <span class="other-card-name">Sequence</span>
-          <span class="other-card-role">백엔드</span>
-        </div>
-        <p class="other-card-desc">대학 간 PM · 디자이너 · 개발자 교류 및 프로젝트 매칭 플랫폼. 아카이브 파트 백엔드 담당.</p>
-        <div class="tags">
-          <span class="tag">Spring Boot</span>
-          <span class="tag">JPA</span>
-          <span class="tag">QueryDSL</span>
-          <span class="tag">Security</span>
-          <span class="tag">Docker</span>
-        </div>
-      </div>
-      <div class="other-card">
-        <div class="other-card-top">
-          <span class="other-card-name">블루로봇 인턴</span>
-          <span class="other-card-role">프로젝트형 인턴</span>
-        </div>
-        <p class="other-card-desc">고정밀 균형 유지 하드웨어 2D 시각화 모듈 개발</p>
-        <div class="tags">
-          <span class="tag">2D Visualization</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ SLIDE 9: CREDENTIALS ═══ -->
-  <section class="slide" data-slide="9" style="align-items:center;">
-    <div class="label">Education & Credentials</div>
-    <div class="cred-grid">
-      <div class="cred-card">
-        <div class="cred-icon">&#9733;</div>
-        <div class="cred-name">신한 해커톤 대상</div>
-        <div class="cred-detail">Shinhan Bank Hackathon<br>with SSAFY</div>
-        <div class="cred-year">2025</div>
-      </div>
-      <div class="cred-card">
-        <div class="cred-icon">&#9635;</div>
-        <div class="cred-name">SQLD</div>
-        <div class="cred-detail">SQL Developer</div>
-        <div class="cred-year">2024</div>
-      </div>
-    </div>
-    <div style="margin-top:2.5rem;padding:1.5rem 2rem;border:1px solid var(--gray-100);border-radius:10px;max-width:900px;width:100%;">
-      <div class="tech-cat-label">Education</div>
-      <div style="display:flex;align-items:center;gap:1.5rem;margin-top:0.5rem;">
-        <span style="font-size:1rem;font-weight:600;">SSAFY</span>
-        <span style="font-size:0.82rem;color:var(--gray-500);">삼성 청년 SW 아카데미 — Java · Algorithm · REST API · DB · AI 교육 이수</span>
-      </div>
-    </div>
-  </section>
-
+  </div>
 </div>
 
+<!-- ══════════════════════════════════════
+     SLIDE 5: 모아 트러블슈팅
+     ══════════════════════════════════════ -->
+<div class="slide" data-label="모아 해결">
+  <div class="slide-inner">
+    <div class="slide-header">
+      <div class="slide-title">트러블슈팅</div>
+      <div class="slide-subtitle">모아 (MOA)</div>
+    </div>
+
+    <div class="ts-section">
+      <div class="ts-num">1. 계좌 데이터 정합성 — 외부 API 동기화 (Reconciliation)</div>
+      <div class="ts-desc">
+        로컬 DB의 계좌 정보와 외부 금융 API 데이터 사이에 불일치가 발생하면<br>
+        분석, 예산, 목표 화면 전체의 일관성이 깨지는 문제가 있었습니다.<br>
+        외부 API 기준으로 비교·동기화하고, 삭제된 계좌는 비활성 처리하는 reconcile 구조를 구현했습니다.
+      </div>
+      <div class="ts-code-area">
+        <div>
+          <div class="ts-code-label">[계좌 Reconciliation 로직]</div>
+          <div class="ts-code-block">
+            <div class="ts-code-lang">Java</div>
+<pre><span class="kw">@Transactional</span>
+<span class="kw">public</span> List&lt;Account&gt; <span class="fn">execute</span>(Integer userId) {
+  List&lt;Account&gt; linked =
+    accountRepo.<span class="fn">findAllLinkedByUserId</span>(userId);
+  User user = findUserUseCase.<span class="fn">execute</span>(userId);
+
+  <span class="cm">// 외부 API에서 전체 계좌 조회</span>
+  Map&lt;String, AccountItem&gt; external =
+    apiClient.<span class="fn">inquireAccounts</span>(user.<span class="fn">getUserKey</span>())
+      .accounts().stream()
+      .<span class="fn">collect</span>(Collectors.<span class="fn">toMap</span>(
+        AccountItem::accountNo, identity()));
+
+  <span class="kw">return</span> linked.stream()
+    .<span class="fn">filter</span>(acc -&gt; <span class="fn">reconcile</span>(acc, external))
+    .<span class="fn">toList</span>();
+}
+
+<span class="kw">private boolean</span> <span class="fn">reconcile</span>(Account acc,
+    Map&lt;String, AccountItem&gt; external) {
+  AccountItem ext = external.<span class="fn">get</span>(acc.<span class="fn">getAccountNo</span>());
+  <span class="kw">if</span> (ext == <span class="kw">null</span>) {
+    acc.<span class="fn">markInactive</span>(); <span class="kw">return false</span>;
+  }
+  acc.<span class="fn">sync</span>(ext); acc.<span class="fn">markActive</span>();
+  <span class="kw">return true</span>;
+}</pre>
+          </div>
+        </div>
+        <div class="ts-explain">
+          <div class="ts-explain-title">[Reconciliation 포인트]</div>
+          <ul>
+            <li>외부 API 기준 Map 구성 → O(1) 비교</li>
+            <li>존재하지 않는 계좌 → markInactive (삭제 대신 비활성)</li>
+            <li>메타데이터 변경 → sync로 일괄 갱신</li>
+            <li>@Transactional로 부분 실패 방지</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ts-result">
+        <ul>
+          <li>동기화 이후 홈·분석·목표가 동일한 계좌 목록을 기준으로 계산되도록 데이터 기준점을 통일</li>
+          <li>삭제된 계좌를 즉시 제거하지 않고 비활성 처리해 외부 API 일시 오류에도 기존 이력을 보존</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ts-section">
+      <div class="ts-num">2. 예산 배분 알고리즘 — 월간 수입 → 주간 배분 + 부족분 조정</div>
+      <div class="ts-desc">
+        단순 지출 분석만으로는 사용자가 행동으로 옮기기 어려웠습니다.<br>
+        월간 수입을 주 단위로 분배하면서 고정비, 목표 저축, 여유 자금을 모두 반영하는 다단계 배분 로직을 구현했습니다.
+      </div>
+      <div class="ts-code-area">
+        <div>
+          <div class="ts-code-label">[예산 배분 핵심 흐름]</div>
+          <div class="ts-code-block">
+            <div class="ts-code-lang">Java</div>
+<pre><span class="kw">public</span> AllocationResult <span class="fn">allocateBudget</span>(
+    User user, LocalDate start,
+    Long monthlyIncome,
+    List&lt;EssentialExpenseMonth&gt; essentials,
+    List&lt;Plan&gt; activePlans) {
+
+  <span class="cm">// 1. 정규화</span>
+  <span class="kw">long</span> income = <span class="fn">normalizeAmount</span>(monthlyIncome);
+  <span class="cm">// 2. 주 프레임 생성</span>
+  List&lt;WeekFrame&gt; weeks =
+    <span class="fn">buildWeekFrames</span>(start, allocationEnd);
+  <span class="cm">// 3. 월 예산 → 주 분배</span>
+  Map&lt;LocalDate,Long&gt; incomeByWeek =
+    <span class="fn">allocateMonthlyIncome</span>(start, end,
+      income, weeks);
+  <span class="cm">// 4. 고정비 할당</span>
+  List&lt;EssentialAlloc&gt; essentialAllocs =
+    <span class="fn">buildEssentialAllocations</span>(...);
+  <span class="cm">// 5. 부족분 조정</span>
+  <span class="fn">applyShortageAdjustments</span>(weeks,
+    budgetWeeks, incomeByWeek,
+    essentialByWeek, planAllocs);
+
+  <span class="kw">return new</span> AllocationResult(...);
+}</pre>
+          </div>
+        </div>
+        <div class="ts-explain">
+          <div class="ts-explain-title">[배분 로직 구조]</div>
+          <ul>
+            <li>월간 수입 → 주 단위 균등 분배</li>
+            <li>고정비(필수 지출) 우선 차감</li>
+            <li>목표 저축 계획 반영</li>
+            <li>부족분 발생 시 자동 조정(Shortage Adjustment)</li>
+          </ul>
+          <br>
+          <div class="ts-explain-title">[핵심 판단]</div>
+          <ul>
+            <li>분석 결과 → 계획 수립 → 실행으로 이어지는 흐름 설계</li>
+            <li>조회 중심이 아닌 실행 중심 서비스로 전환</li>
+          </ul>
+        </div>
+      </div>
+      <div class="ts-result">
+        <ul>
+          <li>온보딩 분석 결과가 주간 예산, 목표 계획, 홈 자유소비 금액으로 이어지는 실행 흐름을 구성</li>
+          <li>우선순위가 낮은 목표부터 부족분을 조정해 예산이 모자랄 때도 어떤 목표를 먼저 지킬지 설명 가능한 구조 확보</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ts-section">
+      <div class="ts-num">3. 프로젝트 회고</div>
+      <div class="ts-desc">
+        금융 서비스는 계산 로직 자체보다도 같은 데이터를 기준으로 읽고 쓰게 만드는 구조가 더 중요하다는 점을 배웠습니다.<br>
+        다만 예산 추천과 목표 계획이 실제 사용자 행동을 얼마나 바꿨는지까지 계측하지 못해 성과 설명은 아직 보강 여지가 있습니다.
+      </div>
+      <div class="ts-result">
+        <ul>
+          <li>배운 점: 금융 도메인에서는 화면별 기능보다 데이터 기준점과 동기화 순서를 먼저 맞추는 것이 안정성의 출발점이라는 점</li>
+          <li>아쉬운 점: 예산 추천 효과를 목표 달성률이나 예산 초과 감소 같은 지표로 검증하지 못함</li>
+          <li>다음 개선: 동기화 횟수, 목표 달성 진행률, 예산 초과 빈도를 수집해 추천 로직 성과를 정량화하고 싶음</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 6: 기타 프로젝트
+     ══════════════════════════════════════ -->
+<div class="slide" data-label="Other">
+  <div class="slide-inner">
+    <div class="slide-header">
+      <div class="slide-title">Other Projects</div>
+      <div class="slide-subtitle">기타 프로젝트 및 경험</div>
+    </div>
+    <div class="other-grid">
+      <div class="other-card">
+        <div class="other-top">
+          <span class="other-name">HearBe</span>
+          <span class="other-role">풀스택 보조 + AI</span>
+        </div>
+        <p class="other-desc"><strong>SSAFY 자율 프로젝트</strong> · 2026.01.07 ~ 2026.02.09 · 시각장애인을 위한 음성 기반 웹 쇼핑 지원 서비스</p>
+        <div class="box" style="margin-top:0.5rem;">
+          <div class="gallery-wrap" id="hearbeGallery">
+            <button class="gallery-btn prev" onclick="galleryMove('hearbeGallery',-1)">&#8249;</button>
+            <div class="gallery-track">
+              <img src="img/hearbe/1.png" alt="HearBe 스크린샷 1">
+              <img src="img/hearbe/2.png" alt="HearBe 스크린샷 2">
+            </div>
+            <button class="gallery-btn next" onclick="galleryMove('hearbeGallery',1)">&#8250;</button>
+          </div>
+          <div class="gallery-count" id="hearbeGalleryCount">1 / 2</div>
+        </div>
+        <div class="box" style="margin-top:0.5rem;">
+          <div class="box-title-accent" style="font-size:0.78rem;">핵심 경험</div>
+          <ul class="lst">
+            <li>ASR(Whisper) → NLU → LLM → TTS 파이프라인을 연결해 음성 중심 사용자 흐름 설계</li>
+            <li>WebSocket 기반 실시간 음성 세션 처리와 MCP 연동 경험 확보</li>
+            <li>Jira API 기반 CLI 자동화 모듈을 만들어 협업 운영 효율 개선, 이후 모아 프로젝트에도 재사용</li>
+          </ul>
+        </div>
+        <div class="tags" style="margin-top:0.5rem;">
+          <span class="tag">FastAPI</span><span class="tag">WebSocket</span><span class="tag">Whisper</span><span class="tag">GPT</span><span class="tag">TTS</span><span class="tag">MCP</span>
+        </div>
+      </div>
+      <div class="other-card">
+        <div class="other-top">
+          <span class="other-name">TripTube</span>
+          <span class="other-role">풀스택</span>
+        </div>
+        <p class="other-desc"><strong>SSAFY 관통 프로젝트</strong> · 2025.11 ~ 2025.12.26 · 유튜브 여행 영상 자막을 AI로 구조화하고 시맨틱 검색을 제공하는 여행 계획 플랫폼</p>
+        <div class="box" style="margin-top:0.5rem;">
+          <div class="box-title-accent" style="font-size:0.78rem;">핵심 경험</div>
+          <ul class="lst">
+            <li>YouTube 자막 추출 → GPT 구조화 → 벡터 임베딩까지 이어지는 검색 파이프라인 구축</li>
+            <li>한국어 특화 임베딩 기반 시맨틱 검색 API를 설계·구현해 검색 품질 개선 경험 확보</li>
+            <li>Spring Boot 백엔드와 AI 서버를 분리해 검색/추천형 기능을 서비스 API와 연결한 경험</li>
+          </ul>
+        </div>
+        <div class="tags" style="margin-top:0.5rem;">
+          <span class="tag">Spring Boot</span><span class="tag">FastAPI</span><span class="tag">Vector DB</span><span class="tag">GPT</span><span class="tag">Upstage Embedding</span>
+        </div>
+      </div>
+      <div class="other-card">
+        <div class="other-top">
+          <span class="other-name">Sequence</span>
+          <span class="other-role">백엔드</span>
+        </div>
+        <p class="other-desc"><strong>대학 연합 프로젝트</strong> · 2024.10 ~ 2025.06 · 대학 간 PM · 디자이너 · 개발자 교류 및 프로젝트 매칭 플랫폼</p>
+        <div class="box" style="margin-top:0.5rem;">
+          <div class="gallery-wrap" id="sequenceGallery">
+            <button class="gallery-btn prev" onclick="galleryMove('sequenceGallery',-1)">&#8249;</button>
+            <div class="gallery-track">
+              <img src="img/sequence/1.png" alt="Sequence 스크린샷 1">
+              <img src="img/sequence/2.png" alt="Sequence 스크린샷 2">
+            </div>
+            <button class="gallery-btn next" onclick="galleryMove('sequenceGallery',1)">&#8250;</button>
+          </div>
+          <div class="gallery-count" id="sequenceGalleryCount">1 / 2</div>
+        </div>
+        <div class="box" style="margin-top:0.5rem;">
+          <div class="box-title-accent" style="font-size:0.78rem;">핵심 경험</div>
+          <ul class="lst">
+            <li>프로젝트 아카이빙과 상호 팀원 평가 기능을 중심으로 아카이브 파트 백엔드 개발</li>
+            <li>QueryDSL 기반 동적 필터링·검색 쿼리로 복합 조회 조건 처리 경험 확보</li>
+            <li>JPA 연관관계 설계와 soft-delete 기반 데이터 관리 패턴 적용</li>
+          </ul>
+        </div>
+        <div class="tags" style="margin-top:0.5rem;">
+          <span class="tag">Spring Boot</span><span class="tag">JPA</span><span class="tag">QueryDSL</span><span class="tag">Security</span><span class="tag">Docker</span>
+        </div>
+      </div>
+      <div class="other-card">
+        <div class="other-top">
+          <span class="other-name">블루로봇 인턴</span>
+          <span class="other-role">프로젝트형 인턴</span>
+        </div>
+        <p class="other-desc"><strong>기업 인턴십</strong> · 2025.06 ~ 2025.08 · 고정밀 균형 유지 하드웨어의 실시간 상태를 시각적으로 표현하는 2D 시각화 모듈 개발</p>
+        <div class="box" style="margin-top:0.5rem;">
+          <div class="box-title-accent" style="font-size:0.78rem;">핵심 경험</div>
+          <ul class="lst">
+            <li>Kotlin 기반 2D 시각화 모듈을 단독 개발하며 실시간 상태 표현 로직 구현</li>
+            <li>하드웨어 센서 데이터를 수신해 균형 상태를 그래픽으로 렌더링하는 인터페이스 개발 경험 확보</li>
+          </ul>
+        </div>
+        <div class="tags" style="margin-top:0.5rem;">
+          <span class="tag">Kotlin</span><span class="tag">2D Visualization</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV + SCROLL SCRIPT -->
 <script>
-  const slides = document.getElementById('slides');
-  const total = slides.children.length;
-  const indicator = document.getElementById('indicator');
-  const pageNum = document.getElementById('pageNum');
-  const scrollGuide = document.getElementById('scrollGuide');
-  const galleryShells = document.querySelectorAll('.gallery-shell');
-  let isAnimating = false;
-  let guideDismissed = false;
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('navDots');
 
-  function dismissGuide() {
-    if (!scrollGuide || guideDismissed) return;
-    guideDismissed = true;
-    scrollGuide.classList.add('hidden');
-  }
-
-  // Create dots
-  for (let i = 0; i < total; i++) {
-    const dot = document.createElement('div');
-    dot.className = 'dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => goTo(i));
-    indicator.appendChild(dot);
-  }
-
-  function goTo(i) {
-    const target = slides.children[i];
-    if (!target || isAnimating) return;
-    dismissGuide();
-    isAnimating = true;
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    window.setTimeout(() => {
-      isAnimating = false;
-    }, 700);
-  }
-
-  function getCurrent() {
-    const scrollTop = slides.scrollTop;
-    const slideHeight = window.innerHeight;
-    return Math.round(scrollTop / slideHeight);
-  }
-
-  function updateIndicator() {
-    const current = getCurrent();
-    const dots = indicator.querySelectorAll('.dot');
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
-    pageNum.textContent = `${current + 1} / ${total}`;
-    if (current > 0) dismissGuide();
-  }
-
-  slides.addEventListener('scroll', updateIndicator);
-
-  // Keyboard navigation
-  document.addEventListener('keydown', (e) => {
-    const current = getCurrent();
-    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
-      e.preventDefault();
-      if (current < total - 1) goTo(current + 1);
-    }
-    if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-      e.preventDefault();
-      if (current > 0) goTo(current - 1);
-    }
-  });
-
-  // Mouse wheel → vertical paging
-  slides.addEventListener('wheel', (e) => {
-    if (isAnimating || Math.abs(e.deltaY) < Math.abs(e.deltaX)) {
-      return;
-    }
-
-    const current = getCurrent();
-    const currentSlide = slides.children[current];
-    if (!currentSlide) return;
-
-    const canScrollDown =
-      e.deltaY > 0 &&
-      currentSlide.scrollTop + currentSlide.clientHeight < currentSlide.scrollHeight - 1;
-    const canScrollUp = e.deltaY < 0 && currentSlide.scrollTop > 0;
-
-    if (canScrollDown || canScrollUp) return;
-
-    e.preventDefault();
-    if (e.deltaY > 0 && current < total - 1) goTo(current + 1);
-    if (e.deltaY < 0 && current > 0) goTo(current - 1);
-  }, { passive: false });
-
-  slides.addEventListener('touchstart', dismissGuide, { passive: true });
-  slides.addEventListener('mousedown', dismissGuide, { passive: true });
-
-  galleryShells.forEach((shell) => {
-    const track = shell.querySelector('.gallery-track');
-    const cards = shell.querySelectorAll('.gallery-card');
-    const prevBtn = shell.querySelector('.gallery-btn.prev');
-    const nextBtn = shell.querySelector('.gallery-btn.next');
-    const count = shell.querySelector('.gallery-count');
-
-    if (!track || !cards.length) return;
-
-    const clearHint = () => {
-      shell.classList.remove('is-hinting');
-    };
-
-    const getIndex = () => {
-      if (!track.clientWidth) return 0;
-      return Math.round(track.scrollLeft / track.clientWidth);
-    };
-
-    const updateGalleryState = () => {
-      const index = getIndex();
-      if (count) count.textContent = `${index + 1} / ${cards.length}`;
-      if (prevBtn) prevBtn.disabled = index <= 0;
-      if (nextBtn) nextBtn.disabled = index >= cards.length - 1;
-    };
-
-    const goToCard = (index) => {
-      const targetIndex = Math.max(0, Math.min(index, cards.length - 1));
-      track.scrollTo({
-        left: targetIndex * track.clientWidth,
+  slides.forEach((s, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.title = s.dataset.label || '';
+    dot.addEventListener('click', () => {
+      window.scrollTo({
+        top: s.offsetTop,
         behavior: 'smooth'
       });
-      clearHint();
-      window.setTimeout(updateGalleryState, 220);
-    };
-
-    shell.classList.add('is-hinting');
-    shell.addEventListener('pointerdown', clearHint, { passive: true });
-    shell.addEventListener('mouseenter', clearHint, { passive: true });
-
-    track.addEventListener('wheel', (e) => {
-      if (Math.abs(e.deltaY) > Math.abs(e.deltaX) || e.shiftKey) {
-        e.preventDefault();
-        track.scrollLeft += e.shiftKey ? e.deltaX + e.deltaY : e.deltaY;
-      }
-      clearHint();
-      window.requestAnimationFrame(updateGalleryState);
-      e.stopPropagation();
-    }, { passive: false });
-
-    track.addEventListener('scroll', () => {
-      clearHint();
-      window.requestAnimationFrame(updateGalleryState);
-    }, { passive: true });
-
-    prevBtn?.addEventListener('click', () => {
-      goToCard(getIndex() - 1);
     });
-
-    nextBtn?.addEventListener('click', () => {
-      goToCard(getIndex() + 1);
-    });
-
-    window.addEventListener('resize', updateGalleryState);
-    updateGalleryState();
+    dotsContainer.appendChild(dot);
   });
 
-  updateIndicator();
+  function updateActiveDot() {
+    const marker = window.scrollY + (window.innerHeight * 0.35);
+    let activeIdx = 0;
+
+    slides.forEach((slide, idx) => {
+      const start = slide.offsetTop;
+      const end = start + slide.offsetHeight;
+      if (marker >= start && marker < end) activeIdx = idx;
+    });
+
+    dotsContainer.querySelectorAll('.nav-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === activeIdx);
+    });
+  }
+
+  updateActiveDot();
+  window.addEventListener('scroll', updateActiveDot, { passive: true });
+  window.addEventListener('resize', updateActiveDot);
+
+  // Gallery slider
+  function galleryMove(id, dir) {
+    const wrap = document.getElementById(id);
+    const track = wrap.querySelector('.gallery-track');
+    const imgs = track.querySelectorAll('img');
+    const total = imgs.length;
+    let idx = parseInt(track.dataset.idx || '0', 10);
+    idx = Math.max(0, Math.min(total - 1, idx + dir));
+    track.dataset.idx = idx;
+    track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    const countEl = document.getElementById(id + 'Count');
+    if (countEl) countEl.textContent = (idx + 1) + ' / ' + total;
+  }
 </script>
 
 </body>
