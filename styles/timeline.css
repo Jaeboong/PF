@@ -217,6 +217,25 @@ button {
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
+.hero__download-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 6px;
+  color: var(--blue);
+}
+
+.hero__download-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .hero__download:hover,
 .hero__download:focus-visible {
   transform: translateY(-2px);
@@ -869,6 +888,10 @@ button {
 
   .hero__summary {
     margin-top: 44px;
+  }
+
+  .hero__download {
+    padding: 18px 20px 20px;
   }
 
   .hero-summary__grid {
