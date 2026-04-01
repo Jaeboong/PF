@@ -273,6 +273,40 @@ const state = {
 const orderedStations = [...timelineStations].sort((left, right) => left.sortKey - right.sortKey);
 const stationLookup = new Map(orderedStations.map((station) => [station.id, station]));
 const displayStops = orderedStations;
+const HERO_PRACTICAL_BUILD_IDS = new Set(["bluerobot"]);
+const heroProjectEntries = orderedStations.filter((station) => {
+  if (station.id === "operations-mentoring") {
+    return false;
+  }
+
+  return station.type === "project" || station.type === "branch";
+});
+const HERO_SUMMARY = {
+  awards: [
+    "신한 해커톤 대상 2025",
+    "SQLD 2024",
+    "대대 모범용사 표창"
+  ],
+  education: [
+    "컴퓨터공학 전공 과정",
+    "멋쟁이사자처럼 12기",
+    "SSAFY 14기"
+  ],
+  workStyle: [
+    {
+      title: "Integrity First.",
+      description: "정합성과 기준점 우선"
+    },
+    {
+      title: "Maintainable.",
+      description: "구조와 역할 분리 우선"
+    },
+    {
+      title: "Service Fit.",
+      description: "서비스별 기준 설계"
+    }
+  ]
+};
 const LAYOUT_LIMITS = {
   minStopWidth: 182,
   preferredStopWidth: 236,
@@ -288,6 +322,62 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
+}
+
+function renderHeroSummaryList(items) {
+  return `
+    <ul class="hero-summary__list">
+      ${items.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+    </ul>
+  `;
+}
+
+function renderHeroSummary() {
+  const target = document.querySelector("#hero-summary");
+
+  if (!target) {
+    return;
+  }
+
+  const practicalBuildCount = heroProjectEntries.filter((station) => HERO_PRACTICAL_BUILD_IDS.has(station.id)).length;
+  const projectCount = heroProjectEntries.length - practicalBuildCount;
+
+  target.innerHTML = `
+    <div class="hero-summary__grid">
+      <article class="hero-summary__panel hero-summary__panel--projects">
+        <p class="hero-summary__label">PROJECTS<span>.</span></p>
+        <div class="hero-summary__metric-block">
+          <p class="hero-summary__metric">${heroProjectEntries.length}</p>
+          <p class="hero-summary__metric-copy">Including Practical Build</p>
+        </div>
+        <p class="hero-summary__support">${projectCount} Projects + ${practicalBuildCount} Practical Build</p>
+        <p class="hero-summary__note">타임라인의 실제 프로젝트와 실무 개발 경험 기준으로 계산했습니다.</p>
+      </article>
+
+      <article class="hero-summary__panel">
+        <p class="hero-summary__label">AWARDS<span>.</span></p>
+        ${renderHeroSummaryList(HERO_SUMMARY.awards)}
+      </article>
+
+      <article class="hero-summary__panel">
+        <p class="hero-summary__label">EDUCATION<span>.</span></p>
+        ${renderHeroSummaryList(HERO_SUMMARY.education)}
+      </article>
+
+      <article class="hero-summary__panel hero-summary__panel--work">
+        <p class="hero-summary__label">WORK STYLE<span>.</span></p>
+        <div class="hero-summary__flow" aria-label="업무 방식">
+          ${HERO_SUMMARY.workStyle.map((item, index) => `
+            <div class="hero-summary__flow-card">
+              <strong class="hero-summary__flow-title">${escapeHtml(item.title)}</strong>
+              <span class="hero-summary__flow-copy">${escapeHtml(item.description)}</span>
+            </div>
+            ${index < HERO_SUMMARY.workStyle.length - 1 ? '<span class="hero-summary__flow-arrow" aria-hidden="true">ㄴ&gt;</span>' : ""}
+          `).join("")}
+        </div>
+      </article>
+    </div>
+  `;
 }
 
 function formatOrder(order) {
@@ -735,11 +825,34 @@ function fitHeroTitle() {
   }
 }
 
+function fitHeroLede() {
+  const heroBody = document.querySelector(".hero__body");
+  const heroLede = document.querySelector(".hero__lede");
+
+  if (!heroBody || !heroLede) {
+    return;
+  }
+
+  const availableWidth = Math.max(heroBody.clientWidth - 8, 220);
+  const maxSize = Math.min(window.innerWidth * 0.013, 20.5);
+  const minSize = 14;
+  let fontSize = Math.max(maxSize, minSize);
+
+  heroLede.style.setProperty("--hero-lede-size", `${fontSize}px`);
+
+  while (fontSize > minSize && heroLede.scrollWidth > availableWidth) {
+    fontSize -= 0.5;
+    heroLede.style.setProperty("--hero-lede-size", `${fontSize}px`);
+  }
+}
+
 function init() {
+  renderHeroSummary();
   renderTimeline(true);
   bindViewportState();
   applyActiveState();
   fitHeroTitle();
+  fitHeroLede();
   schedulePathSync();
 }
 
@@ -750,6 +863,7 @@ window.addEventListener("resize", () => {
     renderTimeline();
     applyActiveState();
     fitHeroTitle();
+    fitHeroLede();
     schedulePathSync();
   });
 });
@@ -759,6 +873,7 @@ if (document.fonts?.ready) {
     renderTimeline();
     applyActiveState();
     fitHeroTitle();
+    fitHeroLede();
     schedulePathSync();
   });
 }
