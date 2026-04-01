@@ -368,11 +368,10 @@ function renderHeroSummary() {
         <p class="hero-summary__label">WORK STYLE<span>.</span></p>
         <div class="hero-summary__flow" aria-label="업무 방식">
           ${HERO_SUMMARY.workStyle.map((item, index) => `
-            <div class="hero-summary__flow-card">
+            <div class="hero-summary__flow-card${index > 0 ? " hero-summary__flow-card--linked" : ""}">
               <strong class="hero-summary__flow-title">${escapeHtml(item.title)}</strong>
               <span class="hero-summary__flow-copy">${escapeHtml(item.description)}</span>
             </div>
-            ${index < HERO_SUMMARY.workStyle.length - 1 ? '<span class="hero-summary__flow-arrow" aria-hidden="true">ㄴ&gt;</span>' : ""}
           `).join("")}
         </div>
       </article>
