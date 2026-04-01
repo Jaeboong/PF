@@ -196,16 +196,19 @@ button {
 
 .hero__aside {
   position: absolute;
-  top: clamp(212px, 28vh, 312px);
-  right: var(--page-pad);
+  top: clamp(208px, 27vh, 300px);
+  right: clamp(30px, 4vw, 72px);
   z-index: 2;
-  width: min(24vw, 320px);
-  min-width: 248px;
+  width: fit-content;
+  min-width: 0;
+  max-width: min(26vw, 360px);
 }
 
 .hero__download {
   display: grid;
   gap: 8px;
+  width: fit-content;
+  min-width: 0;
   padding: 20px 22px 22px;
   border-radius: 28px;
   border: 1px solid rgba(166, 196, 243, 0.58);
@@ -217,30 +220,11 @@ button {
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
-.hero__download-icon {
-  display: inline-grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  margin-bottom: 6px;
-  color: var(--blue);
-}
-
-.hero__download-icon svg {
-  width: 28px;
-  height: 28px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 .hero__download:hover,
 .hero__download:focus-visible {
   transform: translateY(-2px);
   border-color: rgba(82, 147, 246, 0.62);
-  box-shadow: 0 28px 46px rgba(166, 196, 243, 0.18);
+  box-shadow: 0 22px 40px rgba(166, 196, 243, 0.2);
 }
 
 .hero__download-eyebrow {
@@ -249,6 +233,15 @@ button {
   font-size: 0.74rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+}
+
+.hero__download-heading {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
+  width: fit-content;
+  gap: 10px;
+  align-items: center;
 }
 
 .hero__download-title {
@@ -262,6 +255,13 @@ button {
   color: var(--ink-soft);
   font-size: 0.9rem;
   line-height: 1.4;
+}
+
+.hero__download-icon-image {
+  display: block;
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
 }
 
 .hero__summary {
@@ -282,6 +282,13 @@ button {
   align-content: start;
   gap: 16px;
   padding: 12px 6px 14px;
+}
+
+.hero-summary__panel::before,
+.hero-summary__panel::after,
+.hero-summary__label::before,
+.hero-summary__label::after {
+  content: none;
 }
 
 .hero-summary__panel--work {
@@ -881,17 +888,13 @@ button {
     position: relative;
     top: auto;
     right: auto;
-    width: min(100%, 320px);
+    width: min(100%, 360px);
     min-width: 0;
     margin-top: 28px;
   }
 
   .hero__summary {
     margin-top: 44px;
-  }
-
-  .hero__download {
-    padding: 18px 20px 20px;
   }
 
   .hero-summary__grid {
@@ -922,8 +925,10 @@ button {
   }
 
   .hero__aside {
-    top: clamp(220px, 27vh, 292px);
-    width: min(28vw, 300px);
-    min-width: 220px;
+    top: clamp(214px, 26vh, 286px);
+    right: clamp(22px, 3vw, 48px);
+    width: fit-content;
+    min-width: 0;
+    max-width: min(28vw, 332px);
   }
 }
