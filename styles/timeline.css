@@ -194,6 +194,57 @@ button {
   font-size: clamp(0.9rem, 0.88rem + 0.2vw, 1rem);
 }
 
+.hero__aside {
+  position: absolute;
+  top: clamp(212px, 28vh, 312px);
+  right: var(--page-pad);
+  z-index: 2;
+  width: min(24vw, 320px);
+  min-width: 248px;
+}
+
+.hero__download {
+  display: grid;
+  gap: 8px;
+  padding: 20px 22px 22px;
+  border-radius: 28px;
+  border: 1px solid rgba(166, 196, 243, 0.58);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(231, 237, 248, 0.28)),
+    rgba(255, 255, 255, 0.32);
+  box-shadow: 0 22px 40px rgba(166, 196, 243, 0.14);
+  backdrop-filter: blur(10px);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.hero__download:hover,
+.hero__download:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(82, 147, 246, 0.62);
+  box-shadow: 0 28px 46px rgba(166, 196, 243, 0.18);
+}
+
+.hero__download-eyebrow {
+  color: var(--blue);
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero__download-title {
+  font-family: var(--display);
+  font-size: clamp(1.18rem, 1.45vw, 1.42rem);
+  line-height: 1.02;
+  letter-spacing: -0.05em;
+}
+
+.hero__download-copy {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
 .hero__summary {
   position: relative;
   z-index: 2;
@@ -807,6 +858,15 @@ button {
     padding-bottom: 56px;
   }
 
+  .hero__aside {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: min(100%, 320px);
+    min-width: 0;
+    margin-top: 28px;
+  }
+
   .hero__summary {
     margin-top: 44px;
   }
@@ -836,5 +896,11 @@ button {
 
   .hero__chips span {
     padding: 10px 14px;
+  }
+
+  .hero__aside {
+    top: clamp(220px, 27vh, 292px);
+    width: min(28vw, 300px);
+    min-width: 220px;
   }
 }
