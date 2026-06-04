@@ -6,9 +6,9 @@ const timelineStations = [
     title: "고2·C언어 동아리",
     subtitle: "Seed Stop",
     type: "micro",
-    summary: "프로그래밍을 처음 손에 잡아본 출발점입니다.",
+    summary: "프로그래밍을 처음 접한 출발점.",
     details: [
-      "짧게 스쳐 간 동아리 활동이었지만, 코드를 직접 작성해 결과를 만드는 감각을 처음 익힌 시기였습니다."
+      "짧은 동아리 활동 속에서 코드로 결과를 만드는 감각을 처음 습득."
     ],
     tags: ["C"],
     awards: [],
@@ -21,10 +21,10 @@ const timelineStations = [
     title: "고등학교 졸업",
     subtitle: "Milestone",
     type: "milestone",
-    summary: "막연한 흥미가 진로의 방향으로 바뀌기 시작한 시기였습니다.",
+    summary: "막연한 흥미가 진로 방향으로 구체화되기 시작한 시기.",
     details: [
-      "프로그래밍을 더 오래 붙들고 싶다는 생각이 진로 선택으로 이어졌습니다.",
-      "이후의 공부와 프로젝트는 모두 여기서부터 시작되었습니다."
+      "프로그래밍을 지속하고 싶다는 생각이 진로 선택으로 연결.",
+      "이후 학습과 프로젝트의 출발점."
     ],
     tags: ["전공 확정", "개발자로서의 시작"],
     awards: [],
@@ -37,10 +37,10 @@ const timelineStations = [
     title: "대학교 1·2학년",
     subtitle: "Foundation Segment",
     type: "milestone",
-    summary: "전공 언어를 넓게 익히며 개발자의 기본 문법을 쌓은 시기입니다.",
+    summary: "전공 언어를 폭넓게 익히며 개발 기본기를 축적한 시기.",
     details: [
-      "대학교 1·2학년 동안 C, C++, Python, Java를 배우며 언어별 사고방식과 구현 감각을 넓혔습니다.",
-      "전공 수업을 통해 개발을 흥미가 아닌 꾸준히 쌓아갈 진로로 받아들이기 시작했습니다."
+      "C·C++·Python·Java를 학습하며 언어별 사고방식과 구현 감각 확장.",
+      "전공 수업을 통해 개발을 장기 진로로 인식하기 시작."
     ],
     tags: ["C", "C++", "Python", "Java"],
     awards: [],
@@ -53,11 +53,11 @@ const timelineStations = [
     title: "군 복무",
     subtitle: "Transfer",
     type: "milestone",
-    summary: "루틴과 책임감을 몸에 익힌 전환 구간입니다.",
+    summary: "루틴과 책임감을 체화한 전환 구간.",
     details: [
-      "복무 중 대형 차량 운용과 분대장 역할을 맡으며 책임감과 기본기를 다지는 시간을 보냈습니다.",
-      "성실한 복무 태도와 역할 수행을 인정받아 대대 모범용사 표창장을 받았습니다.",
-      "길고 단단한 루틴을 견디는 힘은 이후 프로젝트를 끝까지 끌고 가는 태도로 이어졌습니다."
+      "대형 차량 운용·분대장 역할 수행, 책임감과 기본기 강화.",
+      "성실한 복무 태도를 인정받아 대대 모범용사 표창 수상.",
+      "장기 루틴을 견디는 힘이 프로젝트 완수 태도로 연결."
     ],
     tags: ["책임감", "루틴"],
     awards: ["대대 모범용사 표창"],
@@ -70,10 +70,10 @@ const timelineStations = [
     title: "대학교 3·4학년",
     subtitle: "Core CS Segment",
     type: "milestone",
-    summary: "군 복무 이후 복학해 CS 기초를 백엔드 관점의 기반으로 다진 시기입니다.",
+    summary: "복학 후 CS 기초를 백엔드 관점의 기반으로 다진 시기.",
     details: [
-      "2023~2024년 대학교 3·4학년 시기에 운영체제, 네트워크, 데이터베이스, Linux를 집중적으로 학습했습니다.",
-      "이 시기에 배운 시스템 과목들은 이후 백엔드 설계와 인프라 이해의 뼈대가 되었습니다."
+      "운영체제·네트워크·데이터베이스·Linux 집중 학습.",
+      "시스템 과목 학습이 백엔드 설계·인프라 이해의 기반으로 작용."
     ],
     tags: ["운영체제", "네트워크", "데이터베이스", "Linux"],
     awards: ["SQLD 2024"],
@@ -86,11 +86,11 @@ const timelineStations = [
     title: "멋쟁이사자처럼 12기 / UDR",
     subtitle: "First Hub",
     type: "hub",
-    summary: "웹 개발이 취미에서 진로로 바뀐 첫 전환점입니다.",
+    summary: "웹 개발이 취미에서 진로로 전환된 첫 분기점.",
     details: [
-      "UDR에서 처음 웹 개발을 시작했고, Node.js CRUD 수준에서 백엔드 감각을 익혔습니다.",
-      "REST API, MVC, Git Convention, 코드 리뷰를 실제 협업 방식으로 체화하며 다음 프로젝트의 기준을 만들었습니다.",
-      "운영진과 멘토링 경험이 더해지며 혼자 만드는 개발자에서 팀을 이끄는 개발자로 시야가 넓어졌습니다."
+      "UDR에서 웹 개발 입문, Node.js CRUD 기반 백엔드 감각 습득.",
+      "REST API·MVC·Git Convention·코드 리뷰를 협업 방식으로 체화, 이후 프로젝트 기준 정립.",
+      "운영진·멘토링 경험으로 팀 단위 개발로 시야 확장."
     ],
     tags: ["Node.js", "REST API", "Git Convention", "Mentoring"],
     awards: [],
@@ -103,10 +103,10 @@ const timelineStations = [
     title: "치팅데이",
     subtitle: "중앙 해커톤 프로젝트",
     type: "branch",
-    summary: "중앙 해커톤에서 AI 건강관리 앱을 만들며 해커톤의 리듬과 한계를 함께 배운 프로젝트입니다.",
+    summary: "중앙 해커톤 AI 건강관리 앱 개발, 해커톤의 리듬과 한계를 함께 학습한 프로젝트.",
     details: [
-      "AI 음식 이미지 분석, BMR 계산 API, 캘린더 기록 시스템을 맡아 백엔드 리드로 진행했습니다.",
-      "중앙 해커톤에서 치팅데이라는 건강관리 앱으로 진행했고, 처음이라 속도는 냈지만 구조와 기준 없이 밀어붙이면 한계가 빠르게 온다는 점을 이 프로젝트에서 배웠습니다."
+      "AI 음식 이미지 분석·BMR 계산 API·캘린더 기록 시스템 담당, 백엔드 리드.",
+      "초기 속도는 확보했으나 구조·기준 없는 진행의 한계를 체감."
     ],
     tags: ["Node.js", "Express", "MariaDB", "React"],
     awards: [],
@@ -119,10 +119,10 @@ const timelineStations = [
     title: "운영진·멘토링",
     subtitle: "Extension",
     type: "branch",
-    summary: "후배들의 프로젝트를 보며 API 명세서, ERD, 개발 설계를 중심으로 멘토링한 시기입니다.",
+    summary: "API 명세서·ERD·개발 설계 중심으로 후배 프로젝트를 멘토링한 시기.",
     details: [
-      "운영진으로 활동하며 후배 팀들의 API 명세서와 ERD를 함께 검토하고 구조를 다듬는 멘토링을 진행했습니다.",
-      "기능 구현 이전에 개발 설계를 먼저 정리하는 습관이 프로젝트 완성도를 크게 좌우한다는 점을 직접 전했습니다."
+      "운영진으로서 후배 팀 API 명세서·ERD 검토 및 구조 개선 멘토링 진행.",
+      "기능 구현 이전 설계 정리 습관이 프로젝트 완성도를 좌우함을 전달."
     ],
     tags: ["API 명세서", "ERD", "개발 설계"],
     awards: [],
@@ -135,10 +135,10 @@ const timelineStations = [
     title: "Sequence",
     subtitle: "First Long Project",
     type: "project",
-    summary: "Spring Boot 백엔드를 길게 밀어붙인 첫 장기 프로젝트입니다.",
+    summary: "Spring Boot 백엔드를 장기간 끌고 간 첫 장기 프로젝트.",
     details: [
-      "주변 대학의 PM, 디자이너, 개발자가 자유롭게 팀을 구성할 수 있는 플랫폼이 필요하다고 판단해 개발을 시작했습니다.",
-      "Spring Boot, JPA, QueryDSL, Spring Security, Docker 환경으로 협업형 백엔드 개발의 기초 체력을 다졌습니다."
+      "대학 간 PM·디자이너·개발자 팀 구성 플랫폼의 필요성을 판단해 개발 착수.",
+      "Spring Boot·JPA·QueryDSL·Spring Security·Docker 환경으로 협업형 백엔드 기초 체력 확보."
     ],
     imageSrc: "img/sequence/1.png",
     tags: ["Spring Boot", "JPA", "QueryDSL", "Security", "Docker"],
@@ -152,10 +152,10 @@ const timelineStations = [
     title: "블루로봇 인턴",
     subtitle: "Practical Build",
     type: "project",
-    summary: "현업 환경에서 독립 모듈을 끝까지 설계·구현한 첫 실무 경험입니다.",
+    summary: "현업 환경에서 독립 모듈을 끝까지 설계·구현한 첫 실무 경험.",
     details: [
-      "Kotlin과 JavaFX Graphics 기반으로 밸런스 스테이지 측정 데이터를 실시간 2D 등고선 맵으로 시각화하는 모듈을 단독 개발했습니다.",
-      "기존 UI에 맞추면서도 다른 화면에서 재사용 가능한 구조로 구현하며 실무형 모듈 설계 감각을 익혔습니다."
+      "Kotlin·JavaFX Graphics 기반 밸런스 스테이지 측정 데이터를 실시간 2D 등고선 맵으로 시각화하는 모듈 단독 개발.",
+      "기존 UI 호환 + 재사용 가능한 구조로 구현, 실무형 모듈 설계 감각 습득."
     ],
     tags: ["Kotlin", "JavaFX", "2D Visualization"],
     awards: [],
@@ -168,10 +168,10 @@ const timelineStations = [
     title: "SSAFY 14기",
     subtitle: "Major Hub",
     type: "hub",
-    summary: "기본기와 실전 프로젝트를 압축적으로 반복한 두 번째 전환점입니다.",
+    summary: "기본기와 실전 프로젝트를 압축 반복한 두 번째 분기점.",
     details: [
-      "알고리즘, Java, Spring Boot, 데이터베이스, AI를 압축적으로 다시 쌓으며 기본기를 재정렬했습니다.",
-      "짧은 주기의 프로젝트를 반복하며 기획, 설계, 개발, 배포를 끝까지 가져가는 감각을 몸에 익혔습니다."
+      "알고리즘·Java·Spring Boot·데이터베이스·AI 압축 학습으로 기본기 재정렬.",
+      "단기 프로젝트 반복으로 기획·설계·개발·배포 전 과정 완수 감각 체화."
     ],
     tags: ["Java", "Spring Boot", "DB", "AI", "Algorithm"],
     awards: [],
@@ -184,10 +184,10 @@ const timelineStations = [
     title: "Campung",
     subtitle: "Hackathon Branch",
     type: "branch",
-    summary: "문제 정의와 구현 완성도를 함께 맞추며 대상까지 이어진 해커톤 프로젝트입니다.",
+    summary: "문제 정의와 구현 완성도를 함께 맞춰 대상까지 이어진 해커톤 프로젝트.",
     details: [
-      "신한 해커톤 with SSAFY에서 게시글, 랜드마크, AI 감정 분석 API, 캠퍼스 온도 집계, CI/CD와 배포를 맡았습니다.",
-      "GPT 기반 배치 감정 분석과 Redis 집계 구조를 설계하며 비용과 실시간성을 함께 고려했습니다."
+      "신한 해커톤 with SSAFY에서 게시글·랜드마크·AI 감정 분석 API·캠퍼스 온도 집계·CI/CD·배포 담당.",
+      "GPT 기반 배치 감정 분석·Redis 집계 구조 설계, 비용과 실시간성 동시 고려."
     ],
     imageSrc: "img/campung/1.png",
     tags: ["Spring Boot", "Redis", "Docker", "CI/CD", "S3"],
@@ -201,10 +201,10 @@ const timelineStations = [
     title: "TripTube",
     subtitle: "Semantic Search",
     type: "branch",
-    summary: "유튜브 자막을 여행 정보로 구조화하며 AI 서버 분리 감각을 익힌 프로젝트입니다.",
+    summary: "유튜브 자막을 여행 정보로 구조화하며 AI 서버 분리 감각을 익힌 프로젝트.",
     details: [
-      "YouTube 자막 추출, GPT 구조화, 벡터 임베딩 파이프라인을 묶어 자연어 기반 여행 검색 흐름을 만들었습니다.",
-      "Spring Boot 서비스 서버와 FastAPI 검색 서버를 분리하며 역할별 배포와 유지보수성을 체감했습니다."
+      "YouTube 자막 추출·GPT 구조화·벡터 임베딩 파이프라인을 묶어 자연어 기반 여행 검색 흐름 구현.",
+      "Spring Boot 서비스 서버와 FastAPI 검색 서버 분리, 역할별 배포·유지보수성 체감."
     ],
     tags: ["Spring Boot", "FastAPI", "Vector DB", "Embedding"],
     awards: [],
@@ -217,10 +217,10 @@ const timelineStations = [
     title: "HearBe",
     subtitle: "Voice Pipeline",
     type: "branch",
-    summary: "실시간 음성 파이프라인과 AI 레이턴시 문제를 정면으로 다룬 프로젝트입니다.",
+    summary: "실시간 음성 파이프라인과 AI 레이턴시 문제를 정면으로 다룬 프로젝트.",
     details: [
-      "ASR, NLU, LLM, TTS를 연결해 음성만으로 쇼핑 흐름이 이어지는 구조를 만들었습니다.",
-      "WebSocket 기반 실시간 세션 처리와 AI 파이프라인 분리 구조를 다루며 레이턴시와 오류 처리가 사용자 경험에 직결된다는 점을 배웠습니다."
+      "ASR·NLU·LLM·TTS를 연결해 음성만으로 이어지는 쇼핑 흐름 구조 구현.",
+      "WebSocket 기반 실시간 세션 처리·AI 파이프라인 분리 구조 구현, 레이턴시·오류 처리가 사용자 경험에 직결됨을 체감."
     ],
     imageSrc: "img/hearbe/1.png",
     tags: ["FastAPI", "WebSocket", "Whisper", "LLM", "TTS"],
@@ -234,10 +234,10 @@ const timelineStations = [
     title: "모아(MOA)",
     subtitle: "Finance Branch",
     type: "branch",
-    summary: "데이터 기준점과 서비스 신뢰를 가장 본격적으로 다룬 금융 프로젝트입니다.",
+    summary: "데이터 기준점과 서비스 신뢰를 가장 본격적으로 다룬 금융 프로젝트.",
     details: [
-      "외부 금융 API와 로컬 DB의 기준점 차이로 흔들릴 수 있는 분석, 예산, 목표 기능을 계좌 동기화와 정합성 처리로 묶었습니다.",
-      "팀장으로서 백엔드와 인프라를 함께 맡으며 금융 도메인에서 기준점을 먼저 맞추는 설계의 중요성을 체감했습니다."
+      "외부 금융 API와 로컬 DB의 기준점 차이를 계좌 동기화·정합성 처리로 보완, 분석·예산·목표 기능 안정화.",
+      "팀장으로서 백엔드·인프라 총괄, 금융 도메인에서 기준점 우선 설계의 중요성 체감."
     ],
     imageSrc: "img/moa/4.png",
     tags: ["Spring Boot", "FastAPI", "PostgreSQL", "Docker", "Open API"],
@@ -251,10 +251,10 @@ const timelineStations = [
     title: "현재",
     subtitle: "Terminal",
     type: "current",
-    summary: "정합성과 유지보수성을 먼저 보는 백엔드 개발자로 자신을 정의하고 있는 시점입니다.",
+    summary: "정합성과 유지보수성을 우선하는 백엔드 개발자로 자신을 정의하는 시점.",
     details: [
-      "지금은 기능을 빠르게 붙이는 것보다 어떤 기준점과 구조로 오래 버틸 수 있게 만들지를 먼저 보고 있습니다.",
-      "앞으로도 다양한 서비스 환경에서 신뢰할 수 있는 데이터 흐름과 구조를 설계하는 개발로 더 깊게 들어가고자 합니다."
+      "빠른 기능 추가보다 오래 버티는 기준점·구조 설계를 우선 고려.",
+      "다양한 서비스 환경에서 신뢰 가능한 데이터 흐름·구조 설계로 심화 지향."
     ],
     tags: ["Back-End", "Architecture", "Infra", "AI 활용"],
     awards: [],
