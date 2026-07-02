@@ -76,7 +76,7 @@ const timelineStations = [
       "시스템 과목 학습이 백엔드 설계·인프라 이해의 기반으로 작용"
     ],
     tags: ["운영체제", "네트워크", "데이터베이스", "Linux"],
-    awards: ["SQLD 2024"],
+    awards: ["SQLD"],
     branchFrom: null
   },
   {
@@ -191,7 +191,7 @@ const timelineStations = [
     ],
     imageSrc: "img/campung/1.png",
     tags: ["Spring Boot", "Redis", "Docker", "CI/CD", "S3"],
-    awards: ["신한 해커톤 대상 2025"],
+    awards: ["신한은행 해커톤 대상"],
     branchFrom: "ssafy14"
   },
   {
@@ -245,18 +245,53 @@ const timelineStations = [
     branchFrom: "ssafy14"
   },
   {
+    id: "infra-bot",
+    periodLabel: "2026.02 -",
+    sortKey: 85,
+    title: "인프라 어시스턴트 봇",
+    subtitle: "Cross-Runtime Project",
+    type: "project",
+    summary: "오픈소스 에이전트 런타임을 확장해 두 런타임이 턴을 교대하는 개인 멀티에이전트 환경을 구축·운영",
+    details: [
+      "OneCLI·pi-agent-core 기반 오픈소스 런타임(NanoClaw·OpenClaw)을 컨트리뷰터로 포크해 개인 운영",
+      "공유 상태 파일과 봇 메시지로 두 런타임이 턴을 교대하는 크로스-런타임 오케스트레이션 구현",
+      "컨테이너 격리 실행·그룹 큐·per-task IPC 네임스페이스 격리로 병렬 서브에이전트를 안전하게 운영"
+    ],
+    tags: ["TypeScript", "Node.js", "SQLite", "Discord.js", "Docker"],
+    awards: [],
+    branchFrom: null
+  },
+  {
+    id: "jasojeon",
+    periodLabel: "2026.04 -",
+    sortKey: 86,
+    title: "자소전",
+    subtitle: "Multi-Agent Orchestrator",
+    type: "project",
+    summary: "Claude·Codex·Gemini를 역할별로 묶어 자기소개서를 검토하는 멀티에이전트 오케스트레이터를 1인 개발",
+    details: [
+      "Researcher·Coordinator·Drafter·복수 Reviewer·Finalizer 역할 기반 리뷰 파이프라인 설계·구현",
+      "실행 중 사용자 개입 시 취소 신호를 하위 작업까지 전파하고, 멈춘 지점 상태를 재해석해 이어가는 복귀 로직 구현",
+      "정답이 정해지지 않은 제어 흐름을 스스로 설계해 안정 동작까지 완성"
+    ],
+    tags: ["TypeScript", "React", "Fastify", "PostgreSQL", "Redis", "Docker"],
+    awards: [],
+    branchFrom: null
+  },
+  {
     id: "present",
-    periodLabel: "2026.04",
+    periodLabel: "2026.07",
     sortKey: 90,
     title: "현재",
     subtitle: "Terminal",
     type: "current",
-    summary: "정합성과 유지보수성을 우선하는 백엔드 개발자로 자신을 정의하는 시점",
+    summary: "정합성과 유지보수성을 우선하며, 반복되는 구조를 에이전트로 자동화하는 백엔드·AI 에이전트 개발자로 자신을 정의하는 시점",
     details: [
       "빠른 기능 추가보다 오래 버티는 기준점·구조 설계를 우선 고려",
+      "멀티 에이전트 오케스트레이션으로 반복 작업을 자동화하고, 백엔드·인프라까지 함께 운영하는 방향으로 확장",
       "다양한 서비스 환경에서 신뢰 가능한 데이터 흐름·구조 설계로 심화 지향"
     ],
-    tags: ["Back-End", "Architecture", "Infra", "AI 활용"],
+    tags: ["Back-End", "AI Agent", "Architecture", "Infra"],
     awards: [],
     branchFrom: null
   }
@@ -283,12 +318,12 @@ const heroProjectEntries = orderedStations.filter((station) => {
 });
 const HERO_SUMMARY = {
   awards: [
-    "신한 해커톤 대상 2025",
-    "SQLD 2024",
+    "신한은행 해커톤 대상",
+    "SQLD",
     "대대 모범용사 표창"
   ],
   education: [
-    "컴퓨터공학 전공 과정",
+    "컴퓨터공학 전공 졸업",
     "멋쟁이사자처럼 12기",
     "SSAFY 14기"
   ],
@@ -304,6 +339,10 @@ const HERO_SUMMARY = {
     {
       title: "Service Fit.",
       description: "서비스별 기준 설계"
+    },
+    {
+      title: "Agent Ready.",
+      description: "반복 구조는 에이전트로 자동화"
     }
   ]
 };
@@ -355,7 +394,7 @@ function renderHeroSummary() {
       </article>
 
       <article class="hero-summary__panel">
-        <p class="hero-summary__label">AWARDS<span>.</span></p>
+        <p class="hero-summary__label">AWARDS / CERTS<span>.</span></p>
         ${renderHeroSummaryList(HERO_SUMMARY.awards)}
       </article>
 
@@ -367,8 +406,8 @@ function renderHeroSummary() {
       <article class="hero-summary__panel hero-summary__panel--work">
         <p class="hero-summary__label">WORK STYLE<span>.</span></p>
         <div class="hero-summary__flow" aria-label="업무 방식">
-          ${HERO_SUMMARY.workStyle.map((item, index) => `
-            <div class="hero-summary__flow-card${index > 0 ? " hero-summary__flow-card--linked" : ""}">
+          ${HERO_SUMMARY.workStyle.map((item) => `
+            <div class="hero-summary__flow-card">
               <strong class="hero-summary__flow-title">${escapeHtml(item.title)}</strong>
               <span class="hero-summary__flow-copy">${escapeHtml(item.description)}</span>
             </div>
@@ -800,21 +839,40 @@ function bindViewportState() {
 function fitHeroTitle() {
   const heroBody = document.querySelector(".hero__body");
   const heroTitle = document.querySelector(".hero__title");
+  const heroAside = document.querySelector(".hero__aside");
   const lines = heroTitle ? [...heroTitle.querySelectorAll("[data-hero-fit]")] : [];
 
   if (!heroBody || !heroTitle || !lines.length) {
     return;
   }
 
-  const availableWidth = Math.max(heroBody.clientWidth - 8, 320);
+  const baseAvailableWidth = Math.max(heroBody.clientWidth - 8, 220);
+  const asideFloats = Boolean(heroAside) && window.getComputedStyle(heroAside).position === "absolute";
+  const asideRect = asideFloats ? heroAside.getBoundingClientRect() : null;
+
+  const lineAvailableWidth = (line) => {
+    if (!asideRect) {
+      return baseAvailableWidth;
+    }
+
+    const lineRect = line.getBoundingClientRect();
+    const overlapsAside = lineRect.bottom > asideRect.top && lineRect.top < asideRect.bottom;
+
+    if (!overlapsAside) {
+      return baseAvailableWidth;
+    }
+
+    return Math.max(Math.min(baseAvailableWidth, asideRect.left - lineRect.left - 16), 220);
+  };
+
   const maxSize = Math.min(window.innerWidth * 0.08, 112);
-  const minSize = 52;
+  const minSize = 20;
   let fontSize = maxSize;
 
   heroTitle.style.setProperty("--hero-title-size", `${fontSize}px`);
 
   while (fontSize > minSize) {
-    const overflows = lines.some((line) => line.scrollWidth > availableWidth);
+    const overflows = lines.some((line) => line.scrollWidth > lineAvailableWidth(line));
     if (!overflows) {
       break;
     }
@@ -834,8 +892,8 @@ function fitHeroLede() {
 
   const availableWidth = Math.max(heroBody.clientWidth - 8, 220);
   const maxSize = Math.min(window.innerWidth * 0.013, 20.5);
-  const minSize = 14;
-  let fontSize = Math.max(maxSize, minSize);
+  const minSize = 9;
+  let fontSize = Math.max(maxSize, 14);
 
   heroLede.style.setProperty("--hero-lede-size", `${fontSize}px`);
 
