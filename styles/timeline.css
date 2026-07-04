@@ -307,6 +307,71 @@ button {
   object-fit: contain;
 }
 
+.slide-portfolio {
+  width: min(100%, 1440px);
+  margin: 0 auto;
+  padding: clamp(88px, 12vw, 160px) clamp(18px, 4vw, 64px) clamp(90px, 12vw, 160px);
+}
+
+.slide-portfolio__header {
+  max-width: 760px;
+  margin-bottom: clamp(42px, 7vw, 88px);
+}
+
+.slide-portfolio__header p {
+  margin: 0 0 12px;
+  color: var(--blue);
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.slide-portfolio__header h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(2rem, 4.8vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.06em;
+}
+
+.slide-portfolio__header span {
+  display: block;
+  margin-top: 18px;
+  color: var(--ink-soft);
+  font-size: clamp(0.88rem, 1.2vw, 1.04rem);
+}
+
+.slide-portfolio__list {
+  display: grid;
+  gap: clamp(32px, 6vw, 84px);
+}
+
+.slide-portfolio figure {
+  position: relative;
+  margin: 0;
+  border: 1px solid rgba(60, 65, 73, 0.14);
+  background: #f0f0f0;
+  box-shadow: 0 28px 70px rgba(70, 78, 94, 0.16);
+}
+
+.slide-portfolio img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+}
+
+.slide-portfolio figcaption {
+  position: absolute;
+  right: 0;
+  bottom: -24px;
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
 .hero__summary {
   position: relative;
   z-index: 2;
