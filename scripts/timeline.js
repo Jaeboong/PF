@@ -903,6 +903,37 @@ function fitHeroLede() {
   }
 }
 
+function initSlidePortfolio() {
+  const slides = [...document.querySelectorAll(".slide-portfolio figure")];
+
+  if (!slides.length) {
+    return;
+  }
+
+  slides.forEach((slide, index) => {
+    slide.dataset.slideIndex = String(index + 1);
+  });
+
+  if (!("IntersectionObserver" in window)) {
+    slides.forEach((slide) => slide.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle("is-visible", entry.isIntersecting);
+      });
+    },
+    {
+      rootMargin: "-12% 0px -12% 0px",
+      threshold: 0.28
+    }
+  );
+
+  slides.forEach((slide) => observer.observe(slide));
+}
+
 function init() {
   renderHeroSummary();
   renderTimeline(true);
@@ -910,6 +941,7 @@ function init() {
   applyActiveState();
   fitHeroTitle();
   fitHeroLede();
+  initSlidePortfolio();
   schedulePathSync();
 }
 
