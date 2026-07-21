@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="frames/fig-tokens.css">
+<link rel="stylesheet" href="frames/fig-typography.css">
+<link rel="stylesheet" href="frames/fig-assets.css">
+<style>
+  html, body { margin: 0; padding: 0; }
+  .pf-slide { overflow: hidden; background: rgb(240,240,240); }
+  .pf-slide > * { width: 1920px; height: 1080px; }
+</style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+  <section data-label="01 Intro" data-screen-label="01 Intro" class="pf-slide"><x-import component-from-global-scope="Frame" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="02 About" data-screen-label="02 About" class="pf-slide"><x-import component-from-global-scope="Frame2" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="03 Contents" data-screen-label="03 Contents" class="pf-slide"><x-import component-from-global-scope="Frame3" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="04 자소전 개요" data-screen-label="04 자소전 개요" class="pf-slide"><x-import component-from-global-scope="Frame4" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="05 자소전 파이프라인" data-screen-label="05 자소전 파이프라인" class="pf-slide"><x-import component-from-global-scope="Frame5" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="06 핵심기능 1" data-screen-label="06 핵심기능 1" class="pf-slide"><x-import component-from-global-scope="Frame6" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="07 핵심기능 2" data-screen-label="07 핵심기능 2" class="pf-slide"><x-import component-from-global-scope="Frame7" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="08 인프라봇 개요" data-screen-label="08 인프라봇 개요" class="pf-slide"><x-import component-from-global-scope="Frame8" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="09 인프라봇 화면" data-screen-label="09 인프라봇 화면" class="pf-slide"><x-import component-from-global-scope="Frame9" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="10 인프라봇 아키텍처" data-screen-label="10 인프라봇 아키텍처" class="pf-slide"><x-import component-from-global-scope="Frame10" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="11 HearBe 개요" data-screen-label="11 HearBe 개요" class="pf-slide"><x-import component-from-global-scope="Frame11" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import><img src="assets/hearbe-rep.png" alt="HearBe 대표 화면" style="position:absolute;left:1015px;top:355px;width:831px;height:411px;object-fit:cover;border-radius:8px;box-shadow:0px 5px 7px 0px rgba(0,0,0,0.1);"></section>
+  <section data-label="12 HearBe NLU" data-screen-label="12 HearBe NLU" class="pf-slide"><x-import component-from-global-scope="Frame12" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="13 HearBe 화면" data-screen-label="13 HearBe 화면" class="pf-slide"><x-import component-from-global-scope="Frame13" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="14 Campung 개요" data-screen-label="14 Campung 개요" class="pf-slide"><x-import component-from-global-scope="Frame14" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="15 Campung 아키텍처" data-screen-label="15 Campung 아키텍처" class="pf-slide"><x-import component-from-global-scope="Frame15" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="16 Campung 트러블슈팅" data-screen-label="16 Campung 트러블슈팅" class="pf-slide"><x-import component-from-global-scope="Frame16" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="17 MOA 개요" data-screen-label="17 MOA 개요" class="pf-slide"><x-import component-from-global-scope="Frame17" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="18 MOA 서비스흐름" data-screen-label="18 MOA 서비스흐름" class="pf-slide"><x-import component-from-global-scope="Frame18" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="19 MOA 정합성" data-screen-label="19 MOA 정합성" class="pf-slide"><x-import component-from-global-scope="Frame19" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="20 MOA 예산배분" data-screen-label="20 MOA 예산배분" class="pf-slide"><x-import component-from-global-scope="Frame20" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="21 Other Projects" data-screen-label="21 Other Projects" class="pf-slide"><x-import component-from-global-scope="Frame21" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="22 End" data-screen-label="22 End" class="pf-slide"><x-import component-from-global-scope="Frame22" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+</x-import>
+</x-dc>
+</body>
+</html>

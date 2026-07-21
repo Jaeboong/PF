@@ -1,0 +1,33 @@
+/* Generated from Figma Variables. First mode = :root default.
+   FLOAT tokens are unitless — multiply by 1px in calc() where a length is needed. */
+
+:root {
+  --black-2: rgb(0,0,0); /* @kind color */
+  --black-3: rgb(0,0,0); /* @kind color */
+  --black-4: rgb(0,0,0); /* @kind color */
+  --black: rgb(0,0,0); /* @kind color */
+  --blue: rgb(12,140,233); /* @kind color */
+  --color-3: rgba(0,0,0,0.5); /* @kind color */
+  --green: rgb(25,143,81); /* @kind color */
+  --grey: rgb(207,207,207); /* @kind color */
+  --orange: rgb(222,125,2); /* @kind color */
+  --padding-left-right: 168;
+  --padding-top-bottom: 128;
+  --pale-blue: rgb(102,119,153); /* @kind color */
+  --pale-green: rgb(103,142,121); /* @kind color */
+  --pale-persimmon: rgb(212,105,59); /* @kind color */
+  --pale-pink: rgb(171,89,152); /* @kind color */
+  --pale-purple: rgb(127,105,155); /* @kind color */
+  --pale-red: rgb(212,88,59); /* @kind color */
+  --pale-teal: rgb(81,131,148); /* @kind color */
+  --pale-violet: rgb(106,105,155); /* @kind color */
+  --pale-yellow: rgb(173,127,0); /* @kind color */
+  --persimmon: rgb(246,80,9); /* @kind color */
+  --pink: rgb(243,22,176); /* @kind color */
+  --purple: rgb(138,56,245); /* @kind color */
+  --red: rgb(224,62,26); /* @kind color */
+  --teal: rgb(8,135,160); /* @kind color */
+  --violet: rgb(61,56,245); /* @kind color */
+  --white: rgb(255,255,255); /* @kind color */
+  --yellow: rgb(243,193,27); /* @kind color */
+}
