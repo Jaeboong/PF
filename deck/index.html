@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="ko">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,35 +13,177 @@
 <link rel="stylesheet" href="frames/fig-tokens.css">
 <link rel="stylesheet" href="frames/fig-typography.css">
 <link rel="stylesheet" href="frames/fig-assets.css">
-<style>
-  html, body { margin: 0; padding: 0; }
-  .pf-slide { overflow: hidden; background: rgb(240,240,240); }
-  .pf-slide > * { width: 1920px; height: 1080px; }
-</style>
+<link rel="stylesheet" href="master-slides.css">
 </helmet>
 <x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
-  <section data-label="01 Intro" data-screen-label="01 Intro" class="pf-slide"><x-import component-from-global-scope="Frame" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="02 About" data-screen-label="02 About" class="pf-slide"><x-import component-from-global-scope="Frame2" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="03 Contents" data-screen-label="03 Contents" class="pf-slide"><x-import component-from-global-scope="Frame3" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="04 자소전 개요" data-screen-label="04 자소전 개요" class="pf-slide"><x-import component-from-global-scope="Frame4" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="05 자소전 파이프라인" data-screen-label="05 자소전 파이프라인" class="pf-slide"><x-import component-from-global-scope="Frame5" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="06 핵심기능 1" data-screen-label="06 핵심기능 1" class="pf-slide"><x-import component-from-global-scope="Frame6" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="07 핵심기능 2" data-screen-label="07 핵심기능 2" class="pf-slide"><x-import component-from-global-scope="Frame7" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="08 인프라봇 개요" data-screen-label="08 인프라봇 개요" class="pf-slide"><x-import component-from-global-scope="Frame8" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="09 인프라봇 화면" data-screen-label="09 인프라봇 화면" class="pf-slide"><x-import component-from-global-scope="Frame9" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="10 인프라봇 아키텍처" data-screen-label="10 인프라봇 아키텍처" class="pf-slide"><x-import component-from-global-scope="Frame10" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="11 HearBe 개요" data-screen-label="11 HearBe 개요" class="pf-slide"><x-import component-from-global-scope="Frame11" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import><img src="assets/hearbe-rep.png" alt="HearBe 대표 화면" style="position:absolute;left:1015px;top:355px;width:831px;height:411px;object-fit:cover;border-radius:8px;box-shadow:0px 5px 7px 0px rgba(0,0,0,0.1);"></section>
-  <section data-label="12 HearBe NLU" data-screen-label="12 HearBe NLU" class="pf-slide"><x-import component-from-global-scope="Frame12" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="13 HearBe 화면" data-screen-label="13 HearBe 화면" class="pf-slide"><x-import component-from-global-scope="Frame13" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="14 Campung 개요" data-screen-label="14 Campung 개요" class="pf-slide"><x-import component-from-global-scope="Frame14" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="15 Campung 아키텍처" data-screen-label="15 Campung 아키텍처" class="pf-slide"><x-import component-from-global-scope="Frame15" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="16 Campung 트러블슈팅" data-screen-label="16 Campung 트러블슈팅" class="pf-slide"><x-import component-from-global-scope="Frame16" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="17 MOA 개요" data-screen-label="17 MOA 개요" class="pf-slide"><x-import component-from-global-scope="Frame17" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="18 MOA 서비스흐름" data-screen-label="18 MOA 서비스흐름" class="pf-slide"><x-import component-from-global-scope="Frame18" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="19 MOA 정합성" data-screen-label="19 MOA 정합성" class="pf-slide"><x-import component-from-global-scope="Frame19" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="20 MOA 예산배분" data-screen-label="20 MOA 예산배분" class="pf-slide"><x-import component-from-global-scope="Frame20" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="21 Other Projects" data-screen-label="21 Other Projects" class="pf-slide"><x-import component-from-global-scope="Frame21" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="22 End" data-screen-label="22 End" class="pf-slide"><x-import component-from-global-scope="Frame22" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="01 Intro" class="pf-slide"><x-import component-from-global-scope="Frame" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="02 About" class="pf-slide"><x-import component-from-global-scope="Frame2" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+
+  <section data-label="03 Contents" class="npp-slide">
+    <div class="npp-chrome"><span>2026.</span><i></i><em>#에이전트 오케스트레이션 #백엔드 #인프라 운영</em></div>
+    <p class="npp-label">CONTENTS.</p>
+    <div class="npp-contents npp-contents--7">
+      <div><strong>01</strong><p>PERSONAL PROJECT</p><h2>자소전.</h2><span>문서 데이터를 AI가 활용할 수 있는 근거로 전환</span></div>
+      <div><strong>02</strong><p>TEAM PROJECT</p><h2>DoitDo.</h2><span>운영 업무를 자연어 기반 흐름으로 연결</span></div>
+      <div><strong>03</strong><p>PERSONAL PROJECT</p><h2>NanoClaw.</h2><span>Claude·Codex의 턴 교대와 모듈형 확장</span></div>
+      <div><strong>04</strong><p>SSAFY 공통 프로젝트</p><h2>HearBe.</h2><span>신뢰도와 사용자 확인을 포함한 AI 서비스</span></div>
+      <div><strong>05</strong><p>신한 해커톤 대상</p><h2>Campung.</h2><span>실시간 집계·감정분석 기반 캠퍼스 커뮤니티</span></div>
+      <div><strong>06</strong><p>삼성 청년 SW아카데미 · 팀장</p><h2>모아(MOA).</h2><span>금융 Open API 기반 목표·예산 관리</span></div>
+      <div><strong>07</strong><p>경험 +3</p><h2>Other Projects.</h2><span>Trip-Tube · Sequence · 블루로봇 인턴</span></div>
+    </div>
+  </section>
+
+  <!-- ── 01 자소전 (뉴파워프라즈마 변형본 최신 프레이밍 재사용) ── -->
+  <section data-label="04 자소전 인트로" class="npp-slide npp-project-intro">
+    <div class="npp-chrome"><span>2026.</span><i></i><em>#멀티에이전트 #컨텍스트 검증</em></div>
+    <img class="npp-project-intro__accent" src="assets/project-intro-accent.svg" alt="" aria-hidden="true">
+    <p class="npp-label">01 · PROJECT INTRO.</p>
+    <span class="npp-project-intro__number">01.</span>
+    <h2>자소전<span>.</span></h2>
+    <p class="npp-project-intro__statement">공고·기업·개인 경험을<br>검증 가능한 작성 근거로 전환하는 멀티에이전트 워크플로우.</p>
+    <div class="npp-project-intro__meta"><span>PERSONAL PROJECT</span><span>2026. 04 · PRESENT</span><span>TypeScript · Python · React · Fastify</span></div>
+  </section>
+  <section data-label="05 자소전 파이프라인" class="pf-slide"><x-import component-from-global-scope="Frame5" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
+
+  <section data-label="06 인사이트 분석" class="npp-slide npp-jaso-screen">
+    <div class="npp-chrome"><span>2026.</span><i></i><em>#기업 분석 #직무 분석 #출처 기반</em></div>
+    <p class="npp-label">01 · JASOJEON INSIGHT.</p>
+    <h2 class="npp-project-title">수집한 근거를<br>지원 전략으로 정리합니다.</h2>
+    <div class="npp-jaso-copy"><span>INSIGHT ANALYSIS.</span><h3>기업·직무·문항 분석</h3><p>공고와 기업 정보를 문항별 지원 전략으로 정리하고, 초안에 반영할 근거와 확인이 필요한 내용을 구분합니다.</p></div>
+    <img class="npp-jaso-image npp-jaso-image--insight" src="assets/jasojeon/insight-analysis.png" alt="자소전 인사이트 분석 화면">
+  </section>
+
+  <section data-label="07 에이전트 첨삭" class="npp-slide npp-jaso-screen">
+    <div class="npp-chrome"><span>2026.</span><i></i><em>#멀티에이전트 #리뷰 워크플로우</em></div>
+    <p class="npp-label">01 · JASOJEON AGENT REVIEW.</p>
+    <h2 class="npp-project-title">역할을 나눈 AI가<br>초안과 근거를 검토합니다.</h2>
+    <div class="npp-jaso-copy"><span>AGENT REVIEW.</span><h3>작성·적합성·근거 검토 분리</h3><p>컨텍스트 리서처, 섹션 작성자, 적합성·근거 리뷰어 등 역할별 에이전트가 한 문항을 순차적으로 검토합니다.</p></div>
+    <img class="npp-jaso-image npp-jaso-image--review" src="assets/jasojeon/agent-review-2.png" alt="자소전 멀티에이전트 첨삭 화면">
+  </section>
+
+  <section data-label="08 컨텍스트 검증" class="npp-slide">
+    <div class="npp-chrome"><span>2026.</span><i></i><em>#컨텍스트 처리 #DART OpenAPI #Human-in-the-loop</em></div>
+    <p class="npp-label">CONTEXT · VERIFICATION.</p>
+    <h2 class="npp-project-title">AI가 답하기 전,<br>근거가 먼저 정리되도록.</h2>
+    <div class="npp-columns">
+      <article><span>INPUT.</span><h3>형식별 파싱·전처리</h3><p>PDF·DOCX·TXT·Markdown의 추출 경로를 나누고, 텍스트를 정규화·분할해 재사용 가능한 컨텍스트로 만듭니다.</p></article>
+      <article><span>RESEARCH.</span><h3>핵심 근거 중심 압축</h3><p>공고·기업·개인 경험을 출처·목적·중요도로 분류하고, 작성에 필요한 근거를 중심으로 요약합니다.</p></article>
+      <article><span>CHECK.</span><h3>출처와 사람 검토</h3><p>DART OpenAPI의 사업보고서 XML을 수집·파싱·청킹하고, 교차검증이 부족한 정보는 검토 대기로 남깁니다.</p></article>
+    </div>
+    <p class="npp-band">AI의 응답 품질은 프롬프트만이 아니라, 입력 데이터의 구조와 검증 가능한 출처에서 결정된다고 보았습니다.</p>
+  </section>
+
+  <!-- ── 02 DoitDo (뉴파워프라즈마 변형본 재사용) ── -->
+  <section data-label="09 DoitDo 인트로" class="npp-slide npp-project-intro">
+    <div class="npp-chrome"><span>2026.</span><i></i><em>#Discord #관측성 #운영 자동화</em></div>
+    <img class="npp-project-intro__accent" src="assets/project-intro-accent.svg" alt="" aria-hidden="true">
+    <p class="npp-label">02 · PROJECT INTRO.</p>
+    <span class="npp-project-intro__number">02.</span>
+    <h2>DoitDo<span>.</span></h2>
+    <p class="npp-project-intro__statement">팀 운영에 집중된 점검·분석·데이터 확인 업무를<br>Discord 기반 AI 운영 흐름으로 전환.</p>
+    <div class="npp-project-intro__meta"><span>TEAM PROJECT</span><span>2026. 04 · 2026. 05</span><span>NanoClaw · Discord · Grafana · Loki · Jira</span></div>
+  </section>
+
+  <section data-label="10 DoitDo 화면" class="npp-slide npp-doitdo-screen">
+    <div class="npp-chrome"><span>2026.</span><i></i><em>#DoitDo #운영 화면</em></div>
+    <p class="npp-label">02 · DOITDO AI INFRA ASSISTANT.</p>
+    <h2 class="npp-project-title">경보를 받으면,<br>원인과 대응을 정리합니다.</h2>
+    <div class="npp-case-copy"><span>ALERT ANALYSIS.</span><h3>Grafana 5xx 경보 분석</h3><p>경보를 Discord 작업으로 연결한 뒤, 로그·메트릭·코드베이스를 함께 확인해 원인·영향 범위·권장 대응을 정리합니다.</p><p class="npp-case-copy__note">경보의 단순 전달이 아니라, 담당자가 다음 조치를 판단할 수 있는 분석 흐름을 만들었습니다.</p></div>
+    <img class="npp-case-image npp-case-image--log" src="assets/doitdo/log.png" alt="DoitDo Grafana 5xx 경보 분석과 대응 제안">
+  </section>
+
+  <section data-label="11 DoitDo 데이터 조회" class="npp-slide npp-doitdo-screen">
+    <div class="npp-chrome"><span>2026.</span><i></i><em>#DoitDo #자연어 조회</em></div>
+    <p class="npp-label">02 · DOITDO AI INFRA ASSISTANT.</p>
+    <h2 class="npp-project-title">질문을 업무 언어로 받고,<br>필요한 데이터를 조회합니다.</h2>
+    <div class="npp-case-copy"><span>NATURAL LANGUAGE QUERY.</span><h3>서비스 현황 데이터 응답</h3><p>팀원이 Discord에서 사용자 수와 최근 가입자를 묻으면, 서비스 데이터를 조회해 읽기 쉬운 결과로 반환합니다.</p><p class="npp-case-copy__note">운영 담당자에게 별도로 요청하지 않아도, 팀이 기존 협업 채널에서 필요한 현황을 확인할 수 있게 했습니다.</p></div>
+    <img class="npp-case-image npp-case-image--query" src="assets/doitdo/question.png" alt="DoitDo 자연어 사용자 수 조회 응답">
+  </section>
+
+  <section data-label="12 DoitDo 운영 요청" class="npp-slide npp-doitdo-screen">
+    <div class="npp-chrome"><span>2026.</span><i></i><em>#DoitDo #운영 요청</em></div>
+    <p class="npp-label">02 · DOITDO AI INFRA ASSISTANT.</p>
+    <h2 class="npp-project-title">반복적인 운영 요청도<br>채널 안에서 처리합니다.</h2>
+    <div class="npp-case-copy"><span>OPERATION REQUEST.</span><h3>계정 상태·보상 데이터 처리</h3><p>운영자가 요청한 독립 버튼 활성화, 도감 개방, 재화 지급 같은 계정 상태 변경을 봇이 결과와 함께 채널에 응답합니다.</p><p class="npp-case-copy__note">실제 변경 기능은 데이터 접근권한과 실행 전 확인·승인 절차를 함께 설계해야 하는 영역입니다.</p></div>
+    <img class="npp-case-image npp-case-image--admin" src="assets/doitdo/admin-bot.png" alt="DoitDo 계정 상태 변경 요청 처리 화면">
+  </section>
+
+  <!-- ── 03 NanoClaw (뉴파워프라즈마 변형본 재사용) ── -->
+  <section data-label="13 NanoClaw 인트로" class="npp-slide npp-project-intro">
+    <div class="npp-chrome"><span>2026.</span><i></i><em>#OSS Fork #Turn-taking #Additive Modules</em></div>
+    <img class="npp-project-intro__accent" src="assets/project-intro-accent.svg" alt="" aria-hidden="true">
+    <p class="npp-label">03 · PROJECT INTRO.</p>
+    <span class="npp-project-intro__number">03.</span>
+    <h2>NanoClaw<span>.</span></h2>
+    <p class="npp-project-intro__statement">Claude와 Codex, 두 독립 런타임이<br>역할에 따라 턴을 교대하는 개인 AI 비서.</p>
+    <div class="npp-project-intro__meta"><span>PERSONAL PROJECT</span><span>2026. 02 · PRESENT</span><span>TypeScript · SQLite · Docker · Discord.js</span></div>
+  </section>
+
+  <section data-label="14 NanoClaw 화면" class="npp-slide npp-nanoclaw-screen">
+    <div class="npp-chrome"><span>2026.</span><i></i><em>#Discord #Claude #Codex</em></div>
+    <p class="npp-label">03 · NANOCLAW PERSONAL AGENT.</p>
+    <h2 class="npp-project-title">Discord에서 동작하는<br>개인 AI 비서.</h2>
+    <p class="npp-screen-note">Claude와 Codex가 역할에 따라 응답하고, 작업 상태는 채널 메시지로 이어집니다.</p>
+    <div class="npp-nanoclaw-images">
+      <img src="frames/assets/7f8abe6287e393be.png" alt="나붕봇 Codex Discord 대화 화면">
+      <img src="frames/assets/8361d4141dec4674.png" alt="재붕봇 Claude Discord 대화 화면">
+      <img src="assets/nanoclaw/conversation.png" alt="재붕봇 개인 문서 저장과 성적증명서 조회 대화 화면">
+    </div>
+  </section>
+
+  <section data-label="15 NanoClaw 구조" class="npp-slide">
+    <div class="npp-chrome"><span>2026.</span><i></i><em>#SQLite #Slash Commands #Background Agents</em></div>
+    <p class="npp-label">03 · NANOCLAW PERSONAL AGENT.</p>
+    <h2 class="npp-project-title">상태를 기록하고,<br>다음 작업을 결정하는 구조.</h2>
+    <div class="npp-runtime-flow">
+      <div><strong>Discord</strong><span>작업 요청 · 명령</span></div><i>→</i>
+      <div><strong>NanoClaw · Claude</strong><span>세션 상태 · slash command<br>collab 모듈 · 배경 작업 spawn</span></div><i>→</i>
+      <div><strong>OpenClaw · Codex</strong><span>handoff 수신 · 작업 수행<br><code>COLLAB_STATUS</code> 응답</span></div>
+    </div>
+    <div class="npp-command-row"><span><b>/collab</b> 턴 교대 작업 시작</span><span><b>/collab-stop</b> 실행 중인 협업 중단</span><span><b>/responder</b> 응답 담당 전환</span><span><b>spawn_subagent</b> 장시간 작업 분리</span></div>
+    <p class="npp-band">최대 라운드·DONE·CONTINUE·BLOCKED 상태를 제어하고, 종료된 배경 워커를 회수해 장시간 작업이 메인 대화를 막지 않도록 했습니다.</p>
+  </section>
+
+  <section data-label="16 안전한 운영" class="npp-slide">
+    <div class="npp-chrome"><span>2026.</span><i></i><em>#권한 경계 #관측성 #운영 자동화</em></div>
+    <p class="npp-label">SAFE OPERATIONS.</p>
+    <h2 class="npp-project-title">자연어 인터페이스와<br>실제 운영 권한은 분리합니다.</h2>
+    <div class="npp-control-grid">
+      <div><strong>ACCESS.</strong><h3>채널·발신자 제한</h3><p>허용된 채널과 요청자만 운영 흐름에 진입하도록 구성합니다.</p></div>
+      <div><strong>DATA.</strong><h3>읽기·쓰기 경계</h3><p>RO/RW 마운트를 분리하고, 시크릿이 응답에 노출되지 않도록 둡니다.</p></div>
+      <div><strong>REVIEW.</strong><h3>담당자 검토</h3><p>메트릭·로그·이슈를 함께 확인해 대응안은 사람이 판단하도록 연결합니다.</p></div>
+      <div><strong>RECOVERY.</strong><h3>상태·실패 회수</h3><p>세션 상태와 재시작 정책을 두어 장시간 작업의 실패를 회수합니다.</p></div>
+    </div>
+    <p class="npp-band">AI 도입에서 자동화 범위와 사람이 최종 판단해야 하는 경계를 함께 설계한 경험입니다.</p>
+  </section>
+
+  <!-- ── 04 HearBe (인트로는 변형본 재사용, 신뢰도 화면은 마스터 전용 재넘버링 프레임) ── -->
+  <section data-label="17 HearBe 인트로" class="npp-slide npp-project-intro">
+    <div class="npp-chrome"><span>2026.</span><i></i><em>#AI 접근성 #신뢰도 #사용자 확인</em></div>
+    <img class="npp-project-intro__accent" src="assets/project-intro-accent.svg" alt="" aria-hidden="true">
+    <p class="npp-label">04 · PROJECT INTRO.</p>
+    <span class="npp-project-intro__number">04.</span>
+    <h2>HearBe<span>.</span></h2>
+    <p class="npp-project-intro__statement">시각장애인이 음성만으로 쇼핑을 탐색하고 실행하도록 돕는<br>AI 음성 쇼핑 어시스턴트 서비스.</p>
+    <div class="npp-project-intro__meta"><span>TEAM PROJECT</span><span>2026. 01 · 2026. 02</span><span>Python · KoELECTRA · Qwen VL · Spring Boot</span></div>
+  </section>
+  <section data-label="18 HearBe 신뢰도" class="pf-slide"><x-import component-from-global-scope="Frame12v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import></section>
+
+  <!-- ── 05 Campung (옛 마스터 프레임 재사용, 챕터 번호만 05로 재넘버링) ── -->
+  <section data-label="19 Campung 개요" class="pf-slide"><x-import component-from-global-scope="Frame14v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="20 Campung 아키텍처" class="pf-slide"><x-import component-from-global-scope="Frame15v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="21 Campung 트러블슈팅" class="pf-slide"><x-import component-from-global-scope="Frame16v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import></section>
+
+  <!-- ── 06 모아(MOA) (옛 마스터 프레임 재사용, 챕터 번호만 06으로 재넘버링) ── -->
+  <section data-label="22 MOA 개요" class="pf-slide"><x-import component-from-global-scope="Frame17v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="23 MOA 서비스흐름" class="pf-slide"><x-import component-from-global-scope="Frame18v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="24 MOA 정합성" class="pf-slide"><x-import component-from-global-scope="Frame19v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="25 MOA 예산배분" class="pf-slide"><x-import component-from-global-scope="Frame20v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import></section>
+
+  <!-- ── 07 Other Projects (옛 마스터 프레임 재사용, 챕터 번호만 07로 재넘버링) ── -->
+  <section data-label="26 Other Projects" class="pf-slide"><x-import component-from-global-scope="Frame21v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import></section>
+
+  <section data-label="27 End" class="pf-slide"><x-import component-from-global-scope="Frame22" from="./frames/Components.bundle.js" hint-size="1920px,1080px"></x-import></section>
 </x-import>
 </x-dc>
 </body>
