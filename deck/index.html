@@ -196,8 +196,30 @@
   <!-- ── 06 모아(MOA) (옛 마스터 프레임 재사용, 챕터 번호만 06으로 재넘버링) ── -->
   <section data-label="22 MOA 개요" class="pf-slide"><x-import component-from-global-scope="Frame17v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import><img src="assets/moa/account-link.png" alt="MOA 계좌 연동 은행 선택 화면" style="position:absolute;left:999px;top:350px;width:216px;height:437px;object-fit:cover;border-radius:29px;box-shadow:0px 4px 6.900px 0px rgb(0,0,0);"></section>
   <section data-label="23 MOA 서비스흐름" class="pf-slide"><x-import component-from-global-scope="Frame18v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="24 MOA 정합성" class="pf-slide"><x-import component-from-global-scope="Frame19v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import></section>
-  <section data-label="25 MOA 예산배분" class="pf-slide"><x-import component-from-global-scope="Frame20v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import></section>
+  <section data-label="24 MOA 정합성" class="pf-slide">
+    <x-import component-from-global-scope="Frame19v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import>
+    <div style="position:absolute; left:168px; right:168px; top:660px; display:flex; align-items:flex-start; gap:24px; font-family:Paperlogy,sans-serif; color:var(--ink);">
+      <div style="flex:1; padding-top:18px; border-top:1px solid var(--ink);"><strong style="color:var(--accent); font-size:20px; font-weight:600;">01</strong><h3 style="margin:14px 0 8px; font-size:22px; line-height:1.2;">API 응답</h3><p style="margin:0; font-size:16px; line-height:1.4; color:rgba(59,59,59,.75);">외부 금융 API에서<br>계좌 목록을 수신</p></div>
+      <span style="color:var(--accent); font-size:28px; padding-top:56px;">→</span>
+      <div style="flex:1; padding-top:18px; border-top:1px solid var(--ink);"><strong style="color:var(--accent); font-size:20px; font-weight:600;">02</strong><h3 style="margin:14px 0 8px; font-size:22px; line-height:1.2;">Map 구성 O(1)</h3><p style="margin:0; font-size:16px; line-height:1.4; color:rgba(59,59,59,.75);">외부 API 기준으로<br>계좌 비교 테이블 생성</p></div>
+      <span style="color:var(--accent); font-size:28px; padding-top:56px;">→</span>
+      <div style="flex:1; padding-top:18px; border-top:1px solid var(--ink);"><strong style="color:var(--accent); font-size:20px; font-weight:600;">03</strong><h3 style="margin:14px 0 8px; font-size:22px; line-height:1.2;">계좌 비교</h3><p style="margin:0; font-size:16px; line-height:1.4; color:rgba(59,59,59,.75);">로컬 DB와 외부 데이터<br>정합성 확인</p></div>
+      <span style="color:var(--accent); font-size:28px; padding-top:56px;">→</span>
+      <div style="flex:1; padding-top:18px; border-top:1px solid var(--ink);"><strong style="color:var(--accent); font-size:20px; font-weight:600;">04</strong><h3 style="margin:14px 0 8px; font-size:22px; line-height:1.2;">비활성 처리</h3><p style="margin:0; font-size:16px; line-height:1.4; color:rgba(59,59,59,.75);">API 오류 시<br>안정적으로 복구</p></div>
+      <span style="color:var(--accent); font-size:28px; padding-top:56px;">→</span>
+      <div style="flex:1; padding-top:18px; border-top:1px solid var(--ink);"><strong style="color:var(--accent); font-size:20px; font-weight:600;">05</strong><h3 style="margin:14px 0 8px; font-size:22px; line-height:1.2;">@Transactional 커밋</h3><p style="margin:0; font-size:16px; line-height:1.4; color:rgba(59,59,59,.75);">동기화 결과를<br>트랜잭션으로 확정</p></div>
+    </div>
+  </section>
+  <section data-label="25 MOA 예산배분" class="pf-slide">
+    <x-import component-from-global-scope="Frame20v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import>
+    <div style="position:absolute; left:168px; top:300px; width:960px; font-family:Paperlogy,sans-serif; color:var(--ink);">
+      <div style="padding-top:14px; margin-bottom:22px; border-top:1px solid var(--ink);"><span style="color:var(--accent); font-size:20px; font-weight:600; margin-right:10px;">01</span><span style="font-size:22px; font-weight:700;">월간수입 정규화</span><p style="margin:6px 0 0; font-size:15px; line-height:1.4; color:rgba(59,59,59,.7);">다양한 소득 주기를 월 단위 기준으로 통일한다.</p></div>
+      <div style="padding-top:14px; margin-bottom:22px; border-top:1px solid var(--ink);"><span style="color:var(--accent); font-size:20px; font-weight:600; margin-right:10px;">02</span><span style="font-size:22px; font-weight:700;">주 프레임 생성</span><p style="margin:6px 0 0; font-size:15px; line-height:1.4; color:rgba(59,59,59,.7);">월간 수입을 주차별 실행 단위로 분배한다.</p></div>
+      <div style="padding-top:14px; margin-bottom:22px; border-top:1px solid var(--ink);"><span style="color:var(--accent); font-size:20px; font-weight:600; margin-right:10px;">03</span><span style="font-size:22px; font-weight:700;">고정비 차감</span><p style="margin:6px 0 0; font-size:15px; line-height:1.4; color:rgba(59,59,59,.7);">고정 지출을 우선 차감해 가용 금액을 정한다.</p></div>
+      <div style="padding-top:14px; margin-bottom:22px; border-top:1px solid var(--ink);"><span style="color:var(--accent); font-size:20px; font-weight:600; margin-right:10px;">04</span><span style="font-size:22px; font-weight:700;">목표 저축 반영</span><p style="margin:6px 0 0; font-size:15px; line-height:1.4; color:rgba(59,59,59,.7);">남은 금액에서 목표 저축 계획을 배분한다.</p></div>
+      <div style="padding-top:14px; border-top:1px solid var(--ink);"><span style="color:var(--accent); font-size:20px; font-weight:600; margin-right:10px;">05</span><span style="font-size:22px; font-weight:700;">부족분 자동조정</span><p style="margin:6px 0 0; font-size:15px; line-height:1.4; color:rgba(59,59,59,.7);">부족하면 우선순위가 낮은 목표부터 자동으로 줄인다.</p></div>
+    </div>
+  </section>
 
   <!-- ── 07 Other Projects (옛 마스터 프레임 재사용, 챕터 번호만 07로 재넘버링) ── -->
   <section data-label="26 Other Projects" class="pf-slide"><x-import component-from-global-scope="Frame21v2" from="./frames/Components.master-appendix.js" hint-size="1920px,1080px"></x-import></section>
