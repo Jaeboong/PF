@@ -3899,7 +3899,7 @@ function Frame18v2(_p = {}) {
       whiteSpace: "nowrap",
       lineHeight: 1.3200000524520874,
       letterSpacing: "-0.020em",
-      color: "var(--white)"
+      color: "rgb(59,59,59)"
     }
   }, "WHY THIS STRUCTURE."), /*#__PURE__*/React.createElement("span", {
     style: {
@@ -3914,7 +3914,7 @@ function Frame18v2(_p = {}) {
       whiteSpace: "nowrap",
       lineHeight: 1.3200000524520874,
       letterSpacing: "-0.020em",
-      color: "var(--white)",
+      color: "rgb(59,59,59)",
       display: "inline-block"
     }
   }, "WHAT I LEARNED", /*#__PURE__*/React.createElement("span", {
@@ -3934,7 +3934,7 @@ function Frame18v2(_p = {}) {
       whiteSpace: "nowrap",
       lineHeight: 1.3200000524520874,
       letterSpacing: "-0.020em",
-      color: "var(--white)"
+      color: "rgb(59,59,59)"
     }
   }, "\uACC4\uC0B0\uC2DD\uBCF4\uB2E4 \uB370\uC774\uD130 \uAE30\uC900 \uC77C\uAD00\uC131\uC774 \uD575\uC2EC."), /*#__PURE__*/React.createElement("span", {
     style: {
@@ -3948,7 +3948,7 @@ function Frame18v2(_p = {}) {
       fontSize: 24,
       lineHeight: 1.3200000524520874,
       letterSpacing: "-0.020em",
-      color: "var(--white)"
+      color: "rgb(59,59,59)"
     }
   }, "Spring Boot\uB85C \uAE08\uC735 \uB3C4\uBA54\uC778 \uD2B8\uB79C\uC7AD\uC158\uC744 \uD1B5\uD569 \uAD00\uB9AC\uD558\uACE0, \u2028FastAPI\uB85C \uBD84\uC11D \uB85C\uC9C1 \uBD84\uB9AC.\u2028\u2028PostgreSQL\xB7Docker \uAE30\uBC18\uC73C\uB85C \uB370\uC774\uD130 \uAD00\uACC4\uC640 \uC2E4\uD589 \uD658\uACBD\uC758 \uC548\uC815\uC131\uC744 \uD655\uBCF4."), /*#__PURE__*/React.createElement("span", {
     style: {
@@ -3963,7 +3963,7 @@ function Frame18v2(_p = {}) {
       whiteSpace: "nowrap",
       lineHeight: 1.3200000524520874,
       letterSpacing: "-0.020em",
-      color: "var(--white)"
+      color: "rgb(59,59,59)"
     }
   }, "\uACC4\uC88C \uB3D9\uAE30\uD654\xB7\uC608\uC0B0 \uB85C\uC9C1\uC73C\uB85C \uAE30\uC900\uC810 \uACE0\uC815."), /*#__PURE__*/React.createElement("svg", {
     width: 90,
@@ -3978,7 +3978,7 @@ function Frame18v2(_p = {}) {
       transformOrigin: "0 0",
       width: 90,
       height: 4,
-      color: "var(--white)"
+      color: "rgb(59,59,59)"
     }
   }, /*#__PURE__*/React.createElement("path", {
     d: "M 0 -2 L 0 0 L 90 0 L 90 -2 L 90 -4 L 0 -4 L 0 -2 Z",
@@ -3997,7 +3997,7 @@ function Frame18v2(_p = {}) {
       transformOrigin: "0 0",
       width: 185,
       height: 4,
-      color: "var(--white)"
+      color: "rgb(59,59,59)"
     }
   }, /*#__PURE__*/React.createElement("path", {
     d: "M 0 -2 L 0 0 L 185 0 L 185 -2 L 185 -4 L 0 -4 L 0 -2 Z",
